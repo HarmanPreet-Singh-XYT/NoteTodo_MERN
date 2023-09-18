@@ -7,26 +7,23 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
 const EditCard = () => {
-    const {categories, setCategories} = useContext(Categories_Cont);
-    const {notes,setNotes} = useContext(Notes_Cont);
-    const {show_EditCard,setShow_EditCard} = useContext(ShowCard_Cont);
+    const {categories} = useContext(Categories_Cont);
+    const {setNotes} = useContext(Notes_Cont);
+    const {setShow_EditCard} = useContext(ShowCard_Cont);
     const {title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
-    const {create_note} = useContext(NoteCreator);
     // const {selTitle, setSelTitle,selContent, setSelContent,selCateg, setSelCateg,selColor, setSelColor,selTag, setSelTag,selDate, setSelDate} = useContext(SelectedCardData_cont);
     const {Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
-    const date = new Date;
     function Edit(){
         setNotes((prevnotes)=>
-        prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag,col:color,tit:title,cont:content,category:categ,cls:`block`} : note)
+        prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:tag,col:color,tit:title,cont:content,category:categ,cls:`block`} : note)
         )
-        console.log(Timetick)
     }
     return (
     <>
         <div className="blur-background">
             <div className="create-window">
             <hr style={{backgroundColor:`${color}`}} className="color-line"/>
-                    <form action="/note/create" className="create-note">
+                    <form onSubmit={()=>{Edit();setShow_EditCard(false);}} action="/note/edit" id='editnote' className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <label className='cre-time fir'>Include Time</label>
@@ -39,7 +36,7 @@ const EditCard = () => {
                         {Timetick.current ? <input type='checkbox' checked/> : <input type='checkbox' />}
                         <input defaultValue={Tagref.current} onChange={(e)=>setTag(e.target.value)} placeholder="Tag" name="tag" type="text" className="round-border tag-in four"/>
                         {/* <input defaultValue={Categref.current} onChange={(e)=>setCateg(e.target.value)} placeholder="Category" name="category" type="text" className="round-border category-in four"/> */}
-                        <select defaultValue={Categref.current} onChange={(e)=>setCateg(e.target.value)} className='round-border category-in four' name="category">
+                        <select defaultValue={Categref.current} onChange={(e)=>setCateg(`All ${e.target.value}`)} className='round-border category-in four' name="category">
                             {categories.map((category,key)=><option key={category.id} value={category.cat}>{category.cat}</option>)}
                         </select>
                         <label className="cre-color five">Colour</label>
@@ -49,7 +46,7 @@ const EditCard = () => {
                     </form>
                 <div className="create-buttons">
                     <button onClick={()=>{setShow_EditCard(false);setColor(Colorref.current)}} className="cancel">Cancel</button>
-                    <button onClick={()=>{Edit();title.length > 0 && setShow_EditCard(false);}} type='submit' formAction='/note/create' className="submit">Edit</button>
+                    <button style={{color:"white"}} form='editnote' type='submit' formAction='/note/create' className="submit">Edit</button>
                 </div>
             </div>
         </div>

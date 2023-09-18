@@ -9,7 +9,7 @@ const CreateCard = ({children}) => {
         const time = createTime && `${date.getHours()}:${date.getMinutes()}`;
         const timeopt = createTime ? true : false;
         const random_id = Math.random()*100;
-        const categoryCheck = category ? category : "All";
+        const categoryCheck = category ? `All ${category}` : "All";
         const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`block`,priority:false,completed:false,timeopt:timeopt}
         setNotes((prevnotes)=>[...prevnotes,note]);
         setCreateTime(false);

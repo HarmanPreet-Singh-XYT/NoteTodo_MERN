@@ -1,11 +1,13 @@
+import { Categories_Cont } from '@/Helpers/Categories';
 import { Notes_Cont } from '@/Helpers/Notes';
 import { Selection_Cont } from '@/Helpers/Selection';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React,{useContext} from 'react'
-
 const Notes = () => {
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
     const {createTime,notes,setNotes} = useContext(Notes_Cont);
+    const {setShow_FullCard,selectionUpdate, setSelectionUpdate} = useContext(ShowCard_Cont);
+    const {selectedCategory, setSelectedCategory} = useContext(Categories_Cont);
     function deselect(id,clas){
         setNotes((prevNotes)=>
         prevNotes.map((note)=>
@@ -13,6 +15,7 @@ const Notes = () => {
         ))
     }
     function add_selection(id,clas){
+      
         !selectionMode && setNotes((prevNotes)=>
         prevNotes.map((note)=>
         note.cls.includes("card-selected") ? {...note,cls:"block"} : note
@@ -29,14 +32,15 @@ const Notes = () => {
     <>
         <hr className="sep"/>
             <section className="main-content">
-                {notes.map((note)=>
-                <div id={note.id} onClick={()=>add_selection(note.id,note.cls)} key={note.id} className={note.cls}>
+                {notes.map((note)=> note.category.includes(selectedCategory) &&
+                <div id={note.id} onClick={()=>{add_selection(note.id,note.cls)}} key={note.id} className={note.cls}>
                     {note.priority && <div className="prior"><p className="priority-tag">Priority</p></div>}
                     <hr style={{backgroundColor:`${note.col}`}} className="color-line"/>
                     <p className="date">{note.date} {note.time}</p>
                     <p className="title">{note.tit}</p>
                     <p className="content">{note.cont}</p>
-                    <button className="show-more">Show More</button>
+                    {note.tag && <div className="prior below"><p style={{backgroundColor:note.col,color:"white"}} className="priority-tag tag">{note.tag}</p></div>}
+                    <button onClick={()=>{setShow_FullCard(true)}} className="show-more">Show More</button>
                 </div>)}
             </section>
         <hr className="sep-bottom"/>
