@@ -4,8 +4,9 @@ export const Categories_Cont = createContext();
 const Categories = ({children}) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [selectedButton, setSelectedButton] = useState("task");
   return (
-    <Categories_Cont.Provider value={{selectedCategory, setSelectedCategory,categories,setCategories}}>
+    <Categories_Cont.Provider value={{selectedButton, setSelectedButton,selectedCategory, setSelectedCategory,categories,setCategories}}>
         {children}
     </Categories_Cont.Provider>
   )

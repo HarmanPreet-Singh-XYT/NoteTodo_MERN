@@ -10,7 +10,7 @@ import NotesApp from '@/Components/NotesApp'
 import SideBar from '@/Components/SideBar';
 import Cards from '@/Components/PageComponents/Cards';
 const Page = () => {
-    const {setCategories} = useContext(Categories_Cont);
+    const {setCategories,selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
     function create_categories(category,color){
         const random = Math.random()*100;
@@ -38,8 +38,8 @@ const Page = () => {
         </div>
         <div className="main">
             <ToastContainer/>
-            {/* <ToDoApp/> */}
-            <NotesApp/>
+            {selectedButton==="task" && <ToDoApp/>}
+            {selectedButton==="note" && <NotesApp/>}
         </div>
         <div style={{width:"24%",display:"block",transform: `translateX(${showCalendar ? "0" : "110"}%)`}} className='calendar-div'>
         <Calendar/>

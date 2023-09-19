@@ -65,9 +65,11 @@ body{
   align-items: center;
   justify-content: flex-start;
   gap: 10%;
+  transition: background-color,font-size 0.1s;
 }
 .bt:hover{
   background-color: #6A61C0;
+  font-size: 26px;
 }
 .main{
   width: 80%;
@@ -229,6 +231,8 @@ body{
 .side-selected-btn{
   background-color: #6A61C0;
   color: white;
+  font-size: 26px;
+  font-weight: bold;
 }
 .selected-btn{
   background-color: #8981D8;
@@ -256,6 +260,8 @@ body{
   overflow: auto;
   overflow-x: hidden;
   justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 1px 10px lightgray;
 }
 .block{
   display: flex;

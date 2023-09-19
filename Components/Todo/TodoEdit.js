@@ -3,7 +3,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
-const TodoCreate = () => {
+const TodoEdit = () => {
     const {setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
@@ -48,4 +48,4 @@ const TodoCreate = () => {
   )
 }
 
-export default TodoCreate
+export default TodoEdit;
