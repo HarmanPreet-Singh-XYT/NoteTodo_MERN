@@ -15,8 +15,10 @@ body{
 }
 .sidebar{
   align-items: center;
-  width: 20%;
-  height: 100%;
+  width: 19%;
+  height: 99%;
+  border-radius: 30px;
+  margin: 5px;
   display:flex;
   flex-direction: column;
   background-color: #8981D8;

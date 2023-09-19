@@ -1,8 +1,8 @@
 "use client"
 import { Calendar_cont } from "@/Helpers/Calendar-Cont";
 import React, { useContext } from "react";
-import Calendar_Setup from "@/Components/Calendar-Setup";
-import Calendar_Empty from "@/Components/Calendar-Empty";
+import Calendar_Setup from "@/Components/Calendar/Calendar-Setup";
+import Calendar_Empty from "@/Components/Calendar/Calendar-Empty";
 const Calendar = ()=>{
   const {dateSys,totalDays,month,fulldate}=useContext(Calendar_cont);
   return (

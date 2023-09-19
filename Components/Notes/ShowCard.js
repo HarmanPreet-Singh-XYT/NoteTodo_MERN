@@ -1,12 +1,8 @@
-import { FormData_cont } from '@/Helpers/CardCreationData';
 import { Categories_Cont } from '@/Helpers/Categories';
-import { Notes_Cont } from '@/Helpers/Notes';
 import { SelectedCardData_cont } from '@/Helpers/SelectedCardData';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
-import React,{useContext,useEffect} from 'react'
+import React,{useContext} from 'react'
 const ShowCard = () => {
-    const {notes,setNotes} = useContext(Notes_Cont);
-    const {title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
     const {categories} = useContext(Categories_Cont);
     const {setShow_FullCard,setShow_EditCard} = useContext(ShowCard_Cont);
     const {Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);

@@ -2,7 +2,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React,{useContext} from 'react'
 import Catnav_buttons from './Catnav-buttons';
 const TopBtn = () => {
-    const {show_CreateCard, setShow_CreateCard} = useContext(ShowCard_Cont);
+    const {setShow_CreateCard} = useContext(ShowCard_Cont);
   return (
     <>
     <section className="selection">
