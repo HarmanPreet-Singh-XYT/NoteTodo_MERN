@@ -23,7 +23,7 @@ const ShowCard = () => {
                         {Timetick.current ? <input type='checkbox' checked/> : <input type='checkbox' />}
                         <input readOnly defaultValue={Tagref.current} placeholder="Tag" name="tag" type="text" className="round-border tag-in four"/>
                         {/* <input defaultValue={Categref.current} onChange={(e)=>setCateg(e.target.value)} placeholder="Category" name="category" type="text" className="round-border category-in four"/> */}
-                        <select defaultValue={Categref.current} className='round-border category-in four' name="category">
+                        <select readOnly defaultValue={Categref.current} className='round-border category-in four' name="category">
                             {categories.map((category,key)=><option key={category.id} value={category.cat}>{category.cat}</option>)}
                         </select>
                         <label className="cre-color five">Colour</label>
