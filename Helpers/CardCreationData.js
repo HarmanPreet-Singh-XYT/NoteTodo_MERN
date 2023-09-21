@@ -7,7 +7,7 @@ const CardCreationData = ({children}) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [date, setDate] = useState("");
-    const [categ, setCateg] = useState("");
+    const [categ, setCateg] = useState("All");
     const [tag, setTag] = useState("");
     const [color, setColor] = useState("");
   return (

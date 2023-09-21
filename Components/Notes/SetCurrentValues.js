@@ -3,7 +3,7 @@ import { Notes_Cont } from '@/Helpers/Notes';
 import { SelectedCardData_cont } from '@/Helpers/SelectedCardData';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
-import React,{useContext,useEffect,useRef, useState} from 'react';
+import React,{useContext} from 'react';
 
 const SetCurrentValues = () => {
     const {notes} = useContext(Notes_Cont);
@@ -14,7 +14,7 @@ const SetCurrentValues = () => {
     {if(note.cls.includes("card-selected")){
         Titleref.current = note.tit;
         Contentref.current = note.cont;
-        Categref.current = note.category;
+        Categref.current = note.category.slice(4);
         Colorref.current = note.col;
         Tagref.current = note.tag;
         Dateref.current = note.date;

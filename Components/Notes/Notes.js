@@ -36,7 +36,7 @@ const Notes = () => {
                 <div id={note.id} onClick={()=>{add_selection(note.id,note.cls)}} key={note.id} className={note.cls}>
                     {note.priority && <div className="prior"><p className="priority-tag">Priority</p></div>}
                     <hr style={{backgroundColor:`${note.col}`}} className="color-line"/>
-                    <p className="date">{note.date} {note.time}</p>
+                    <p className="date">{note.date} {note.timeopt && note.time}</p>
                     <p className="title">{note.tit}</p>
                     <p className="content">{note.cont}</p>
                     {note.tag && <div className="prior below"><p style={{backgroundColor:note.col,color:"white"}} className="priority-tag tag">{note.tag}</p></div>}

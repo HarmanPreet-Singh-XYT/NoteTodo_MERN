@@ -6,7 +6,7 @@ const CreateCard = ({children}) => {
     function create_note(color,tag,title,content,category,setNotes,months){
         const date = new Date;
         const fulldate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-        const time = createTime && `${date.getHours()}:${date.getMinutes()}`;
+        const time = `${date.getHours()}:${date.getMinutes()}`;
         const timeopt = createTime ? true : false;
         const random_id = Math.random()*100;
         const categoryCheck = category ? `All ${category}` : "All";

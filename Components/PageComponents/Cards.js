@@ -1,12 +1,12 @@
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React,{ useContext } from 'react'
-import SetCurrentValues from '../Todo/SetCurrentValues';
 import TodoCreate from '../Todo/TodoCreate';
 import ShowCard from '../Notes/ShowCard';
 import Create_card from '../Notes/Create-card';
 import EditCard from '../Notes/EditCard';
 import TodoShow from '@/Components/Todo/TodoShow'
 import TodoEdit from '../Todo/TodoEdit';
+import SetCurrentValues from '../Notes/SetCurrentValues';
 const Cards = () => {
     const {show_TodoShowCard,show_TodoCreateCard,show_TodoEditCard,show_FullCard,show_EditCard,show_CreateCard} = useContext(ShowCard_Cont);
     return (
