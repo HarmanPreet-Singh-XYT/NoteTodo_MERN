@@ -34,7 +34,7 @@ const Notes = () => {
     <>
         <hr className="sep"/>
             <section className="main-content">
-                {!searchOpt && notes.map((note)=> note.category.includes(selectedCategory) &&
+                {/* {!searchOpt && notes.map((note)=> note.category.includes(selectedCategory) &&
                 <div id={note.id} onClick={()=>{add_selection(note.id,note.cls)}} key={note.id} className={note.cls}>
                     {note.priority && <div className="prior"><p className="priority-tag">Priority</p></div>}
                     <hr style={{backgroundColor:`${note.col}`}} className="color-line"/>
@@ -43,36 +43,35 @@ const Notes = () => {
                     <p className="content">{note.cont}</p>
                     {note.tag && <div className="prior below"><p style={{backgroundColor:note.col,color:"white"}} className="priority-tag tag">{note.tag}</p></div>}
                     <button onClick={()=>{setShow_FullCard(true)}} className="show-more">Show More</button>
-                </div>)}
+                </div>)} */}
                 {searchOpt && notes.map((note) => {
-                  const matchesSearch = note.tit.includes(searchValue) || note.cont.includes(searchValue);
+                const matchesSearch = (note.tit.includes(searchValue) || note.cont.includes(searchValue))&&note.category.includes(selectedCategory);
 
-                  return (
-                      matchesSearch && (
-                          <div
-                              id={note.id}
-                              onClick={() => {
-                                  add_selection(note.id, note.cls);
-                                  setShow_FullCard(true);
-                              }}
-                              key={note.id}
-                              className={note.cls}
-                          >
-                              {note.priority && <div className="prior"><p className="priority-tag">Priority</p></div>}
-                              <hr style={{ backgroundColor: `${note.col}` }} className="color-line" />
-                              <p className="date">{note.date} {note.timeopt && note.time}</p>
-                              <p className="title">{note.tit}</p>
-                              <p className="content">{note.cont}</p>
-                              {note.tag && (
-                                  <div className="prior below">
-                                      <p style={{ backgroundColor: note.col, color: "white" }} className="priority-tag tag">{note.tag}</p>
-                                  </div>
-                              )}
-                              <button onClick={() => { setShow_FullCard(true) }} className="show-more">Show More</button>
-                          </div>
-                      )
-                  );
-              })}
+                return (
+                    matchesSearch && (
+                        <div
+                            id={note.id}
+                            onClick={() => {
+                                add_selection(note.id, note.cls);
+                            }}
+                            key={note.id}
+                            className={note.cls}
+                        >
+                            {note.priority && <div className="prior"><p className="priority-tag">Priority</p></div>}
+                            <hr style={{ backgroundColor: `${note.col}` }} className="color-line" />
+                            <p className="date">{note.date} {note.timeopt && note.time}</p>
+                            <p className="title">{note.tit}</p>
+                            <p className="content">{note.cont}</p>
+                            {note.tag && (
+                                <div className="prior below">
+                                    <p style={{ backgroundColor: note.col, color: "white" }} className="priority-tag tag">{note.tag}</p>
+                                </div>
+                            )}
+                            <button onClick={() => { setShow_FullCard(true) }} className="show-more">Show More</button>
+                        </div>
+                    )
+                );
+            })}
 
             </section>
         <hr className="sep-bottom"/>

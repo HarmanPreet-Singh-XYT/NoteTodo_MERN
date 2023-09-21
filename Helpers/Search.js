@@ -2,7 +2,7 @@
 import React, { createContext, useState } from 'react'
 export const Search_cont=createContext();
 const Search = ({children}) => {
-    const [searchOpt, setSearchOpt] = useState(false);
+    const [searchOpt, setSearchOpt] = useState(true);
     const [searchValue, setSearchValue] = useState("");
   return (
     <Search_cont.Provider value={{searchOpt,setSearchOpt,searchValue,setSearchValue}}>
