@@ -12,7 +12,6 @@ const Date_Day_Calculation = ({children}) => {
   function calculateDates(date,setdata){
     let dateObj = new Date();
     dateObj.setDate(dateObj.getDate() - date)
-    console.log(rawDateData,dateObj)
     setdata((prevdata)=>[...prevdata,dateObj])
   }
   return (

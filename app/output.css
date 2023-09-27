@@ -1,0 +1,66 @@
+.ov-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.ov-todo{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ov-notes{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ov-top{
+    display: flex;
+}
+.ov-diff{
+    background-color: #8981D8;
+    border: none;
+    width: 2px;
+    height: 90%;
+}
+.ov-notes{
+    height: 100%;
+    width: 50%;
+}
+.top-stat{
+    background-color: #8981D8;
+    color: white;
+    width: 250px;
+    height: 80px;
+    margin: 5px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    box-shadow: 0 1px 10px gray;
+}
+h1,hr{
+    margin: 0;
+}
+.ov-sep{
+    width: 2px;
+    height: 100%;
+    border: none;
+    background-color: white;
+}
+.graphs{
+    width: 100%;
+    display: flex;
+    margin: 50px;
+    justify-content: space-evenly;
+    height: 32%;
+}
+.graph-sep{
+    width: 90%;
+    height: 2px;
+    border: none;
+    background-color: #6A61C0;
+}

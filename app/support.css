@@ -1,0 +1,53 @@
+.spt-body{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background: url(https://hs-marketing-contentful.imgix.net/https%3A%2F%2Fimages.ctfassets.net%2Fp15sglj92v6o%2F4rI7Mawj4KjX2uM0zvAte5%2Fef1641ed3d7cc699cb261d648d838b3f%2Fteam-inbox.png?ixlib=gatsbySourceUrl-2.1.1&auto=format%2C%20compress&s=6d34fface77007afe237159ff0a2ac9c);
+    background-size: cover;
+    align-items: center;
+} 
+.spt-container{
+    background-color: lightgray;
+    text-align: center;
+    height: 450px;
+    width: 600px;
+    padding: 25px;
+    border-radius: 10px;
+    background: rgba(113, 58, 190, 0.3);
+    box-shadow: 0 1px 5px black;
+}
+.spt-form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+.spt-form > label{
+    font-size: 26px;
+}
+.spt-form > input{
+    height: 30px;
+    width: 400px;
+    border-radius: 15px;
+    border: none;
+    font-size: larger;
+    outline: none;
+}
+.spt-form > textarea{
+    border-radius: 10px;
+    font-size: larger;
+    border:none;
+    outline: none;
+}
+.sbt-btn{
+    width: 80px;
+    font-size: large;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    background-color: #008CBA;
+    color: white;
+}

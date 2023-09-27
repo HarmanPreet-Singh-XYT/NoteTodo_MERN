@@ -9,6 +9,8 @@ import ToDoApp from '@/Components/ToDoApp';
 import NotesApp from '@/Components/NotesApp'
 import SideBar from '@/Components/SideBar';
 import Cards from '@/Components/PageComponents/Cards';
+import Support from '@/Components/Support';
+import Output from '@/Components/Output';
 const Page = () => {
     const {setCategories,selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
@@ -28,6 +30,7 @@ const Page = () => {
     const precat = ["All","Projects","Business","Finance"]
     useLayoutEffect(() => {
       precat.forEach((cat)=>create_categories(cat));
+      console.log("pp")
     }, []);
   return (
     <>
@@ -36,10 +39,13 @@ const Page = () => {
         <div className="sidebar">
             <SideBar/>
         </div>
+        <button className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
         <div className="main">
             <ToastContainer/>
             {selectedButton==="task" && <ToDoApp/>}
             {selectedButton==="note" && <NotesApp/>}
+            {selectedButton==="support" && <Support/>}
+            {selectedButton==="output" && <Output/>}
         </div>
         <div style={{width:"24%",display:"block",transform: `translateX(${showCalendar ? "0" : "110"}%)`}} className='calendar-div'>
         <Calendar/>

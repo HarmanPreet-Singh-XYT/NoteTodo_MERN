@@ -63,8 +63,8 @@ const ToDoApp = () => {
                     </section>
                     <section className="card-content">
                     {
-                        Todo.map((eachTodo)=>!eachTodo.completed &&
-                        <div onDoubleClick={()=>setShow_TodoShowCard(true)} onClick={()=>{add_selection(eachTodo.id,eachTodo.cls);updateValueOnClick(Todo)}} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
+                        Todo.map((eachTodo,key)=>!eachTodo.completed &&
+                        <div counter={key} onDoubleClick={()=>setShow_TodoShowCard(true)} onClick={()=>{add_selection(eachTodo.id,eachTodo.cls);updateValueOnClick(Todo)}} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
                             <h1 className="card-title">{eachTodo.tit}</h1>
                             <p className="card-tag">{eachTodo.tag}</p>
                             <hr style={{borderColor:`${eachTodo.col}`}} className="card-hr"/>
@@ -84,8 +84,8 @@ const ToDoApp = () => {
                 </section>
                 <section className="card-content">
                     {
-                        Todo.map((eachTodo)=>((eachTodo.priority)&&(!eachTodo.completed) ) &&
-                        <div onDoubleClick={()=>setShow_TodoShowCard(true)} onClick={()=>add_selection(eachTodo.id,eachTodo.cls)} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
+                        Todo.map((eachTodo,key)=>((eachTodo.priority)&&(!eachTodo.completed) ) &&
+                        <div counter={key} onDoubleClick={()=>setShow_TodoShowCard(true)} onClick={()=>add_selection(eachTodo.id,eachTodo.cls)} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
                             <h1 className="card-title">{eachTodo.tit}</h1>
                             <p className="card-tag">{eachTodo.tag}</p>
                             <hr style={{borderColor:`${eachTodo.col}`}} className="card-hr"/>
@@ -105,8 +105,8 @@ const ToDoApp = () => {
                     </section>
                     <section style={{height:"86%"}} className="card-content">
                     {
-                        Todo.map((eachTodo)=>eachTodo.completed &&
-                        <div onClick={()=>add_selection(eachTodo.id,eachTodo.cls)} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
+                        Todo.map((eachTodo,key)=>eachTodo.completed &&
+                        <div counter={key} onClick={()=>add_selection(eachTodo.id,eachTodo.cls)} id={eachTodo.id} key={eachTodo.id} className={eachTodo.cls}>
                             <h1 className="card-title">{eachTodo.tit}</h1>
                             <p className="card-tag">{eachTodo.tag}</p>
                             <hr style={{borderColor:`${eachTodo.col}`}} className="card-hr"/>
