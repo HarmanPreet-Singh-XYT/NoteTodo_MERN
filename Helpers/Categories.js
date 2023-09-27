@@ -4,7 +4,7 @@ export const Categories_Cont = createContext();
 const Categories = ({children}) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [selectedButton, setSelectedButton] = useState("task");
+    const [selectedButton, setSelectedButton] = useState("output");
   return (
     <Categories_Cont.Provider value={{selectedButton, setSelectedButton,selectedCategory, setSelectedCategory,categories,setCategories}}>
         {children}

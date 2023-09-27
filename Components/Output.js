@@ -1,42 +1,24 @@
 import React from 'react'
 import TodoGraph from './Output/TodoGraph'
 import NotesGraph from './Output/NotesGraph'
+import LoadData from './Output/LoadData'
+import { TodoStatus } from './Output/TodoStatus'
+import NotesStatus from './Output/NotesStatus'
 
 const Overview = () => {
   return (
     <>
+    <LoadData/>
         <main className="ov-container">
             <div className="ov-todo">
                 <h1>Tasks</h1>
-                <div className="ov-top">
-                    <div className="pend top-stat">
-                        <h1 className="pend-num">5</h1>
-                        <hr className="ov-sep"/>
-                        <h1 className="pend-title">Pending</h1>
-                    </div>
-                    <div className="comp top-stat">
-                        <h1 className="comp-num">8</h1>
-                        <hr className="ov-sep"/>
-                        <h1 className="comp-title">Completed</h1>
-                    </div>
-                </div>
+                <TodoStatus/>
                 <TodoGraph/>
             </div>
             <hr className="ov-diff"/>
             <div className="ov-notes">
                 <h1>Notes</h1>
-                <div className="ov-top">
-                    <div className="pend top-stat">
-                        <h1 className="pend-num">5</h1>
-                        <hr className="ov-sep"/>
-                        <h1 className="pend-title">Pending</h1>
-                    </div>
-                    <div className="comp top-stat">
-                        <h1 className="comp-num">8</h1>
-                        <hr className="ov-sep"/>
-                        <h1 className="comp-title">Completed</h1>
-                    </div>
-                </div>
+                <NotesStatus/>
                 <NotesGraph/>
             </div>
         </main>

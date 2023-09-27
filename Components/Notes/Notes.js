@@ -49,7 +49,7 @@ const Notes = () => {
 
                 return (
                     matchesSearch && (
-                        <div
+                        <div style={{backgroundColor:`${note.completed ? "#E1FAC9" : "white"}`}}
                             id={note.id}
                             onClick={() => {
                                 add_selection(note.id, note.cls);

@@ -16,6 +16,7 @@ import Useref_Update_cont from '@/Helpers/Useref_Update'
 import DateDay_Calculation_cont from '@/Helpers/Date-Day-Calculation'
 import Search_cont from '@/Helpers/Search'
 import Sidebar_cont from '@/Helpers/SideCont'
+import Number_cont from '@/Helpers/Numbers-Status'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
       <head>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossOrigin="anonymous" referrerPolicy="no-referrer"/>
       </head>
-      <body className={inter.className}><Sidebar_cont><Search_cont><DateDay_Calculation_cont><Useref_Update_cont><Calendar_cont><SelectedCardData_cont><NoteCreator><FormData_cont><ShowCard_Cont><Selection_Cont><Categories_Cont><Notes_Cont>{children}</Notes_Cont></Categories_Cont></Selection_Cont></ShowCard_Cont></FormData_cont></NoteCreator></SelectedCardData_cont></Calendar_cont></Useref_Update_cont></DateDay_Calculation_cont></Search_cont></Sidebar_cont></body>
+      <body className={inter.className}><Number_cont><Sidebar_cont><Search_cont><DateDay_Calculation_cont><Useref_Update_cont><Calendar_cont><SelectedCardData_cont><NoteCreator><FormData_cont><ShowCard_Cont><Selection_Cont><Categories_Cont><Notes_Cont>{children}</Notes_Cont></Categories_Cont></Selection_Cont></ShowCard_Cont></FormData_cont></NoteCreator></SelectedCardData_cont></Calendar_cont></Useref_Update_cont></DateDay_Calculation_cont></Search_cont></Sidebar_cont></Number_cont></body>
     </html>
   )
 }
