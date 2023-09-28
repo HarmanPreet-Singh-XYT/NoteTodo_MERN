@@ -11,12 +11,13 @@ const LoadData = () => {
         const Obj = {id:Math.random()*100,category:cate,count:counter};
         setElement(prevElement=>[...prevElement,Obj])
     }
-    let todo_comp = 0;
-    let todo_pend = 0;
-    let todo = 0;
-    let notes_comp = 0;
-    let notes_pend = 0;
+    
     useEffect(()=>{
+        let todo_comp = 0;
+        let todo_pend = 0;
+        let todo = 0;
+        let notes_comp = 0;
+        let notes_pend = 0;
         Todo.forEach(element => {
             element.completed && todo_comp++;
             !element.completed && todo++;
