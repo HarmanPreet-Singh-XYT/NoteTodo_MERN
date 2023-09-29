@@ -11,6 +11,7 @@ import SideBar from '@/Components/SideBar';
 import Cards from '@/Components/PageComponents/Cards';
 import Support from '@/Components/Support';
 import Output from '@/Components/Output';
+import LoadData from '@/Components/Output/LoadData';
 const Page = () => {
     const {setCategories,selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
@@ -35,6 +36,7 @@ const Page = () => {
   return (
     <>
     <Cards/>
+    <LoadData/>
     <main className="container">
         <div className="sidebar">
             <SideBar/>

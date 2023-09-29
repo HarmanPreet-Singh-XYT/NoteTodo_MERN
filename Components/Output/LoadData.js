@@ -1,7 +1,7 @@
 import { Categories_Cont } from '@/Helpers/Categories'
 import { Notes_Cont } from '@/Helpers/Notes'
 import { Number_cont } from '@/Helpers/Numbers-Status'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 
 const LoadData = () => {
     const {setNotesDone,setNotesProgress,setTodoProgress, setTodoDone, setTodoOverall,setNotesPending,setNotesCompleted} = useContext(Number_cont)
@@ -12,7 +12,7 @@ const LoadData = () => {
         setElement(prevElement=>[...prevElement,Obj])
     }
     
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         let todo_comp = 0;
         let todo_pend = 0;
         let todo = 0;
