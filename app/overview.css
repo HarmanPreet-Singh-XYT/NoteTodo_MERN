@@ -1,0 +1,53 @@
+.ov-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    
+}
+.ov-box{
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    min-width: 250px;
+    min-height: 350px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    overflow: auto;
+}
+.o1,.o2,.o3{
+    width: 30%;
+    height: 55%;
+}
+.o1{
+    flex-direction: column;
+}
+.o4{
+    width: 60%;
+}
+.o5{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.ov-cards{
+    width: 90%;
+    height: 80%;
+}
+.graph-max{
+    width: 30px;
+    height: 30px;
+}
+.ov-graphs{
+    display: flex;
+    height: 280px;
+    width: 300px;
+    align-items: center;
+}
+.centralize{
+    text-align: center;
+}

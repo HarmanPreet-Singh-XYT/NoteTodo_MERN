@@ -12,6 +12,7 @@ import Cards from '@/Components/PageComponents/Cards';
 import Support from '@/Components/Support';
 import Output from '@/Components/Output';
 import LoadData from '@/Components/Output/LoadData';
+import Overview from '@/Components/Overview';
 const Page = () => {
     const {setCategories,selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
@@ -44,6 +45,7 @@ const Page = () => {
         <button className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
         <div className="main">
             <ToastContainer/>
+            {selectedButton==="overview" && <Overview/>}
             {selectedButton==="task" && <ToDoApp/>}
             {selectedButton==="note" && <NotesApp/>}
             {selectedButton==="support" && <Support/>}

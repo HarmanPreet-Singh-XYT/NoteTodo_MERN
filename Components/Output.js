@@ -9,14 +9,14 @@ const Overview = () => {
   return (
     <>
     <LoadData/>
-        <main className="ov-container">
-            <div className="ov-todo">
+        <main className="op-container">
+            <div className="op-todo">
                 <h1>Tasks</h1>
                 <TodoStatus/>
                 <TodoGraph/>
             </div>
-            <hr className="ov-diff"/>
-            <div className="ov-notes">
+            <hr className="op-diff"/>
+            <div className="op-notes">
                 <h1>Notes</h1>
                 <NotesStatus/>
                 <NotesGraph/>
