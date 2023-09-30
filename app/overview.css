@@ -51,3 +51,59 @@
 .centralize{
     text-align: center;
 }
+.o2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.o3{
+    background: url(https://i.pinimg.com/736x/c2/48/bf/c248bf90e418a9a022026bfd1f3adbbb.jpg);
+}
+.storage{
+    width: 650px;
+}
+.ov-spt-container{
+    background-color: lightgray;
+    text-align: center;
+    height: 90%;
+    width: 89%;
+    padding: 25px;
+    border-radius: 10px;
+    background: rgba(113, 58, 190, 0.3);
+    box-shadow: 0 1px 5px black;
+}
+.ov-spt-form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+.ov-spt-form > label{
+    font-size: 26px;
+}
+.ov-spt-form > input{
+    height: 30px;
+    width: 400px;
+    border-radius: 15px;
+    border: none;
+    font-size: larger;
+    outline: none;
+}
+.ov-spt-form > textarea{
+    border-radius: 10px;
+    font-size: larger;
+    border:none;
+    outline: none;
+}
+.ov-sbt-btn{
+    width: 80px;
+    font-size: large;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    background-color: #008CBA;
+    color: white;
+}

@@ -7,6 +7,8 @@ import NotesStatus from './Output/NotesStatus'
 import { Number_cont } from '@/Helpers/Numbers-Status'
 import To_No_Count from './Overview/To-No-Count'
 import Graphs from './Overview/Graphs'
+import Storage from './Overview/Storage'
+import Account from './Overview/Account'
 const Overview = () => {
     // const time = new Date();
     const {TodoProgress,TodoDone,NotesDone,NotesProgress} = useContext(Number_cont);
@@ -19,10 +21,10 @@ const Overview = () => {
             <Calendar/>
         </div>
         <div className="ov-insider o2 ov-box">
-
+          <Storage/>
         </div>
         <div className="ov-insider o3 ov-box">
-
+          <Account/>
         </div>
         <div className="ov-insider o4 ov-box">
         <Graphs/>
