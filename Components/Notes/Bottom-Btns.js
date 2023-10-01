@@ -18,10 +18,10 @@ const BottomBtns = () => {
         );
     };
     function delete_card(){
+        notes.map((note)=>{note.cls.includes("card-selected") && setTotalDelete(TotalDelete+1)})
         setNotes((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
-        setTotalDelete(TotalDelete+1);
     }
     function complete(){
         setNotes((prevnotes)=>

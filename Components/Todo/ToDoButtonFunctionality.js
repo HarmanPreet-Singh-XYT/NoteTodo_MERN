@@ -25,10 +25,10 @@ const ToDoButtonFunctionality = () => {
         ));
     };
     function delete_card(){
+        Todo.map((to)=>to.cls.includes("card-selected") && setTotalDelete(TotalDelete+1))
         setTodo((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
-        setTotalDelete(TotalDelete+1);
     }
     function notify(notification){
         toast.info(notification, {
