@@ -1,4 +1,5 @@
 import { Notes_Cont } from '@/Helpers/Notes';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext,useEffect } from 'react'
@@ -7,6 +8,7 @@ const TodoCreate = () => {
     const {Todo, setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {show_TodoCreateCard,setShow_TodoCreateCard} = useContext(ShowCard_Cont);
+    const {TotalCreate, setTotalCreate} = useContext(Number_cont);
     function create_todo(color,tag,title,content,category,setTodos,progress){
         const date = new Date;
         let createTime = true;
@@ -18,6 +20,7 @@ const TodoCreate = () => {
         const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`inside-card`,priority:progress,completed:false,timeopt:timeopt}
         setTodos((prevnotes)=>[...prevnotes,note]);
         // setCreateTime(false);
+        setTotalCreate(TotalCreate+1);
     }
     function clearOutValues(){
         title.current = "";

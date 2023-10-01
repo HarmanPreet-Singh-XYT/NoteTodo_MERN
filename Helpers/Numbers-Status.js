@@ -9,8 +9,11 @@ const Numbers_Status = ({children}) => {
     const [NotesPending, setNotesPending] = useState([]);
     const [NotesCompleted, setNotesCompleted] = useState([]);
     const [TodoOverall, setTodoOverall] = useState(0);
+    const [TotalCreate, setTotalCreate] = useState(0);
+    const [TotalEdit, setTotalEdit] = useState(0);
+    const [TotalDelete, setTotalDelete] = useState(0);
   return (
-    <Number_cont.Provider value={{NotesProgress, setNotesProgress,NotesDone, setNotesDone,TodoOverall, setTodoOverall,TodoProgress, setTodoProgress,TodoDone, setTodoDone,NotesPending, setNotesPending,NotesCompleted, setNotesCompleted}}>
+    <Number_cont.Provider value={{TotalCreate, setTotalCreate,TotalEdit, setTotalEdit,TotalDelete, setTotalDelete,NotesProgress, setNotesProgress,NotesDone, setNotesDone,TodoOverall, setTodoOverall,TodoProgress, setTodoProgress,TodoDone, setTodoDone,NotesPending, setNotesPending,NotesCompleted, setNotesCompleted}}>
         {children}
     </Number_cont.Provider>
   )

@@ -5,14 +5,14 @@ import { Number_cont } from '@/Helpers/Numbers-Status';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const Storage = () => {
-    const {TodoOverall,TodoProgress,TodoDone} = useContext(Number_cont);
+    const {TotalCreate,TotalEdit,TotalDelete} = useContext(Number_cont);
     const data = {
-        labels: ['Deleted','Created','Edited'],
+        labels: ['Created','Edited','Deleted'],
         datasets: [
           {
-            data: [5,6,7],
-            backgroundColor: ['#ff544e','#ddf986','#4ec2ff'],
-            hoverBackgroundColor: ['#d62929','#c5f53b','#24a3e7'],
+            data: [TotalCreate,TotalEdit,TotalDelete],
+            backgroundColor: ['#ddf986','#4ec2ff','#ff544e'],
+            hoverBackgroundColor: ['#c5f53b','#24a3e7','#d62929'],
           },
         ],
       };

@@ -5,11 +5,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Calendar_cont } from '@/Helpers/Calendar-Cont';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const BottomBtns = () => {
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
     const {notes,setNotes} = useContext(Notes_Cont);
     const {show_EditCard, setShow_EditCard} = useContext(ShowCard_Cont);
     const {showCalendar,setshowCalendar} = useContext(Calendar_cont);
+    const {TotalDelete, setTotalDelete} = useContext(Number_cont);
     function priortize(){
         setNotes((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? !note.priority ? {...note,priority:true} : {...note,priority:false} : note)
@@ -19,6 +21,7 @@ const BottomBtns = () => {
         setNotes((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
+        setTotalDelete(TotalDelete+1);
     }
     function complete(){
         setNotes((prevnotes)=>

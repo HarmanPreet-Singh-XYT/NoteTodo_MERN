@@ -5,8 +5,10 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
 import {Categories_Cont} from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const Create_card = () => {
     const {categories, setCategories} = useContext(Categories_Cont);
+    const {TotalCreate, setTotalCreate} = useContext(Number_cont);
     const {notes,setNotes} = useContext(Notes_Cont);
     const {setShow_CreateCard} = useContext(ShowCard_Cont);
     const {title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
@@ -26,7 +28,7 @@ const Create_card = () => {
     <>
         <div className="blur-background">
             <div className="create-window">
-                    <form id='createform' onSubmit={()=>{title.length > 0 && setShow_CreateCard(false);title.length > 0 && create_note(color,tag,title,content,categ,setNotes,months);}} action="/note/create" className="create-note">
+                    <form id='createform' onSubmit={()=>{title.length > 0 && setShow_CreateCard(false);title.length > 0 && create_note(color,tag,title,content,categ,setNotes,months);setTotalCreate(TotalCreate+1);}} action="/note/create" className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <label className='cre-time fir'>Include Time</label>
@@ -48,7 +50,7 @@ const Create_card = () => {
                         </div>
                     </form>
                 <div className="create-buttons">
-                    <button onClick={()=>setShow_CreateCard(false)} className="cancel">Cancel</button>
+                    <button onClick={()=>{setShow_CreateCard(false);}} className="cancel">Cancel</button>
                     <button type='submit' form="createform" className="submit">Submit</button>
                 </div>
             </div>

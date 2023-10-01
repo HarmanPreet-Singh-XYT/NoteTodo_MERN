@@ -2,12 +2,14 @@ import { FormData_cont } from '@/Helpers/CardCreationData';
 import { Categories_Cont } from '@/Helpers/Categories';
 import { NoteCreator } from '@/Helpers/CreateCard';
 import { Notes_Cont } from '@/Helpers/Notes';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 import { SelectedCardData_cont } from '@/Helpers/SelectedCardData';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext, useEffect } from 'react'
 import { CirclePicker } from 'react-color'
 const EditCard = () => {
     const {categories} = useContext(Categories_Cont);
+    const {TotalCreate, setTotalCreate,TotalEdit, setTotalEdit,TotalDelete, setTotalDelete} = useContext(Number_cont);
     const {setNotes} = useContext(Notes_Cont);
     const {setShow_EditCard} = useContext(ShowCard_Cont);
     const {title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
@@ -23,7 +25,7 @@ const EditCard = () => {
         <div className="blur-background">
             <div className="create-window">
             <hr style={{backgroundColor:`${color}`}} className="color-line"/>
-                    <form onSubmit={()=>{Edit();setShow_EditCard(false);}} action="/note/edit" id='editnote' className="create-note">
+                    <form onSubmit={()=>{Edit();setShow_EditCard(false);setTotalEdit(TotalEdit+1);}} action="/note/edit" id='editnote' className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <label className='cre-time fir'>Include Time</label>
@@ -45,7 +47,7 @@ const EditCard = () => {
                         </div>
                     </form>
                 <div className="create-buttons">
-                    <button onClick={()=>{setShow_EditCard(false);setColor(Colorref.current);console.log(Tagref.current)}} className="cancel">Cancel</button>
+                    <button onClick={()=>{setShow_EditCard(false);setColor(Colorref.current);}} className="cancel">Cancel</button>
                     <button style={{color:"white"}} form='editnote' type='submit' formAction='/note/create' className="submit">Edit</button>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { Calendar_cont } from '@/Helpers/Calendar-Cont';
 import { Notes_Cont } from '@/Helpers/Notes';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 import { Selection_Cont } from '@/Helpers/Selection';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext } from 'react'
@@ -10,6 +11,7 @@ const ToDoButtonFunctionality = () => {
     const {showCalendar, setshowCalendar} = useContext(Calendar_cont);
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
+    const {TotalDelete, setTotalDelete} = useContext(Number_cont);
     function completetodo(){
         setTodo((prevNotes)=>
         prevNotes.map((note)=>
@@ -26,6 +28,7 @@ const ToDoButtonFunctionality = () => {
         setTodo((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
+        setTotalDelete(TotalDelete+1);
     }
     function notify(notification){
         toast.info(notification, {

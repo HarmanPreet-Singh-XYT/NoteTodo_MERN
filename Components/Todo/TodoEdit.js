@@ -1,4 +1,5 @@
 import { Notes_Cont } from '@/Helpers/Notes';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext } from 'react'
@@ -7,10 +8,12 @@ const TodoEdit = () => {
     const {setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
+    const {TotalEdit, setTotalEdit} = useContext(Number_cont);
     function Edit(setTodos){
         setTodos((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:tag.current,col:colorr.current,tit:title.current,cont:content.current} : note)
         )
+        setTotalEdit(TotalEdit+1);
     }
     function clearOutValues(){
         title.current = "";
