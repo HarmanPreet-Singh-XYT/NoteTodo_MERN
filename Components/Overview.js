@@ -10,7 +10,7 @@ const Overview = () => {
     <div className='ov-nav'></div>
     <main className="ov-container">
         <div className="ov-insider o1 ov-box">
-            <Calendar/>
+            <div className='cl-container-insider'><Calendar/></div>
         </div>
         <div className="ov-insider o2 ov-box">
           <Storage/>

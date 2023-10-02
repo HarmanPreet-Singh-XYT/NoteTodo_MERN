@@ -512,3 +512,20 @@ body{
 .sidebtn > i{
   transform: rotate(90deg);
 }
+.log-screen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-window{
+  height: 100px;
+  width: 100px;
+}
+.login-back{
+  background-size: cover;
+}
+.logo-login > img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

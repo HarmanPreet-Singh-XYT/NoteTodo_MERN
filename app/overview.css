@@ -107,3 +107,10 @@
     background-color: #008CBA;
     color: white;
 }
+.ov-spt-container{
+    width: 89%;
+    height: 90%;
+}
+.cl-container-insider{
+    width: fit-content;
+}

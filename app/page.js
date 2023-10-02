@@ -13,9 +13,12 @@ import Support from '@/Components/Support';
 import Output from '@/Components/Output';
 import LoadData from '@/Components/Output/LoadData';
 import Overview from '@/Components/Overview';
+import Login from '@/Components/Login';
+import { ShowCard_Cont } from '@/Helpers/ShowCard';
 const Page = () => {
     const {setCategories,selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
+    const {showLogin} = useContext(ShowCard_Cont);
     function create_categories(category,color){
         const random = Math.random()*100;
         const cat = {id:random,cat:category,col:color};
@@ -38,7 +41,8 @@ const Page = () => {
     <>
     <Cards/>
     <LoadData/>
-    <main className="container">
+    {showLogin && <Login/>}
+    {!showLogin && <main className="container">
         <div className="sidebar">
             <SideBar/>
         </div>
@@ -54,7 +58,7 @@ const Page = () => {
         <div style={{width:"24%",display:"block",transform: `translateX(${showCalendar ? "0" : "110"}%)`}} className='calendar-div'>
         <Calendar/>
         </div>
-    </main>
+    </main>}
     </>
   )
 }

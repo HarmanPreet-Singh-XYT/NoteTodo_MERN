@@ -12,8 +12,9 @@ const ShowCard = ({children}) => {
     const [show_TodoEditCard, setShow_TodoEditCard] = useState(false);
     const [show_TodoShowCard, setShow_TodoShowCard] = useState(false);
     const [show_SupportCardSuccess, setShow_SupportCardSuccess] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
     return (
-        <ShowCard_Cont.Provider value={{show_SupportCardSuccess, setShow_SupportCardSuccess,show_TodoShowCard, setShow_TodoShowCard,show_TodoEditCard, setShow_TodoEditCard,show_TodoCreateCard, setShow_TodoCreateCard,selectionUpdate, setSelectionUpdate,show_FullCard, setShow_FullCard,card_selected, setCard_selected,show_EditCard, setShow_EditCard,show_CreateCard, setShow_CreateCard}}>
+        <ShowCard_Cont.Provider value={{showLogin,setShowLogin,show_SupportCardSuccess, setShow_SupportCardSuccess,show_TodoShowCard, setShow_TodoShowCard,show_TodoEditCard, setShow_TodoEditCard,show_TodoCreateCard, setShow_TodoCreateCard,selectionUpdate, setSelectionUpdate,show_FullCard, setShow_FullCard,card_selected, setCard_selected,show_EditCard, setShow_EditCard,show_CreateCard, setShow_CreateCard}}>
             {children}
         </ShowCard_Cont.Provider>
     );
