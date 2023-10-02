@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# To-Do Joint App
 
-## Getting Started
+![Notes-Todo](/app/Login-Dependencies/images/icons/favicon.png)
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The To-Do Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks, notes, and documents efficiently while offering a collaborative messaging feature.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Demo
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Check out the live demo [here](https://note-todo-app.vercel.app/).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Table of Contents
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.Sign in or create an account.
+2.Use the interactive calendar to schedule tasks and notes.
+3.Organize your notes into categories for better management.
+4.View, edit, and delete tasks and notes.
+5.Visualize your data with graphs.
+6.Communicate with the creator or support team via messaging.
+7.Upload and store documents in the document section.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Interactive Calendar
+User Authentication
+Local Storage for Data
+Note Categorization
+Task and Note Management
+Data Visualization with Graphs
+User-to-Creator Messaging
+Document Upload Section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+HTML
+CSS
+React
+
+
+## Contributing
+Contributions are welcome! To contribute to this project, follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Commit your changes.
+Push your changes to your fork.
+Submit a pull request.
+
+## Screenshots
+![Login](/ShowCase/1.png)
+![Overview](/ShowCase/2.png)
+![Todo](/ShowCase/3.png)
+![Notes](/ShowCase/4.png)
+![Output](/ShowCase/5.png)
+![Support](/ShowCase/6.png)
