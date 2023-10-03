@@ -14,7 +14,7 @@ const corsOptions = {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable cookies and authentication headers (if needed)
 };
-const PORT = 3005;
+const PORT = 3010;
 const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:false}));
