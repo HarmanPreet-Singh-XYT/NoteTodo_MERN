@@ -17,7 +17,7 @@ const Register = () => {
 					</span>
                     
                     <div className="wrap-input100 validate-input" data-validate = "Enter Name">
-						<input className="input100" type="text" name="name" placeholder="Name"/>
+						<input required className="input100" type="text" name="name" placeholder="Name*"/>
 						<span className="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
                     <div className="wrap-input100 validate-input" data-validate = "Enter Bio">
@@ -29,11 +29,11 @@ const Register = () => {
 						<span className="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					<div className="wrap-input100 validate-input" data-validate = "Enter Email">
-						<input className="input100" type="email" name="email" placeholder="Email"/>
+						<input required className="input100" type="email" name="email" placeholder="Email*"/>
 						<span className="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					<div className="wrap-input100 validate-input" data-validate="Enter password">
-						<input className="input100" type="password" name="pass" placeholder="Password"/>
+						<input required className="input100" type="password" name="pass" placeholder="Password*"/>
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 

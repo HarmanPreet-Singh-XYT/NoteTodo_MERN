@@ -1,12 +1,24 @@
 import React,{useContext} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
+import axios from 'axios'
 const Login_Form = () => {
   const {setShowLogin} = useContext(ShowCard_Cont)
   const {login,setLogin} = useContext(Login_cont)
+  const url = 'http://localhost:3005/logindata/login/logon/';
+  async function test(e) {
+	e.preventDefault();
+	const data = { FirstName: "Hello world" };
+	try {
+	  const response = await axios.post(url,data);
+	  console.log('Response:', response.data);
+	} catch (error) {
+	  console.error('Error:', error);
+	}
+  }
   return (
     <>
-    <form className="login100-form validate-form">
+    <form onSubmit={(e)=>test(e)} method='post' action='/login/log' className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
@@ -16,12 +28,12 @@ const Login_Form = () => {
 					</span>
 
 					<div className="wrap-input100 validate-input" data-validate = "Enter Email">
-						<input className="input100" type="email" name="username" placeholder="Email"/>
+						<input required className="input100" type="email" name="username" placeholder="Email"/>
 						<span className="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div className="wrap-input100 validate-input" data-validate="Enter password">
-						<input className="input100" type="password" name="pass" placeholder="Password"/>
+						<input required className="input100" type="password" name="pass" placeholder="Password"/>
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -44,6 +56,9 @@ const Login_Form = () => {
 						</button>
 						<button className="login100-form-btn">
 							Local Storage
+						</button>
+						<button className="login100-form-btn">
+							Login with OTP
 						</button>
 					</div>
 
