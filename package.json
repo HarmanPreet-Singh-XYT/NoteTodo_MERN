@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev & nodemon server.js",
-    "build": "next build",
+    "build": "next build && npm install && npm run build-server",
+    "build-server": "echo 'Building server...' && npm run compile-server",
+    "compile-server": "echo 'Compiling server...'"
     "start": "next start",
     "lint": "next lint",
     "backend": "node server.js"
