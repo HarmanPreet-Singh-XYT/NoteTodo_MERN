@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev & nodemon server.js",
-    "buildversion": "next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "backend": "nodemon server.js"
+    "backend": "node server.js"
   },
   "dependencies": {
     "axios": "^1.5.1",
