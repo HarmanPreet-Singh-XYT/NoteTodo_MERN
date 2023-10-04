@@ -14,8 +14,9 @@ const corsOptions = {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable cookies and authentication headers (if needed)
 };
-const PORT = 3010;
+const PORT = process.env.PORT;
 const app = express();
+require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cors(corsOptions));
@@ -35,5 +36,5 @@ app.get('/todo/data',(req,res)=>{
     
 })
 app.listen(PORT,()=>{
-    console.log("Backend Server Listening");
-});
+    console.log("Backend Working");
+})

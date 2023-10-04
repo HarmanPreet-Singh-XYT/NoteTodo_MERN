@@ -1,13 +1,32 @@
 import React, { useContext } from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
+import axios from 'axios';
 
+const url = "http://localhost:3020/";
 const Register = () => {
 	const {setShowLogin} = useContext(ShowCard_Cont)
 	const {setLogin} = useContext(Login_cont);
+	function registration(e){
+		e.preventDefault();
+		const data = {
+			name:e.target[0].value,
+			bio:e.target[1].value,
+			dob:e.target[2].value,
+			email:e.target[3].value,
+			pass:e.target[4].value,
+		}
+		axios.post(`${url}logindata/login/register`,data)
+		.then((response)=>{
+			response.data.message==="Success" && setShowLogin(false);
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	}
   return (
     <>
-				<form onSubmit={()=>setShowLogin(false)} className="login100-form validate-form">
+				<form onSubmit={(e)=>{registration(e)}} className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
