@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import axios from 'axios';
@@ -9,7 +9,11 @@ const Register = () => {
 	const {setShowLogin} = useContext(ShowCard_Cont);
 	const {setLogin} = useContext(Login_cont);
 	const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
-	function registration(e){
+	useLayoutEffect(()=>{
+		setError(false);
+		setExist(false);
+	},[])
+	async function registration(e){
 		e.preventDefault();
 		setError(false);
 		setExist(false);
@@ -20,7 +24,7 @@ const Register = () => {
 			email:e.target[3].value,
 			pass:e.target[4].value,
 		}
-		axios.post(`${url}logindata/login/register`,data)
+		await axios.post(`${url}logindata/login/register`,data)
 		.then((response)=>{
 			switch (response.data.message) {
 				case "Success":

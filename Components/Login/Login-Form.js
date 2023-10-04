@@ -1,16 +1,52 @@
-import React,{useContext} from 'react'
+import React,{useContext, useLayoutEffect} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
+import { Account_cont } from '@/Helpers/Account-Info';
+import axios from 'axios';
 const Login_Form = () => {
-  const {setShowLogin} = useContext(ShowCard_Cont)
-  const {login,setLogin} = useContext(Login_cont)
+	const url='http://localhost:3020/logindata'
+  const {setShowLogin} = useContext(ShowCard_Cont);
+  const {login,setLogin} = useContext(Login_cont);
+  const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
+  useLayoutEffect(() => {
+	setError(false);
+	setExist(false);
+  }, [])
+  async function check(e){
+	e.preventDefault();
+	setError(false);
+	setExist(false);
+	const data = {
+		email: e.target[0].value,
+		password: e.target[1].value,
+	};
+	await axios.post(`${url}/login/logon`,data)
+	.then((res)=>{
+		switch (res.data.message) {
+			case "failed":
+				setError(true);
+				break;
+			case "Success":
+				setAccountInfo(res.data.user_info);
+				setShowLogin(false);
+				console.log(res.data.user_info)
+				break;
+			case "incorrect":
+				setExist(true);
+				break;
+			default:
+				break;
+		}
+	})
+  }
   return (
     <>
-    <form method='post' action='/login/log' className="login100-form validate-form">
+    <form onSubmit={(e)=>check(e)} method='post' action='/login/log' className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
-
+					{Error && <h3 className='login-error'>Server Error,Please Try Again Lator</h3>}
+					{Exist && <h3 className='login-error'>Incorrect Credentials,Please Check Credentials</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
 						Log in
 					</span>
