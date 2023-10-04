@@ -6,7 +6,9 @@ import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
 import {Categories_Cont} from '@/Helpers/Categories';
 import { Number_cont } from '@/Helpers/Numbers-Status';
+import { Account_cont } from '@/Helpers/Account-Info';
 const Create_card = () => {
+    const {AccountInfo} = useContext(Account_cont);
     const {categories, setCategories} = useContext(Categories_Cont);
     const {TotalCreate, setTotalCreate} = useContext(Number_cont);
     const {notes,setNotes} = useContext(Notes_Cont);
@@ -24,11 +26,15 @@ const Create_card = () => {
     function check(e){
         e.target.checked ? setCreateTime(true) : setCreateTime(false);
     }
+    function creation(){
+        create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.email);
+        setTotalCreate(TotalCreate+1);
+    }
     return (
     <>
         <div className="blur-background">
             <div className="create-window">
-                    <form id='createform' onSubmit={()=>{title.length > 0 && setShow_CreateCard(false);title.length > 0 && create_note(color,tag,title,content,categ,setNotes,months);setTotalCreate(TotalCreate+1);}} action="/note/create" className="create-note">
+                    <form id='createform' onSubmit={()=>{title.length > 0 && setShow_CreateCard(false);title.length > 0 && creation();}} action="/note/create" className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <label className='cre-time fir'>Include Time</label>

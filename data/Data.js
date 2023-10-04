@@ -12,5 +12,37 @@ const schemaDB = new mongoose.Schema({
     email: String,
     password: String,
 });
-const userData = mongoose.model('form-data', schemaDB);
-module.exports= {userData};
+const schemaNotes = new mongoose.Schema({
+    email: String,
+    id: Number,
+    date: String,
+    tag: String,
+    color: String,
+    title: String,
+    time: String,
+    content: String,
+    category: String,
+    priority: Boolean,
+    completed: Boolean,
+    timeopt: Boolean,
+    class: String,
+});
+const schemaTodo = new mongoose.Schema({
+    email: String,
+    id: Number,
+    date: String,
+    tag: String,
+    color: String,
+    title: String,
+    time: String,
+    content: String,
+    category: String,
+    priority: Boolean,
+    completed: Boolean,
+    timeopt: Boolean,
+    class: String,
+});
+const userData = mongoose.model('LoginData', schemaDB);
+const userNotes = mongoose.model('NotesData', schemaNotes);
+const userTodo = mongoose.model('TodoData', schemaTodo);
+module.exports= {userData,userNotes,userTodo};
