@@ -36,7 +36,6 @@ const Page = () => {
     const precat = ["All","Projects","Business","Finance"]
     useLayoutEffect(() => {
       precat.forEach((cat)=>create_categories(cat));
-      console.log("pp")
     }, []);
   return (
     <>

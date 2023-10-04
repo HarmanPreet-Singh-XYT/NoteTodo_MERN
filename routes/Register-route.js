@@ -22,8 +22,7 @@ router.post('/login/register',async (req,res)=>{
         res.status(200).json({message:'Success'});
     })
     .catch((err)=>{
-        console.log('Failed: ',err);
-        res.status(500).json({message:'failed'});
+        res.status(500).json({message:'failed',error:err});
     })
 })
 module.exports=router;
