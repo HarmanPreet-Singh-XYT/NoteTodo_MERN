@@ -529,3 +529,8 @@ body{
   height: 100%;
   border-radius: 50%;
 }
+.login-error{
+  color: red;
+  background-color: #d0f8eb;
+  border-radius: 10px;
+}

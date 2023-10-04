@@ -19,6 +19,7 @@ import Search_cont from '@/Helpers/Search'
 import Sidebar_cont from '@/Helpers/SideCont'
 import Number_cont from '@/Helpers/Numbers-Status'
 import Login_cont from '@/Helpers/Login-Cont'
+import Account_cont from '@/Helpers/Account-Info'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossOrigin="anonymous" referrerPolicy="no-referrer"/>
       <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
       </head>
-      <body className={inter.className}><Login_cont><Number_cont><Sidebar_cont><Search_cont><DateDay_Calculation_cont><Useref_Update_cont><Calendar_cont><SelectedCardData_cont><NoteCreator><FormData_cont><ShowCard_Cont><Selection_Cont><Categories_Cont><Notes_Cont>{children}</Notes_Cont></Categories_Cont></Selection_Cont></ShowCard_Cont></FormData_cont></NoteCreator></SelectedCardData_cont></Calendar_cont></Useref_Update_cont></DateDay_Calculation_cont></Search_cont></Sidebar_cont></Number_cont></Login_cont></body>
+      <body className={inter.className}><Account_cont><Login_cont><Number_cont><Sidebar_cont><Search_cont><DateDay_Calculation_cont><Useref_Update_cont><Calendar_cont><SelectedCardData_cont><NoteCreator><FormData_cont><ShowCard_Cont><Selection_Cont><Categories_Cont><Notes_Cont>{children}</Notes_Cont></Categories_Cont></Selection_Cont></ShowCard_Cont></FormData_cont></NoteCreator></SelectedCardData_cont></Calendar_cont></Useref_Update_cont></DateDay_Calculation_cont></Search_cont></Sidebar_cont></Number_cont></Login_cont></Account_cont></body>
     </html>
   )
 }

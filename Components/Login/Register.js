@@ -1,17 +1,55 @@
 import React, { useContext } from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
+import axios from 'axios';
+import { Account_cont } from '@/Helpers/Account-Info';
 
+const url = "http://localhost:3020/";
 const Register = () => {
-	const {setShowLogin} = useContext(ShowCard_Cont)
+	const {setShowLogin} = useContext(ShowCard_Cont);
 	const {setLogin} = useContext(Login_cont);
+	const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
+	function registration(e){
+		e.preventDefault();
+		setError(false);
+		setExist(false);
+		const data = {
+			name:e.target[0].value,
+			bio:e.target[1].value,
+			dob:e.target[2].value,
+			email:e.target[3].value,
+			pass:e.target[4].value,
+		}
+		axios.post(`${url}logindata/login/register`,data)
+		.then((response)=>{
+			switch (response.data.message) {
+				case "Success":
+					setShowLogin(false);
+					setAccountInfo(data);
+					break;
+				case "Exist":
+					setExist(true);
+					break;
+				case "failed":
+					setError(true);
+					break;
+				default:
+					break;
+			}
+		})
+		.catch((err)=>{
+			setError(true);
+			console.log(err);
+		})
+	}
   return (
     <>
-				<form onSubmit={()=>setShowLogin(false)} className="login100-form validate-form">
+				<form onSubmit={(e)=>{registration(e)}} className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
-
+					{Error && <h3 className='login-error'>Registration Failed,Please Try Again Lator</h3>}
+					{Exist && <h3 className='login-error'>Email Already Exists</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
 						Sign Up
 					</span>
@@ -36,7 +74,7 @@ const Register = () => {
 						<input required className="input100" type="password" name="pass" placeholder="Password*"/>
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-
+				
 					<div className="container-login100-form-btn">
 						<button onClick={()=>setLogin(true)} className="login100-form-btn">
 							Login

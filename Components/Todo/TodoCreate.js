@@ -4,7 +4,11 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext,useEffect } from 'react'
 import { CirclePicker } from 'react-color'
+import axios from 'axios';
+import { Account_cont } from '@/Helpers/Account-Info';
+const url = 'http://localhost:3020/todos'
 const TodoCreate = () => {
+    const {AccountInfo} = useContext(Account_cont);
     const {Todo, setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {show_TodoCreateCard,setShow_TodoCreateCard} = useContext(ShowCard_Cont);
@@ -18,9 +22,28 @@ const TodoCreate = () => {
         const random_id = Math.random()*100;
         const categoryCheck = category ? `All ${category}` : "All";
         const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`inside-card`,priority:progress,completed:false,timeopt:timeopt}
-        setTodos((prevnotes)=>[...prevnotes,note]);
-        // setCreateTime(false);
-        setTotalCreate(TotalCreate+1);
+        const DBData = {
+            email:AccountInfo.email,
+            id: random_id,
+            date: fulldate,
+            tag: tag,
+            color: color,
+            title: title,
+            time: time,
+            content: content,
+            category: categoryCheck,
+            priority: progress,
+            completed: false,
+            timeopt: timeopt,
+            class: `inside-card`,
+        }
+        axios.post(`${url}/todo/create`,DBData)
+        .then((res)=>{
+            res.data.message === "Success" &&
+            setTodos((prevnotes)=>[...prevnotes,note])
+            setTotalCreate(TotalCreate+1);
+        })
+        
     }
     function clearOutValues(){
         title.current = "";
