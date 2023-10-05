@@ -6,7 +6,7 @@ import { Account_cont } from '@/Helpers/Account-Info';
 
 const url=process.env.NEXT_PUBLIC_SERVER_URL
 const Register = () => {
-	const {setShowLogin} = useContext(ShowCard_Cont);
+	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
 	const {setLogin} = useContext(Login_cont);
 	const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
 	useLayoutEffect(()=>{
@@ -15,6 +15,7 @@ const Register = () => {
 	},[])
 	async function registration(e){
 		e.preventDefault();
+		setShowLoading(true);
 		setError(false);
 		setExist(false);
 		const data = {
@@ -28,8 +29,9 @@ const Register = () => {
 		.then((response)=>{
 			switch (response.data.message) {
 				case "Success":
-					setShowLogin(false);
+					setShowLoading(false);
 					setAccountInfo(data);
+					setShowLogin(false);
 					break;
 				case "Exist":
 					setExist(true);
@@ -48,7 +50,27 @@ const Register = () => {
 	}
   return (
     <>
-				<form onSubmit={(e)=>{registration(e)}} className="login100-form validate-form">
+	{showLoading &&<div className='loading'>
+		<div class="blobs">
+			<div class="blob-center"></div>
+			<div class="blob"></div>
+			<div class="blob"></div>
+			<div class="blob"></div>
+			<div class="blob"></div>
+			<div class="blob"></div>
+			<div class="blob"></div>
+		</div>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<defs>
+			<filter id="goo">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+			<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+			<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+		</svg>
+			</div>}
+				{!showLoading && <form onSubmit={(e)=>{registration(e)}} className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
@@ -90,7 +112,7 @@ const Register = () => {
 
 					<div className="text-center p-t-90">
                         </div>
-                    </form>
+                    </form>}
     </>
   )
 }
