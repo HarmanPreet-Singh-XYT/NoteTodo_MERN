@@ -13,6 +13,7 @@ import Register from './Login/Register'
 import Login_Form from './Login/Login-Form'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import OTP from './Login/OTP'
+import OTP_Sent from './Login/OTP-Sent'
 
 const Login = () => {
   const {login} = useContext(Login_cont)
@@ -25,6 +26,7 @@ const Login = () => {
           {login==="login" && <Login_Form/>}
           {login==="register" && <Register/>}
           {login==="otp" && <OTP/>}
+          {login==="sent" && <OTP_Sent/>}
       </div>
     </div>
       </div>
