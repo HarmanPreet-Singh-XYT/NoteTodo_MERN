@@ -22,6 +22,8 @@ router.post('/login/logon',async (req,res)=>{
             })
             :
             res.status(200).json({message:'incorrect'});
+        }else{
+            res.status(200).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{
@@ -48,6 +50,8 @@ router.post('/login/send_otp',async (req,res)=>{
                     maxAge: 1000 * 60 * 5,
                 }).status(200).json({message:'sent',otp:encrypted_otp});
             })
+        }else{
+            res.status(200).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{

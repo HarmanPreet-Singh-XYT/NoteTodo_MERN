@@ -24,6 +24,7 @@ const OTP_Sent = () => {
 	.then((res)=>{
 		switch (res.data.message) {
 			case "failed":
+				setShowLoading(false);
 				setError(true);
 				break;
 			case "Success":
@@ -32,6 +33,7 @@ const OTP_Sent = () => {
                 setAccountInfo(res.data.user_info);
 				break;
 			case "incorrect":
+				setShowLoading(false);
 				setExist(true);
 				break;
 			default:
@@ -39,20 +41,21 @@ const OTP_Sent = () => {
 		}
 	})
 	.catch((err)=>{
-		console.log(err)
+		setShowLoading(false);
+		setError(true);
 	})
   }
   return (
     <>
 	{showLoading && <div className='loading'>
-	<div class="blobs">
-		<div class="blob-center"></div>
-		<div class="blob"></div>
-		<div class="blob"></div>
-		<div class="blob"></div>
-		<div class="blob"></div>
-		<div class="blob"></div>
-		<div class="blob"></div>
+	<div className="blobs">
+		<div className="blob-center"></div>
+		<div className="blob"></div>
+		<div className="blob"></div>
+		<div className="blob"></div>
+		<div className="blob"></div>
+		<div className="blob"></div>
+		<div className="blob"></div>
 	</div>
 	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
 	<defs>
