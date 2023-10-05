@@ -12,16 +12,19 @@ import '../app/Login-Dependencies/css/util.css'
 import Register from './Login/Register'
 import Login_Form from './Login/Login-Form'
 import { Login_cont } from '@/Helpers/Login-Cont'
+import OTP from './Login/OTP'
 
 const Login = () => {
   const {login} = useContext(Login_cont)
   return (
     <>
     {/* <div className="blur-background login-back" style={{backgroundImage:"url(https://image.slidesdocs.com/responsive-images/background/3d-sticky-notes-arranged-on-cork-board-powerpoint-background_ed1a4ac792__960_540.jpg)"}}> */}
-    	<div className="limiter">
+    <div className="limiter">
 		<div className="container-login100">
 			<div className="wrap-login100">
-				  {login ? <Login_Form/> : <Register/>}
+          {login==="login" && <Login_Form/>}
+          {login==="register" && <Register/>}
+          {login==="otp" && <OTP/>}
       </div>
     </div>
       </div>
