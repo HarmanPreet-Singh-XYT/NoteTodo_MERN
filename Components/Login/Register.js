@@ -4,7 +4,7 @@ import { Login_cont } from '@/Helpers/Login-Cont'
 import axios from 'axios';
 import { Account_cont } from '@/Helpers/Account-Info';
 
-const url = "http://localhost:3020/";
+const url=process.env.NEXT_PUBLIC_SERVER_URL
 const Register = () => {
 	const {setShowLogin} = useContext(ShowCard_Cont);
 	const {setLogin} = useContext(Login_cont);
@@ -24,7 +24,7 @@ const Register = () => {
 			email:e.target[3].value,
 			pass:e.target[4].value,
 		}
-		await axios.post(`${url}logindata/login/register`,data)
+		await axios.post(`${url}/logindata/login/register`,data)
 		.then((response)=>{
 			switch (response.data.message) {
 				case "Success":
@@ -80,7 +80,7 @@ const Register = () => {
 					</div>
 				
 					<div className="container-login100-form-btn">
-						<button onClick={()=>setLogin(true)} className="login100-form-btn">
+						<button onClick={()=>setLogin("login")} className="login100-form-btn">
 							Login
 						</button>
 						<button className="login100-form-btn">
