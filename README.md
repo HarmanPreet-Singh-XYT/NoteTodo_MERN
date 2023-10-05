@@ -1,7 +1,7 @@
 The App is Under-Development,Following Version Is Not the Main Release.
 # To-Do Joint App
 
-![Notes-Todo](/app/Login-Dependencies/images/icons/favicon.png)
+![Notes-Todo](/public/favicon.png)
 
 ## Description
 
@@ -59,8 +59,3 @@ Submit a pull request.
 ![Output](/ShowCase/5.png)
 ![Support](/ShowCase/6.png)
 
-## Environment Variables *Necessary
-MONGOOSE_URL="MongoDB Cloud URL",
-NEXT_PUBLIC_SERVER_URL="Local Server URL Of Backend in Frontend",
-PORT="Port Number for Backend",
-ENCRYPT_BACKEND="Encryption Key For DataBase Passwords"
