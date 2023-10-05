@@ -9,8 +9,9 @@ const Todo_create = require('./routes/Todo-create');
 const Todo_delete = require('./routes/Todo-delete');
 const Todo_edit = require('./routes/Todo-edit');
 const cors = require('cors');
+const origin_url = process.env.FRONTEND_SERVER_ORIGIN;
 const corsOptions = {
-    origin: process.env.FRONTEND_SERVER_ORIGIN,
+    origin: origin_url,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable cookies and authentication headers (if needed)
 };
