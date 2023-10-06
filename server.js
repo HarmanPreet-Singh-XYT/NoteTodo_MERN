@@ -8,6 +8,7 @@ const Register_route = require('./routes/Register-route');
 const Todo_create = require('./routes/Todo-create');
 const Todo_delete = require('./routes/Todo-delete');
 const Todo_edit = require('./routes/Todo-edit');
+const Get_data = require('./routes/Get-Data')
 const cors = require('cors');
 const origin_url = process.env.FRONTEND_SERVER_ORIGIN;
 const corsOptions = {
@@ -29,13 +30,7 @@ app.use('/todos',Todo_delete);
 app.use('/todos',Todo_edit);
 app.use('/logindata',login_route);
 app.use('/logindata',Register_route);
-
-app.get('/notes/data',(req,res)=>{
-
-})
-app.get('/todo/data',(req,res)=>{
-    
-})
+app.use('/data',Get_data);
 app.listen(PORT,()=>{
     console.log("Backend Working");
 })

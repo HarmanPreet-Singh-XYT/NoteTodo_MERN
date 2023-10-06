@@ -15,6 +15,7 @@ import LoadData from '@/Components/Output/LoadData';
 import Overview from '@/Components/Overview';
 import Login from '@/Components/Login';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
+import LoadDB from '@/Components/LoadDB';
 
 const Page = () => {
     const {setCategories,selectedButton} = useContext(Categories_Cont);
@@ -39,10 +40,13 @@ const Page = () => {
     }, []);
   return (
     <>
+    {showLogin && <Login/>}
+    {!showLogin && 
+    <>
+    <LoadDB/>
     <Cards/>
     <LoadData/>
-    {showLogin && <Login/>}
-    {!showLogin && <main className="container">
+    <main className="container">
         <div className="sidebar">
             <SideBar/>
         </div>
@@ -58,7 +62,8 @@ const Page = () => {
         <div style={{width:"24%",display:"block",transform: `translateX(${showCalendar ? "0" : "110"}%)`}} className='calendar-div'>
         <Calendar/>
         </div>
-    </main>}
+    </main>
+    </>}
     </>
   )
 }
