@@ -2,6 +2,7 @@ import React,{useContext, useLayoutEffect} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 const OTP_Sent = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
@@ -17,10 +18,13 @@ const OTP_Sent = () => {
 	setShowLoading(true);
 	setError(false);
 	setExist(false);
+
 	const data = {
-		code: e.target[0].value,
+		user_otp: e.target[0].value,
+		email:AccountInfo.email,
+		encrypted_otp:Cookies.get('loginauth'),
 	};
-	await axios.post(`${url}/login/otp`,data)
+	data.encrypted_otp==AccountInfo.cookie_otp ? await axios.post(`${url}/login/verifyotp`,data)
 	.then((res)=>{
 		switch (res.data.message) {
 			case "failed":
@@ -28,9 +32,9 @@ const OTP_Sent = () => {
 				setError(true);
 				break;
 			case "Success":
+				setAccountInfo(res.data.user_info);
 				setShowLoading(false);
 				setShowLogin(false);
-                setAccountInfo(res.data.user_info);
 				break;
 			case "incorrect":
 				setShowLoading(false);
@@ -44,6 +48,8 @@ const OTP_Sent = () => {
 		setShowLoading(false);
 		setError(true);
 	})
+	:
+	setError(true);
   }
   return (
     <>

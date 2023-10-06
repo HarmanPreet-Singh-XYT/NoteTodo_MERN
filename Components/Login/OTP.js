@@ -2,6 +2,7 @@ import React,{useContext, useLayoutEffect, useState} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 const OTP = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
@@ -30,6 +31,8 @@ const OTP = () => {
 				setError(true);
 				break;
 			case "sent":
+				setAccountInfo(data,{cookie_otp:res.data.otp});
+				Cookies.set('loginauth',res.data.otp, { expires: 0.03 });
 				setShowLoading(false);
 				setLogin("sent");
 				break;
@@ -44,6 +47,7 @@ const OTP = () => {
 	.catch((err)=>{
 		setShowLoading(false);
 				setError(true);
+				console.log(err)
 	})
   }
   return (
