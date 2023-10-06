@@ -37,7 +37,7 @@ const TodoCreate = () => {
             timeopt: timeopt,
             class: `inside-card`,
         }
-        axios.post(`${url}/todo/create`,DBData)
+        axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         .then((res)=>{
             res.data.message === "Success" &&
             setTodos((prevnotes)=>[...prevnotes,note])

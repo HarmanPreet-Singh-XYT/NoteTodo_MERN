@@ -28,7 +28,7 @@ const CreateCard = ({children}) => {
             completed:false,
             timeopt:timeopt,
         }
-        axios.post(`${url}/note/create`,data)
+        axios.post(`${url}/note/create`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         setNotes((prevnotes)=>[...prevnotes,note]);
         setCreateTime(false);
     }
