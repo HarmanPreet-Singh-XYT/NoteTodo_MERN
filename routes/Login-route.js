@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
-router.post('/login/logon',async (req,res)=>{
+const { authenticateToken } = require('../data/Auth.js');
+router.post('/login/logon',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){
@@ -33,7 +34,7 @@ router.post('/login/logon',async (req,res)=>{
 })
 const date = new Date();
 const today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
-router.post('/login/send_otp',async (req,res)=>{
+router.post('/login/send_otp',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){
@@ -55,7 +56,7 @@ router.post('/login/send_otp',async (req,res)=>{
         res.status(200).json({message:'failed',error:err});
     })
 });
-router.post('/login/verifyotp',async (req,res)=>{
+router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){

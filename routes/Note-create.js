@@ -1,7 +1,8 @@
 const express = require('express');
+const { authenticateToken } = require('../data/Auth.js');
 const router = express.Router();
 const {userNotes} = require('../data/Data.js');
-router.post('/note/create',(req,res)=>{
+router.post('/note/create',authenticateToken,(req,res)=>{
     const data = new userNotes({
         email:req.body.email,
         id: req.body.id,

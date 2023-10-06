@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const { authenticateToken } = require('../data/Auth.js');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
-router.post('/login/register',async (req,res)=>{
+router.post('/login/register',authenticateToken,async (req,res)=>{
     const hash = bcrypt.hashSync(req.body.pass, saltRounds);
     const data = new userData({
         name:req.body.name,

@@ -25,7 +25,7 @@ const Register = () => {
 			email:e.target[3].value,
 			pass:e.target[4].value,
 		}
-		await axios.post(`${url}/logindata/login/register`,data)
+		await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 		.then((response)=>{
 			switch (response.data.message) {
 				case "Success":
