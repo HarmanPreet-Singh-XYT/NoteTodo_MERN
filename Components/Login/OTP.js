@@ -31,8 +31,8 @@ const OTP = () => {
 				setError(true);
 				break;
 			case "sent":
-				setAccountInfo(data,{cookie_otp:res.data.otp});
-				Cookies.set('loginauth',res.data.otp, { expires: 0.03 });
+				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
+				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
 				setLogin("sent");
 				break;
