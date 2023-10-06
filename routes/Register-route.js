@@ -2,16 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
 router.post('/login/register',async (req,res)=>{
-    const token = jwt.sign({ pass: req.body.pass }, key);
+    const hash = bcrypt.hashSync(req.body.pass, saltRounds);
     const data = new userData({
         name:req.body.name,
         bio:req.body.bio,
         dob:req.body.dob,
         email:req.body.email,
-        password:token,
+        password:hash,
     })
     await userData.exists({email:req.body.email})
     ? 

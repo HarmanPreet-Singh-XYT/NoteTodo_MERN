@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useState } from 'react'
 import axios from 'axios';
-const url = 'http://localhost:3020/notes'
+const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/notes`
 export const NoteCreator = createContext();
 const CreateCard = ({children}) => {
   const [createTime, setCreateTime] = useState(false);
@@ -29,11 +29,8 @@ const CreateCard = ({children}) => {
             timeopt:timeopt,
         }
         axios.post(`${url}/note/create`,data)
-        .then((res)=>{
-          res.data.message==="Success" &&
-            setNotes((prevnotes)=>[...prevnotes,note]);
-            setCreateTime(false);
-        })
+        setNotes((prevnotes)=>[...prevnotes,note]);
+        setCreateTime(false);
     }
   return (
     <NoteCreator.Provider value={{create_note,createTime,setCreateTime}}>

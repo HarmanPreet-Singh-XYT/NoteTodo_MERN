@@ -3,14 +3,15 @@ const express = require('express');
 const SMTP = require('../data/SMTP.js')
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
 router.post('/login/logon',async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){
-            const decoded = jwt.verify(userdata.password, key);
-            decoded.pass===req.body.password ?
+            bcrypt.compareSync(req.body.password, userdata.password) ?
             res.status(200).json({
                 message:'Success',
                 user_info:{
@@ -37,7 +38,7 @@ router.post('/login/send_otp',async (req,res)=>{
     .then((userdata)=>{
         if(userdata!=null){
             const OTP = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-            const encrypted_otp = jwt.sign({otp:OTP.toString()}, key);
+            const encrypted_otp = bcrypt.hashSync(OTP.toString(), saltRounds);
             SMTP.sendMail({
                 from: process.env.SMTP_EMAIL,
                 to: req.body.email,
@@ -58,8 +59,7 @@ router.post('/login/verifyotp',async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){
-            const decoded = jwt.verify(req.body.encrypted_otp, key);
-            decoded.otp==req.body.user_otp ?
+            bcrypt.compareSync(req.body.user_otp, req.body.encrypted_otp) ?
             res.status(200).json({
                 message:'Success',
                 user_info:{
