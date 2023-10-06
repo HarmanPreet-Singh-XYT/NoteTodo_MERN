@@ -59,3 +59,19 @@ Submit a pull request.
 ![Output](/ShowCase/5.png)
 ![Support](/ShowCase/6.png)
 
+
+## EnvironmentVariables *Necessary
+MONGOOSE_URL="MongoDB Cloud URL",
+NEXT_PUBLIC_SERVER_URL="Local Server URL Of Backend in Frontend",
+PORT="Port Number for Backend",
+ENCRYPT_BACKEND="Encryption Key For DataBase Passwords"
+NEXT_PUBLIC_ENCRYPT_FRONTEND="Same Backend Key for frontend"
+SMTP_SERVER="smtp server of mail"
+SMTP_PORT="Port number like 587"
+SMTP_USERNAME="Username of smtp"
+SMTP_PASSWORD="Password of smtp"
+SMTP_EMAIL="email for smtp"
+FRONTEND_SERVER_ORIGIN="Frontend Server URL"
+NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"
+=======
+

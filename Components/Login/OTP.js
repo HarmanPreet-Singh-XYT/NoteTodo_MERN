@@ -23,6 +23,9 @@ const OTP = () => {
 	};
 	await axios.post(`${url}/login/send_otp`,data, {
 		withCredentials: true,
+		headers:{
+			Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API
+		}
 	  })
 	.then((res)=>{
 		switch (res.data.message) {
