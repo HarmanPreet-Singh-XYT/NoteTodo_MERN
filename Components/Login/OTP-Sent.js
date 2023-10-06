@@ -24,7 +24,8 @@ const OTP_Sent = () => {
 		email:AccountInfo.email,
 		encrypted_otp:Cookies.get('loginauth'),
 	};
-	data.encrypted_otp==AccountInfo.cookie_otp ? await axios.post(`${url}/login/verifyotp`,data)
+	data.encrypted_otp==AccountInfo.cookie_otp && 
+	await axios.post(`${url}/login/verifyotp`,data)
 	.then((res)=>{
 		switch (res.data.message) {
 			case "failed":
@@ -48,8 +49,6 @@ const OTP_Sent = () => {
 		setShowLoading(false);
 		setError(true);
 	})
-	:
-	setError(true);
   }
   return (
     <>
