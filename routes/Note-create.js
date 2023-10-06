@@ -25,5 +25,6 @@ router.post('/note/create',(req,res)=>{
         console.log('Failed: ',err);
         res.status(500).json({message:'failed'});
     })
-})
+});
+
 module.exports=router;

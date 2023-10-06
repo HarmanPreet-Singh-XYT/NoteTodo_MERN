@@ -6,7 +6,7 @@ import React, { useContext,useEffect } from 'react'
 import { CirclePicker } from 'react-color'
 import axios from 'axios';
 import { Account_cont } from '@/Helpers/Account-Info';
-const url = 'http://localhost:3020/todos'
+const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/todos`
 const TodoCreate = () => {
     const {AccountInfo} = useContext(Account_cont);
     const {Todo, setTodo} = useContext(Notes_Cont);
