@@ -8,7 +8,7 @@ import React,{useContext} from 'react';
 const SetCurrentValues = () => {
     const {notes} = useContext(Notes_Cont);
     const {show_EditCard,show_CreateCard,show_FullCard,selectionUpdate,setSelectionUpdate} = useContext(ShowCard_Cont);
-    const {Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
+    const {Idref,Userid_ref,Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
     const {update} = useContext(Useref_Update_cont);
     notes.map((note)=>
     {if(note.cls.includes("card-selected")){
@@ -19,6 +19,8 @@ const SetCurrentValues = () => {
         Tagref.current = note.tag;
         Dateref.current = note.date;
         Timetick.current = note.timeopt;
+        Idref.current = note.id;
+        Userid_ref.current = note.User_id;
         // setSelTitle(note.tit);
         // setSelContent(note.cont);
         // setSelCateg(note.category);
