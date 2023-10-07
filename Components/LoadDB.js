@@ -32,6 +32,7 @@ const LoadDB = () => {
             priority:element.priority,
             completed:element.completed,
             timeopt:element.timeopt,
+            User_id:element.User_id,
         }
           setNotes((prevnotes)=>[...prevnotes,data])
         });
@@ -57,6 +58,7 @@ const LoadDB = () => {
               priority:element.priority,
               completed:element.completed,
               timeopt:element.timeopt,
+              User_id:element.User_id,
           }
             setTodo((prevnotes)=>[...prevnotes,data])
           });

@@ -24,6 +24,7 @@ const Register = () => {
 			dob:e.target[2].value,
 			email:e.target[3].value,
 			pass:e.target[4].value,
+			User_id:Math.random()*1000,
 		}
 		await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 		.then((response)=>{
