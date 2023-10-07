@@ -5,7 +5,7 @@ const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/notes`
 export const NoteCreator = createContext();
 const CreateCard = ({children}) => {
   const [createTime, setCreateTime] = useState(false);
-    function create_note(color,tag,title,content,category,setNotes,months,email){
+    function create_note(color,tag,title,content,category,setNotes,months,userid){
         const date = new Date;
         const fulldate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
         const time = `${date.getHours()}:${date.getMinutes()}`;
@@ -14,7 +14,7 @@ const CreateCard = ({children}) => {
         const categoryCheck = category ? `All ${category}` : "All";
         const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`block`,priority:false,completed:false,timeopt:timeopt}
         const data ={
-            email,
+            User_id:userid,
             id:random_id,
             date:fulldate,
             tag,

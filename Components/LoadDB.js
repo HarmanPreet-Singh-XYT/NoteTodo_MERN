@@ -13,7 +13,7 @@ const LoadDB = () => {
     },[])
     async function DataRestore_Notes(){
       const data = {
-        email:AccountInfo.email,
+        User_id:AccountInfo.User_id,
       }
       await axios.post(`${url}/data/get/notes`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
       .then((userdata)=>{
@@ -39,7 +39,7 @@ const LoadDB = () => {
     }
     async function DataRestore_Todos(){
       const data = {
-        email:AccountInfo.email,
+        User_id:AccountInfo.User_id,
       }
       await axios.post(`${url}/data/get/todos`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
       .then((userdata)=>{

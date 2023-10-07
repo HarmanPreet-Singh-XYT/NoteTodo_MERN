@@ -27,7 +27,7 @@ const Create_card = () => {
         e.target.checked ? setCreateTime(true) : setCreateTime(false);
     }
     function creation(){
-        create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.email);
+        create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.User_id);
         setTotalCreate(TotalCreate+1);
     }
     return (

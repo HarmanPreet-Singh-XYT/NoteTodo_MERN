@@ -23,7 +23,6 @@ const TodoCreate = () => {
         const categoryCheck = category ? `All ${category}` : "All";
         const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`inside-card`,priority:progress,completed:false,timeopt:timeopt}
         const DBData = {
-            email:AccountInfo.email,
             id: random_id,
             date: fulldate,
             tag: tag,
@@ -36,6 +35,7 @@ const TodoCreate = () => {
             completed: false,
             timeopt: timeopt,
             class: `inside-card`,
+            User_id: AccountInfo.User_id,
         }
         axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         .then((res)=>{
