@@ -17,6 +17,7 @@ router.post('/todo/create',(req,res)=>{
         completed: req.body.completed,
         timeopt: req.body.timeopt,
         class: req.body.class,
+        User_id:req.body.User_id,
     })
     data.save()
     .then(()=>{

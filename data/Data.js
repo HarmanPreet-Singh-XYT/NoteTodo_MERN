@@ -11,6 +11,7 @@ const schemaDB = new mongoose.Schema({
     dob: String,
     email: String,
     password: String,
+    User_id: Number,
 });
 const schemaNotes = new mongoose.Schema({
     email: String,
@@ -26,6 +27,7 @@ const schemaNotes = new mongoose.Schema({
     completed: Boolean,
     timeopt: Boolean,
     class: String,
+    User_id: Number,
 });
 const schemaTodo = new mongoose.Schema({
     email: String,
@@ -41,6 +43,7 @@ const schemaTodo = new mongoose.Schema({
     completed: Boolean,
     timeopt: Boolean,
     class: String,
+    User_id:Number,
 });
 const userData = mongoose.model('LoginData', schemaDB);
 const userNotes = mongoose.model('NotesData', schemaNotes);

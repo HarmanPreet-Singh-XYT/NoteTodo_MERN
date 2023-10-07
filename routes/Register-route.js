@@ -9,12 +9,14 @@ const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
 router.post('/login/register',authenticateToken,async (req,res)=>{
     const hash = bcrypt.hashSync(req.body.pass, saltRounds);
+    const userID=Math.random()*1000
     const data = new userData({
         name:req.body.name,
         bio:req.body.bio,
         dob:req.body.dob,
         email:req.body.email,
         password:hash,
+        User_id:userID,
     })
     await userData.exists({email:req.body.email})
     ? 

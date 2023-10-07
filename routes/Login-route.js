@@ -20,6 +20,7 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                     bio:userdata.bio,
                     dob:userdata.dob,
                     email:userdata.email,
+                    User_id:userdata.User_id,
                 }
             })
             :
