@@ -5,8 +5,10 @@ import { Selection_Cont } from '@/Helpers/Selection';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext } from 'react'
 import { toast } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 const ToDoButtonFunctionality = () => {
+    const url = process.env.NEXT_PUBLIC_SERVER_URL;
     const {Todo, setTodo} = useContext(Notes_Cont);
     const {showCalendar, setshowCalendar} = useContext(Calendar_cont);
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
@@ -29,6 +31,7 @@ const ToDoButtonFunctionality = () => {
         setTodo((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
+        Todo.map((todo)=>{todo.cls.includes("card-selected") && axios.delete(`${url}/todos/todo/delete/${todo.User_id}/${todo.id}`,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})})
     }
     function notify(notification){
         toast.info(notification, {

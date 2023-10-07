@@ -6,12 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Calendar_cont } from '@/Helpers/Calendar-Cont';
 import { Number_cont } from '@/Helpers/Numbers-Status';
+import { Account_cont } from '@/Helpers/Account-Info';
+import axios from 'axios';
 const BottomBtns = () => {
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
     const {notes,setNotes} = useContext(Notes_Cont);
     const {show_EditCard, setShow_EditCard} = useContext(ShowCard_Cont);
     const {showCalendar,setshowCalendar} = useContext(Calendar_cont);
     const {TotalDelete, setTotalDelete} = useContext(Number_cont);
+    const url = process.env.NEXT_PUBLIC_SERVER_URL;
     function priortize(){
         setNotes((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? !note.priority ? {...note,priority:true} : {...note,priority:false} : note)
@@ -22,6 +25,7 @@ const BottomBtns = () => {
         setNotes((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
+        notes.map((note)=>{note.cls.includes("card-selected") && axios.delete(`${url}/notes/note/delete/${note.User_id}/${note.id}`,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})})
     }
     function complete(){
         setNotes((prevnotes)=>
