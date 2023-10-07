@@ -8,6 +8,8 @@ const SelectedCardData = ({children}) => {
     const Colorref = useRef("");
     const Tagref = useRef("");
     const Dateref = useRef("");
+    const Idref = useRef("");
+    const Userid_ref = useRef("");
     const Timetick = useRef(false);
     // const [selTitle, setSelTitle] = useState("");
     // const [selContent, setSelContent] = useState("");
@@ -16,7 +18,7 @@ const SelectedCardData = ({children}) => {
     // const [selTag, setSelTag] = useState("");
     // const [selDate, setSelDate] = useState("");
     return (
-        <SelectedCardData_cont.Provider value={{Timetick,Titleref,Contentref,Categref,Colorref,Tagref,Dateref}}>
+        <SelectedCardData_cont.Provider value={{Idref,Userid_ref,Timetick,Titleref,Contentref,Categref,Colorref,Tagref,Dateref}}>
             {children}
         </SelectedCardData_cont.Provider>
     )

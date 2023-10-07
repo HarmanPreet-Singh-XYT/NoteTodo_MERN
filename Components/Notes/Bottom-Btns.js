@@ -19,6 +19,13 @@ const BottomBtns = () => {
         setNotes((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? !note.priority ? {...note,priority:true} : {...note,priority:false} : note)
         );
+        notes.map((note)=>{note.cls.includes("card-selected") && 
+        axios.patch(`${url}/notes/note/edit`,{
+            id:note.id,
+            User_id:note.User_id,
+            priority:true
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})});
     };
     function delete_card(){
         notes.map((note)=>{note.cls.includes("card-selected") && setTotalDelete(TotalDelete+1)})
@@ -31,6 +38,13 @@ const BottomBtns = () => {
         setNotes((prevnotes)=>
         prevnotes.map((note)=>
         note.cls.includes("card-selected") ? {...note,completed:!note.completed} : note));
+        notes.map((note)=>{note.cls.includes("card-selected") && 
+        axios.patch(`${url}/notes/note/edit`,{
+            id:note.id,
+            User_id:note.User_id,
+            completed:!note.completed,
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})});
     }
     function notify(notification){
         toast.info(notification, {

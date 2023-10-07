@@ -7,18 +7,32 @@ import { SelectedCardData_cont } from '@/Helpers/SelectedCardData';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext, useEffect } from 'react'
 import { CirclePicker } from 'react-color'
+import axios from 'axios';
 const EditCard = () => {
+    const url = process.env.NEXT_PUBLIC_SERVER_URL;
     const {categories} = useContext(Categories_Cont);
     const {TotalCreate, setTotalCreate,TotalEdit, setTotalEdit,TotalDelete, setTotalDelete} = useContext(Number_cont);
-    const {setNotes} = useContext(Notes_Cont);
+    const {notes,setNotes} = useContext(Notes_Cont);
     const {setShow_EditCard} = useContext(ShowCard_Cont);
-    const {title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
+    const {date,title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
     // const {selTitle, setSelTitle,selContent, setSelContent,selCateg, setSelCateg,selColor, setSelColor,selTag, setSelTag,selDate, setSelDate} = useContext(SelectedCardData_cont);
-    const {Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
-    function Edit(){
-        setNotes((prevnotes)=>
+    const {Idref,Userid_ref,Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
+    async function Edit(){
+        await setNotes((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:tag,col:color,tit:title,cont:content,category:categ,cls:`block`,timeopt:Timetick.current} : note)
         )
+        axios.patch(`${url}/notes/note/edit`,{
+            id:Idref.current,
+            tag:tag,
+            User_id:Userid_ref.current,
+            title:title,
+            color:color,
+            content:content,
+            category:categ,
+            date:Dateref.current,
+            timeopt:Timetick.current,
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}});
     }
     return (
     <>
