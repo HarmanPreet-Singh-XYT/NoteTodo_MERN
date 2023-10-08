@@ -1,15 +1,31 @@
 "use client"
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import { Notes_Cont } from '@/Helpers/Notes'
 import axios from 'axios'
 import { Account_cont } from '@/Helpers/Account-Info';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const url = process.env.NEXT_PUBLIC_SERVER_URL;
 const LoadDB = () => {
-    const {notes, setNotes,Todo, setTodo} = useContext(Notes_Cont);
+    const {setNotes,setTodo} = useContext(Notes_Cont);
     const {AccountInfo} = useContext(Account_cont);
+    const {setCategories} = useContext(Categories_Cont);
+    const {setTotalCreate,TotalCreate,setTotalEdit,TotalEdit,setTotalDelete,TotalDelete} = useContext(Number_cont);
     useEffect(()=>{
+      const data = {
+        Total:{
+          create:TotalCreate,
+          delete:TotalDelete,
+          edit:TotalEdit,
+        }
+      }
+      AccountInfo.User_id && axios.patch(`${url}/user/usertotal/update`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
+    },[TotalCreate,TotalEdit,TotalDelete])
+    useLayoutEffect(()=>{
       DataRestore_Notes();
       DataRestore_Todos();
+      DataRestore_Categories();
+      DataRestore_Graphs();
     },[])
     async function DataRestore_Notes(){
       const data = {
@@ -63,6 +79,20 @@ const LoadDB = () => {
             setTodo((prevnotes)=>[...prevnotes,data])
           });
       })
+    }
+    function DataRestore_Categories(){
+      function create_categories(category,color){
+        const random = Math.random()*100;
+        const cat = {id:random,cat:category,col:color};
+        setCategories((prevcat)=>[...prevcat,cat]);
+      }
+      const precat = AccountInfo.categories;
+      precat.forEach((cat)=>create_categories(cat,'red'));
+    }
+    function DataRestore_Graphs(){
+      setTotalCreate(AccountInfo.total.create);
+      setTotalEdit(AccountInfo.total.edit);
+      setTotalDelete(AccountInfo.total.delete);
     }
   return (
     null

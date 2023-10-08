@@ -5,10 +5,11 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const {userData,userAdditionals} = require('../data/Data.js');
+const {userData} = require('../data/Data.js');
 const key=process.env.ENCRYPT_BACKEND;
 router.post('/login/register',authenticateToken,async (req,res)=>{
     const currentDate = new Date();
+    const clientIP = req.ip;
     const hash = bcrypt.hashSync(req.body.pass, saltRounds);
     const data = new userData({
         name:req.body.name,
@@ -18,8 +19,9 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
         password:hash,
         User_id:req.body.User_id,
         Total:{create:0,delete:0,edit:0},
-        Categories:['All'],
+        Categories:['All','Projects','Business','Finance','Development'],
         AccountCreation:`${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}:${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`,
+        CreationIP:clientIP,
     })
     await userData.exists({email:req.body.email})
     ? 

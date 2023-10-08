@@ -18,26 +18,9 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import LoadDB from '@/Components/LoadDB';
 
 const Page = () => {
-    const {setCategories,selectedButton} = useContext(Categories_Cont);
+    const {selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
     const {showLogin} = useContext(ShowCard_Cont);
-    function create_categories(category,color){
-        const random = Math.random()*100;
-        const cat = {id:random,cat:category,col:color};
-        setCategories((prevcat)=>[...prevcat,cat]);
-    }
-    function time(){
-      let dateObj = new Date();
- 
-// Subtract one day from current time                       
-      dateObj.setDate(dateObj.getDate() + 19);
-      
-      return dateObj
-    }
-    const precat = ["All","Projects","Business","Finance"]
-    useLayoutEffect(() => {
-      precat.forEach((cat)=>create_categories(cat));
-    }, []);
   return (
     <>
     {showLogin && <Login/>}

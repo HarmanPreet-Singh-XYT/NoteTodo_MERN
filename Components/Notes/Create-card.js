@@ -26,7 +26,7 @@ const Create_card = () => {
     function check(e){
         e.target.checked ? setCreateTime(true) : setCreateTime(false);
     }
-    function creation(){
+    async function creation(){
         create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.User_id);
         setTotalCreate(TotalCreate+1);
     }

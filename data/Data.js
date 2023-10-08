@@ -15,6 +15,7 @@ const schemaDB = new mongoose.Schema({
     Total:Object,
     Categories:Array,
     AccountCreation:String,
+    CreationIP:Number,
 });
 const schemaNotes = new mongoose.Schema({
     email: String,
