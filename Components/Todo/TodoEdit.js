@@ -4,16 +4,30 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
+import axios from 'axios';
 const TodoEdit = () => {
-    const {setTodo} = useContext(Notes_Cont);
+    const {Todo,setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
     const {TotalEdit, setTotalEdit} = useContext(Number_cont);
-    function Edit(setTodos){
+    const url = process.env.NEXT_PUBLIC_SERVER_URL;
+    function Edit(e,setTodos){
+        e.preventDefault();
         setTodos((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:tag.current,col:colorr.current,tit:title.current,cont:content.current} : note)
         )
         setTotalEdit(TotalEdit+1);
+        Todo.map((td)=>td.cls.includes("card-selected") &&
+        axios.patch(`${url}/todos/todo/edit`,{
+            id:td.id,
+            tag:e.target[3].value,
+            User_id:td.User_id,
+            title:e.target[0].value,
+            color:colorr.current,
+            content:e.target[2].value,
+            date:e.target[1].value,
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}}));
     }
     function clearOutValues(){
         title.current = "";
@@ -27,7 +41,7 @@ const TodoEdit = () => {
     <>
     <div className="blur-background">
             <div className="create-window">
-                    <form id='createform' onSubmit={()=>{Edit(setTodo);setShow_TodoEditCard(false)}} action="/note/create" className="create-note">
+                    <form id='createform' onSubmit={(e)=>{Edit(e,setTodo);setShow_TodoEditCard(false)}} action="/note/create" className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <input defaultValue={title.current} onChange={(e)=>title.current=e.target.value} placeholder="Title" name="title" type="text" className="round-border title-in sec" required/>

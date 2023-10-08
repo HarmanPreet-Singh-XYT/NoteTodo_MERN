@@ -19,12 +19,26 @@ const ToDoButtonFunctionality = () => {
         prevNotes.map((note)=>
         note.cls.includes("card-selected") ? {...note,priority:false,completed:!note.completed} : note
         ));
+        Todo.map((td)=>td.cls.includes("card-selected") &&
+        axios.patch(`${url}/todos/todo/edit`,{
+            id:td.id,
+            User_id:td.User_id,
+            completed:!td.completed,
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}}));
     };
     function prioritytodo(){
         setTodo((prevNotes)=>
         prevNotes.map((note)=>
         note.cls.includes("card-selected") ? {...note,priority:!note.priority} : note
         ));
+        Todo.map((td)=>td.cls.includes("card-selected") &&
+        axios.patch(`${url}/todos/todo/edit`,{
+            id:td.id,
+            User_id:td.User_id,
+            priority:!td.priority,
+        },
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}}));
     };
     function delete_card(){
         Todo.map((to)=>to.cls.includes("card-selected") && setTotalDelete(TotalDelete+1))
