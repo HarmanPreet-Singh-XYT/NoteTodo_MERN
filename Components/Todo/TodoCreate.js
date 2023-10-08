@@ -37,12 +37,9 @@ const TodoCreate = () => {
             class: `inside-card`,
             User_id: AccountInfo.User_id,
         }
-        axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-        .then((res)=>{
-            res.data.message === "Success" &&
-            setTodos((prevnotes)=>[...prevnotes,note])
-            setTotalCreate(TotalCreate+1);
-        })
+        setTodos((prevnotes)=>[...prevnotes,note]);
+        setTotalCreate(TotalCreate+1);
+        AccountInfo.email && axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         
     }
     function clearOutValues(){
