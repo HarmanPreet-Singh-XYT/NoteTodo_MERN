@@ -17,19 +17,20 @@ const EditCard = () => {
     const {date,title,content,categ,color,tag,months,setTitle,setContent,setDate,setCateg,setColor,setTag} = useContext(FormData_cont);
     // const {selTitle, setSelTitle,selContent, setSelContent,selCateg, setSelCateg,selColor, setSelColor,selTag, setSelTag,selDate, setSelDate} = useContext(SelectedCardData_cont);
     const {Idref,Userid_ref,Titleref,Contentref,Categref,Colorref,Tagref,Dateref,Timetick} = useContext(SelectedCardData_cont);
-    async function Edit(){
+    async function Edit(e){
+        e.preventDefault();
         await setNotes((prevnotes)=>
-        prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:tag,col:color,tit:title,cont:content,category:categ,cls:`block`,timeopt:Timetick.current} : note)
+        prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:e.target[4].value,col:color,tit:e.target[0].value,cont:e.target[2].value,category:`All ${e.target[5].value}`,cls:`block`,timeopt:Timetick.current} : note)
         )
         axios.patch(`${url}/notes/note/edit`,{
             id:Idref.current,
-            tag:tag,
+            tag:e.target[4].value,
             User_id:Userid_ref.current,
-            title:title,
+            title:e.target[0].value,
             color:color,
-            content:content,
-            category:categ,
-            date:Dateref.current,
+            content:e.target[2].value,
+            category:`All ${e.target[5].value}`,
+            date:e.target[1].value,
             timeopt:Timetick.current,
         },
         {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}});
@@ -39,7 +40,7 @@ const EditCard = () => {
         <div className="blur-background">
             <div className="create-window">
             <hr style={{backgroundColor:`${color}`}} className="color-line"/>
-                    <form onSubmit={()=>{Edit();setShow_EditCard(false);setTotalEdit(TotalEdit+1);}} action="/note/edit" id='editnote' className="create-note">
+                    <form onSubmit={(e)=>{Edit(e);setShow_EditCard(false);setTotalEdit(TotalEdit+1);}} action="/note/edit" id='editnote' className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
                         <label className='cre-time fir'>Include Time</label>
