@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {userData} = require('../data/Data.js');
-const key=process.env.ENCRYPT_BACKEND;
 const { authenticateToken } = require('../data/Auth.js');
 router.post('/login/logon',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
@@ -21,6 +20,8 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                     dob:userdata.dob,
                     email:userdata.email,
                     User_id:userdata.User_id,
+                    categories:userdata.Categories,
+                    total:userdata.Total,
                 }
             })
             :
@@ -69,6 +70,9 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                     bio:userdata.bio,
                     dob:userdata.dob,
                     email:userdata.email,
+                    User_id:userdata.User_id,
+                    categories:userdata.Categories,
+                    total:userdata.Total,
                 }
             })
             :
