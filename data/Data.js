@@ -12,6 +12,9 @@ const schemaDB = new mongoose.Schema({
     email: String,
     password: String,
     User_id: Number,
+    Total:Object,
+    Categories:Array,
+    AccountCreation:String,
 });
 const schemaNotes = new mongoose.Schema({
     email: String,
@@ -48,4 +51,5 @@ const schemaTodo = new mongoose.Schema({
 const userData = mongoose.model('LoginData', schemaDB);
 const userNotes = mongoose.model('NotesData', schemaNotes);
 const userTodo = mongoose.model('TodoData', schemaTodo);
+
 module.exports= {userData,userNotes,userTodo};
