@@ -34,6 +34,8 @@ const Content = () => {
   }
   return (
     <>
+    {error==='failed' && <h1>Server Error,Please Try Again Lator</h1>}
+    {error==='incorrect' && <h3>Please Login To Use Support</h3>}
         <form onSubmit={(e)=>support(e)} className="spt-form" id="support-form" action="/support/send" method="post">
                 <label className="spt-title">Subject</label>
                 <input name='subject' placeholder="Query..." type="text" className="spt-in-title" required/>
