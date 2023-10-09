@@ -3,7 +3,7 @@ import { Account_cont } from '@/Helpers/Account-Info'
 import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
-import { toast } from 'react-toastify';
+import { Notify } from '../Notifcation';
 const Account = () => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
     const {AccountInfo,setAccountInfo} = useContext(Account_cont);
@@ -22,28 +22,9 @@ const Account = () => {
         .then((res)=>{
             setShowLoading(false);
             res.data.message==='Success' ? 
-            toast.success('Successful', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                })
+            Notify('Successful','success')
             :
-            toast.error('Error,Please Try again', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
-
+            Notify('Error,Please Try again','error');
         })
     }
     function ResetData(){
@@ -52,27 +33,9 @@ const Account = () => {
         {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
         .then((res)=>{setShowLoading(false);
             res.data.message==='Success' ? 
-            toast.success('Successful', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                })
+            Notify('Successful,Reload Page for Changes to Reflect','success')
             :
-            toast.error('Error,Please Try again', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
+            Notify('Error,Please Try again','error');
             })
     }
     function PasswordChange(e){
@@ -84,27 +47,9 @@ const Account = () => {
         {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
         .then((res)=>{setShowLoading(false);
             res.data.message==='Success' ? 
-            toast.success('Successful', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                })
+            Notify('Successful','success')
             :
-            toast.error('Error,Please Try again', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
+            Notify('Error,Please Try again','error');
             })
     }
     const condition1= (!showPassword && !showLoading);
