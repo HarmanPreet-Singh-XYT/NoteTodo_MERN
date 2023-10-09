@@ -4,6 +4,7 @@ import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { Notify } from '../Notifcation';
 const OTP_Sent = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
@@ -31,8 +32,10 @@ const OTP_Sent = () => {
 			case "failed":
 				setShowLoading(false);
 				setError(true);
+				Notify("Failed,Please Try again","error")
 				break;
 			case "Success":
+				Notify("Login Successful","success");
 				setAccountInfo(res.data.user_info);
 				setShowLoading(false);
 				setShowLogin(false);
@@ -40,6 +43,7 @@ const OTP_Sent = () => {
 			case "incorrect":
 				setShowLoading(false);
 				setExist(true);
+				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
@@ -48,6 +52,7 @@ const OTP_Sent = () => {
 	.catch((err)=>{
 		setShowLoading(false);
 		setError(true);
+		Notify("Server Error,Please Try again lator","error");
 	})
   }
   return (

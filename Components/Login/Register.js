@@ -3,7 +3,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import axios from 'axios';
 import { Account_cont } from '@/Helpers/Account-Info';
-
+import { Notify } from '../Notifcation';
 const url=process.env.NEXT_PUBLIC_SERVER_URL
 const Register = () => {
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
@@ -33,14 +33,17 @@ const Register = () => {
 					setShowLoading(false);
 					setAccountInfo(data);
 					setShowLogin(false);
+					Notify("Registration Successful","success")
 					break;
 				case "Exist":
+					Notify("Email Already Exist","warn");
 					setShowLoading(false);
 					setExist(true);
 					break;
 				case "failed":
 					setShowLoading(false);
 					setError(true);
+					Notify("Error,Please Try Again","error")
 					break;
 				default:
 					break;
@@ -49,6 +52,7 @@ const Register = () => {
 		.catch((err)=>{
 			setShowLoading(false);
 				setError(true);
+				Notify("Server Error,Please Try Again Lator","error")
 		})
 	}
   return (

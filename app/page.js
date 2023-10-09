@@ -16,6 +16,7 @@ import Overview from '@/Components/Overview';
 import Login from '@/Components/Login';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import LoadDB from '@/Components/LoadDB';
+import Notifcation from '@/Components/Notifcation';
 
 const Page = () => {
     const {selectedButton} = useContext(Categories_Cont);
@@ -23,6 +24,7 @@ const Page = () => {
     const {showLogin} = useContext(ShowCard_Cont);
   return (
     <>
+    <Notifcation/>
     {showLogin && <Login/>}
     {!showLogin && 
     <>
@@ -35,7 +37,6 @@ const Page = () => {
         </div>
         <button className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
         <div className="main">
-            <ToastContainer/>
             {selectedButton==="overview" && <Overview/>}
             {selectedButton==="task" && <ToDoApp/>}
             {selectedButton==="note" && <NotesApp/>}

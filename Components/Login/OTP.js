@@ -4,6 +4,7 @@ import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { Notify } from '../Notifcation';
 const OTP = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
   const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
@@ -32,8 +33,10 @@ const OTP = () => {
 			case "failed":
 				setShowLoading(false);
 				setError(true);
+				Notify("User Does Not Exist","warn");
 				break;
 			case "sent":
+				Notify("OTP Sent on your Mail","success");
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
 				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
@@ -42,6 +45,7 @@ const OTP = () => {
 			case "incorrect":
 				setShowLoading(false);
 				setExist(true);
+				Notify("Incorrect Email","warn");
 				break;
 			default:
 				break;
@@ -49,8 +53,8 @@ const OTP = () => {
 	})
 	.catch((err)=>{
 		setShowLoading(false);
-				setError(true);
-				console.log(err)
+		setError(true);
+		Notify("Server Error,Please Try again Lator","error");
 	})
   }
   return (
@@ -79,7 +83,7 @@ const OTP = () => {
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
-					{Error && <h3 className='login-error'>Server Error,Please Try Again Lator</h3>}
+					{Error && <h3 className='login-error'>User Does not Exist</h3>}
 					{Exist && <h3 className='login-error'>Incorrect Email,Please Check Email</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
 						Log In with OTP
