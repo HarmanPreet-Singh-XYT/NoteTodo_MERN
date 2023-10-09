@@ -3,6 +3,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
 import axios from 'axios';
+import { Notify } from '../Notifcation';
 const Login_Form = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
@@ -27,8 +28,10 @@ const Login_Form = () => {
 			case "failed":
 				setShowLoading(false);
 				setError(true);
+				Notify("Failed,Try Again","error")
 				break;
 			case "Success":
+				Notify("Login Successful","success");
 				setShowLoading(false);
 				setAccountInfo(res.data.user_info);
 				setShowLogin(false);
@@ -36,6 +39,7 @@ const Login_Form = () => {
 			case "incorrect":
 				setShowLoading(false);
 				setExist(true);
+				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
@@ -43,7 +47,8 @@ const Login_Form = () => {
 	})
 	.catch((err)=>{
 		setShowLoading(false);
-				setError(true);
+		setError(true);
+		Notify("Server Error,Please Try again Lator","error");
 	})
   }
   return (
