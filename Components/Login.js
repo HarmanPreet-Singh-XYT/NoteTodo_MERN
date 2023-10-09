@@ -15,6 +15,10 @@ import { Login_cont } from '@/Helpers/Login-Cont'
 import OTP from './Login/OTP'
 import OTP_Sent from './Login/OTP-Sent'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
+import Forget_Pass from './Login/Forget-Pass'
+import Forget_Verify from './Login/Forget-Verify'
+import ResetPassword from './Login/ResetPassword'
+import Register_Verify from './Login/Register-OTP'
 
 const Login = () => {
   const {login} = useContext(Login_cont)
@@ -28,8 +32,12 @@ const Login = () => {
 			<div className="wrap-login100">
           {login==="login" && <Login_Form/>}
           {login==="register" && <Register/>}
+          {login==="register_otp" && <Register_Verify/>}
           {login==="otp" && <OTP/>}
           {login==="sent" && <OTP_Sent/>}
+          {login==="respass" && <Forget_Pass/>}
+          {login==="verify_respass" && <Forget_Verify/>}
+          {login==="verified-respass" && <ResetPassword/>}
       </div>
     </div>
       </div>

@@ -5,7 +5,7 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
-const OTP = () => {
+const Forget_Pass = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
   const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
@@ -29,13 +29,13 @@ const OTP = () => {
 		}
 	  })
 	.then((res)=>{
-		switch (res.data.message) {
-			case "sent":
+		switch (res.status) {
+			case 200:
 				Notify("OTP Sent on your Mail","success");
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
 				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
-				setLogin("sent");
+				setLogin("verify_respass");
 				break;
 			default:
 				break;
@@ -43,11 +43,6 @@ const OTP = () => {
 	})
 	.catch((err)=>{
 		switch (err.response.status) {
-			case 404:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Email","warn");
-				break;
 			case 500:
 				setShowLoading(false);
 				setError(true);
@@ -80,14 +75,14 @@ const OTP = () => {
   </defs>
 </svg>
 	</div>}
-    {!showLoading && <form onSubmit={(e)=>check(e)} method='post' action='/login/log' className="login100-form validate-form">
+    {!showLoading && <form onSubmit={(e)=>check(e)} method='post' className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
 					{Error && <h3 className='login-error'>User Does not Exist</h3>}
 					{Exist && <h3 className='login-error'>Incorrect Email,Please Check Email</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
-						Log In with OTP
+						Password Reset
 					</span>
 
 					<div className="wrap-input100 validate-input" data-validate = "Enter Email">
@@ -108,4 +103,4 @@ const OTP = () => {
   )
 }
 
-export default OTP;
+export default Forget_Pass;

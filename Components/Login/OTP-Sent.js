@@ -27,32 +27,34 @@ const OTP_Sent = () => {
 	};
 	data.encrypted_otp==AccountInfo.cookie_otp && 
 	await axios.post(`${url}/login/verifyotp`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-	.then((res)=>{
-		switch (res.data.message) {
-			case "failed":
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Please Try again","error")
-				break;
-			case "Success":
+	.then(async (res)=>{
+		switch (res.status) {
+			case 200:
 				Notify("Login Successful","success");
-				setAccountInfo(res.data.user_info);
+				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
 				setShowLogin(false);
-				break;
-			case "incorrect":
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		setShowLoading(false);
-		setError(true);
-		Notify("Server Error,Please Try again lator","error");
+		console.log(err)
+		switch (err.response.status) {
+			case 401:
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+				break;
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("Failed,Please Try again","error")
+				break;
+			default:
+				break;
+		}
 	})
   }
   return (

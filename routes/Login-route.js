@@ -25,13 +25,13 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                 }
             })
             :
-            res.status(200).json({message:'incorrect'});
+            res.status(401).json({message:'incorrect'});
         }else{
-            res.status(200).json({message:'incorrect',error:err});
+            res.status(409).json({message:'Exist',error:err});
         }
     })
     .catch((err)=>{
-        res.status(200).json({message:'incorrect',error:err});
+        res.status(404).json({message:'failed',error:err});
     })
 })
 const date = new Date();
@@ -51,11 +51,11 @@ router.post('/login/send_otp',authenticateToken,async (req,res)=>{
                 res.status(200).json({message:'sent',secure_otp:encrypted_otp});
             })
         }else{
-            res.status(200).json({message:'incorrect',error:err});
+            res.status(404).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{
-        res.status(200).json({message:'failed',error:err});
+        res.status(500).json({message:'failed',error:err});
     })
 });
 router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
@@ -76,13 +76,13 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                 }
             })
             :
-            res.status(200).json({message:'incorrect'});
+            res.status(401).json({message:'incorrect'});
         }else{
-            res.status(200).json({message:'incorrect',error:err});
+            res.status(404).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{
-        res.status(200).json({message:'failed',error:err});
+        res.status(500).json({message:'failed',error:err});
     })
 })
 

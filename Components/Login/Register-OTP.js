@@ -2,9 +2,10 @@ import React,{useContext, useLayoutEffect} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
-const Login_Form = () => {
+const Register_Verify = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
@@ -18,18 +19,25 @@ const Login_Form = () => {
 	setShowLoading(true);
 	setError(false);
 	setExist(false);
+
 	const data = {
-		email: e.target[0].value,
-		password: e.target[1].value,
+        name:AccountInfo.name,
+        bio:AccountInfo.bio,
+        dob:AccountInfo.dob,
+        User_id:AccountInfo.User_id,
+        pass:AccountInfo.pass,
+		user_otp: e.target[0].value,
+		email:AccountInfo.email,
+		encrypted_otp:Cookies.get('loginauth'),
 	};
-	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+	await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
 		switch (res.status) {
 			case 200:
-				Notify("Login Successful","success");
-				await setAccountInfo(res.data.user_info);
+				Notify("Verified","success");
+				await setAccountInfo(res.data.userdata);
 				setShowLoading(false);
-				setShowLogin(false);
+                setShowLogin(false);
 				break;
 			default:
 				break;
@@ -37,21 +45,16 @@ const Login_Form = () => {
 	})
 	.catch((err)=>{
 		switch (err.response.status) {
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Try Again","error")
-			break;
-			case 404:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
-			break;
 			case 401:
 				setShowLoading(false);
 				setExist(true);
 				Notify("Incorrect Credentials","warn");
-			break;
+				break;
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("Failed,Please Try again","error")
+				break;
 			default:
 				break;
 		}
@@ -83,55 +86,26 @@ const Login_Form = () => {
 					<span className="login100-form-logo logo-login">
 						<img src='https://i.pinimg.com/1200x/4d/00/8b/4d008b130bfc3d54968c88e9cf93c53b.jpg' alt='logo'/>
 					</span>
-					{Error && <h3 className='login-error'>Server Error,Please Try Again Lator</h3>}
-					{Exist && <h3 className='login-error'>Incorrect Credentials,Please Check Credentials</h3>}
+					{Error && <h3 className='login-error'>OTP Expired,Please Login Again</h3>}
+					{Exist && <h3 className='login-error'>Incorrect OTP,Please Check OTP</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
-						Log in
+						OTP Verification
 					</span>
 
-					<div className="wrap-input100 validate-input" data-validate = "Enter Email">
-						<input required className="input100" type="email" name="username" placeholder="Email"/>
-						<span className="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div className="wrap-input100 validate-input" data-validate="Enter password">
-						<input required className="input100" type="password" name="pass" placeholder="Password"/>
+					<div className="wrap-input100 validate-input" data-validate="Enter OTP Code">
+						<input required className="input100" type="password" name="pass" placeholder="OTP Code"/>
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-
-					<div className="contact100-form-checkbox">
-						<input className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
-						<label className="la-cbk">
-							Remember me
-						</label>
-					</div>
-
 					<div className="container-login100-form-btn">
-						<button type='button' onClick={()=>setShowLogin(false)} className="login100-form-btn">
-							Demo
-						</button>
-						<button type='button' onClick={()=>setLogin("register")} className="login100-form-btn">
-							Sign Up
+						<button type='button' onClick={()=>setLogin("otp")} className="login100-form-btn">
+							Back
 						</button>
 						<button className="login100-form-btn">
-							Login
-						</button>
-						<button type='button' className="login100-form-btn">
-							Local Storage
-						</button>
-						<button onClick={()=>setLogin("otp")} type='button' className="login100-form-btn">
-							Login with OTP
+							Confirm
 						</button>
 					</div>
-
-					<div className="text-center p-t-90">
-						<a style={{cursor:'pointer'}} onClick={()=>setLogin("respass")} className="txt1">
-							Forgot Password?
-						  </a>
-              </div>
             </form>}
     </>
   )
 }
-
-export default Login_Form;
+export default Register_Verify;
