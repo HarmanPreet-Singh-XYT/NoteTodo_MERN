@@ -25,7 +25,7 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
     })
     await userData.exists({email:req.body.email})
     ? 
-    res.status(200).json({message:'Exist'})
+    res.status(409).json({message:'Exist'})
     : 
     bcrypt.compareSync(req.body.user_otp, req.body.encrypted_otp) ? data.save()
     .then(()=>{
@@ -43,7 +43,7 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
         res.status(500).json({message:'failed',error:err});
     })
     :
-    res.status(200).json({message:'incorrect'});
+    res.status(401 ).json({message:'incorrect'});
 });
 const date = new Date();
 const today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
@@ -62,10 +62,10 @@ router.post('/register/send_otp',authenticateToken,async (req,res)=>{
             res.status(200).json({message:'Success',secure_otp:encrypted_otp});
         })
         :
-        res.status(200).json({message:'Exist'});
+        res.status(409).json({message:'Exist'});
     })
     .catch(err=>{
-        res.status(404).json({message:'failed'});
+        res.status(500).json({message:'failed'});
     })
             
 });

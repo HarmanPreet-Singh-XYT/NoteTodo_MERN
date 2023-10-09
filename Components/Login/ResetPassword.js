@@ -18,11 +18,11 @@ const ResetPassword = () => {
         {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
         .then((res)=>{
             setShowLoading(false);
-            res.data.message==='Success' ?
+            res.status===200 ?
             Notify('Successful','success')
             :
             Notify('Error,Please Try again','error');
-            res.data.message==='Success' && setLogin('login');
+            res.status===200 && setLogin('login');
             })
     }
   return (

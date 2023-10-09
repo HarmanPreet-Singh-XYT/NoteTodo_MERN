@@ -32,31 +32,32 @@ const Register_Verify = () => {
 	};
 	await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
-		switch (res.data.message) {
-			case "failed":
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Please Try again","error")
-				break;
-			case "Success":
+		switch (res.status) {
+			case 200:
 				Notify("Verified","success");
 				await setAccountInfo(res.data.userdata);
 				setShowLoading(false);
                 setShowLogin(false);
-				break;
-			case "incorrect":
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		setShowLoading(false);
-		setError(true);
-		Notify("Server Error,Please Try again lator","error");
+		switch (err.response.status) {
+			case 401:
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+				break;
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("Failed,Please Try again","error")
+				break;
+			default:
+				break;
+		}
 	})
   }
   return (

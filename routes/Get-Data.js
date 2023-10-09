@@ -11,11 +11,11 @@ router.post('/get/notes',authenticateToken,async (req,res)=>{
         })
         }
         else{
-            res.status(200).json({message:"none"})
+            res.status(404).json({message:"none"})
         }
     })
     .catch((err)=>{
-        res.status(200).json({message:"Server Error"})
+        res.status(500).json({message:"Server Error"})
     })
 });
 router.post('/get/todos',authenticateToken,async (req,res)=>{
@@ -27,11 +27,11 @@ router.post('/get/todos',authenticateToken,async (req,res)=>{
         })
         }
         else{
-            res.status(200).json({message:"none"})
+            res.status(404).json({message:"none"})
         }
     })
     .catch((err)=>{
-        res.status(200).json({message:"Server Error"})
+        res.status(500).json({message:"Server Error"})
     })
 });
 module.exports=router;

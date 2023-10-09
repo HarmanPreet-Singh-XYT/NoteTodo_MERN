@@ -30,11 +30,6 @@ const OTP = () => {
 	  })
 	.then((res)=>{
 		switch (res.data.message) {
-			case "failed":
-				setShowLoading(false);
-				setError(true);
-				Notify("User Does Not Exist","warn");
-				break;
 			case "sent":
 				Notify("OTP Sent on your Mail","success");
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
@@ -42,19 +37,25 @@ const OTP = () => {
 				setShowLoading(false);
 				setLogin("sent");
 				break;
-			case "incorrect":
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Email","warn");
-				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		setShowLoading(false);
-		setError(true);
-		Notify("Server Error,Please Try again Lator","error");
+		switch (err.response.status) {
+			case 404:
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Email","warn");
+				break;
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("User Does Not Exist","warn");
+				break;
+			default:
+				break;
+		}
 	})
   }
   return (

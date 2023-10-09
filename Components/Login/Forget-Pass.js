@@ -29,32 +29,28 @@ const Forget_Pass = () => {
 		}
 	  })
 	.then((res)=>{
-		switch (res.data.message) {
-			case "failed":
-				setShowLoading(false);
-				setError(true);
-				Notify("User Does Not Exist","warn");
-				break;
-			case "sent":
+		switch (res.status) {
+			case 200:
 				Notify("OTP Sent on your Mail","success");
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
 				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
 				setLogin("verify_respass");
 				break;
-			case "incorrect":
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Email","warn");
-				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		setShowLoading(false);
-		setError(true);
-		Notify("Server Error,Please Try again Lator","error");
+		switch (err.response.status) {
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("User Does Not Exist","warn");
+				break;
+			default:
+				break;
+		}
 	})
   }
   return (

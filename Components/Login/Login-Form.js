@@ -24,31 +24,37 @@ const Login_Form = () => {
 	};
 	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
-		switch (res.data.message) {
-			case "failed":
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Try Again","error")
-				break;
-			case "Success":
+		switch (res.status) {
+			case 200:
 				Notify("Login Successful","success");
 				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
 				setShowLogin(false);
-				break;
-			case "incorrect":
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		setShowLoading(false);
-		setError(true);
-		Notify("Server Error,Please Try again Lator","error");
+		switch (err.response.status) {
+			case 500:
+				setShowLoading(false);
+				setError(true);
+				Notify("Failed,Try Again","error")
+			break;
+			case 404:
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+			break;
+			case 401:
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+			break;
+			default:
+				break;
+		}
 	})
   }
   return (
