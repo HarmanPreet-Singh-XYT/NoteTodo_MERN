@@ -3,6 +3,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import axios from 'axios';
 import { Account_cont } from '@/Helpers/Account-Info';
+import Cookies from 'js-cookie';
 import { Notify } from '../Notifcation';
 const url=process.env.NEXT_PUBLIC_SERVER_URL
 const Register = () => {
@@ -26,14 +27,15 @@ const Register = () => {
 			pass:e.target[4].value,
 			User_id:Math.random()*1000,
 		}
-		await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+		await axios.post(`${url}/logindata/register/send_otp`,{SMTP:"yes",name:data.name,email:data.email},{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 		.then((response)=>{
 			switch (response.data.message) {
 				case "Success":
 					setShowLoading(false);
-					setAccountInfo(response.data.userdata);
-					setShowLogin(false);
-					Notify("Registration Successful","success")
+					Cookies.set('loginauth',response.data.secure_otp, { expires: 0.03 });
+					setAccountInfo(data);
+					setLogin('register_otp');
+					Notify("OTP Sent on your Mail","success")
 					break;
 				case "Exist":
 					Notify("Email Already Exist","warn");
