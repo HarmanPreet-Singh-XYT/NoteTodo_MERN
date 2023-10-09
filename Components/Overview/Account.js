@@ -36,7 +36,7 @@ const Account = () => {
             Notify('Successful,Reload Page for Changes to Reflect','success')
             :
             Notify('Error,Please Try again','error');
-            })
+            });
     }
     function PasswordChange(e){
         e.preventDefault();

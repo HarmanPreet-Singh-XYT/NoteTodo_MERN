@@ -31,7 +31,7 @@ const Register = () => {
 			switch (response.data.message) {
 				case "Success":
 					setShowLoading(false);
-					setAccountInfo(data);
+					setAccountInfo(response.data.userdata);
 					setShowLogin(false);
 					Notify("Registration Successful","success")
 					break;

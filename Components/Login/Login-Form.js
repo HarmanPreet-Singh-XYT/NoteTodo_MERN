@@ -23,7 +23,7 @@ const Login_Form = () => {
 		password: e.target[1].value,
 	};
 	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-	.then((res)=>{
+	.then(async (res)=>{
 		switch (res.data.message) {
 			case "failed":
 				setShowLoading(false);
@@ -32,8 +32,8 @@ const Login_Form = () => {
 				break;
 			case "Success":
 				Notify("Login Successful","success");
+				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
-				setAccountInfo(res.data.user_info);
 				setShowLogin(false);
 				break;
 			case "incorrect":
@@ -119,7 +119,7 @@ const Login_Form = () => {
 					</div>
 
 					<div className="text-center p-t-90">
-						<a className="txt1" href="#">
+						<a style={{cursor:'pointer'}} onClick={()=>setLogin("respass")} className="txt1">
 							Forgot Password?
 						  </a>
               </div>

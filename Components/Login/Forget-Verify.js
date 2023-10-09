@@ -5,7 +5,7 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
-const OTP_Sent = () => {
+const Forget_Verify = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
@@ -35,10 +35,10 @@ const OTP_Sent = () => {
 				Notify("Failed,Please Try again","error")
 				break;
 			case "Success":
-				Notify("Login Successful","success");
+				Notify("Verified","success");
 				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
-				setShowLogin(false);
+                setLogin("verified-respass")
 				break;
 			case "incorrect":
 				setShowLoading(false);
@@ -84,21 +84,13 @@ const OTP_Sent = () => {
 					{Error && <h3 className='login-error'>OTP Expired,Please Login Again</h3>}
 					{Exist && <h3 className='login-error'>Incorrect OTP,Please Check OTP</h3>}
 					<span className="login100-form-title p-b-34 p-t-27">
-						Log In with OTP
+						Password Reset
 					</span>
 
 					<div className="wrap-input100 validate-input" data-validate="Enter OTP Code">
 						<input required className="input100" type="password" name="pass" placeholder="OTP Code"/>
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-
-					<div className="contact100-form-checkbox">
-						<input className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
-						<label className="la-cbk">
-							Remember me
-						</label>
-					</div>
-
 					<div className="container-login100-form-btn">
 						<button type='button' onClick={()=>setLogin("otp")} className="login100-form-btn">
 							Back
@@ -112,4 +104,4 @@ const OTP_Sent = () => {
   )
 }
 
-export default OTP_Sent;
+export default Forget_Verify;

@@ -15,6 +15,9 @@ import { Login_cont } from '@/Helpers/Login-Cont'
 import OTP from './Login/OTP'
 import OTP_Sent from './Login/OTP-Sent'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
+import Forget_Pass from './Login/Forget-Pass'
+import Forget_Verify from './Login/Forget-Verify'
+import ResetPassword from './Login/ResetPassword'
 
 const Login = () => {
   const {login} = useContext(Login_cont)
@@ -30,6 +33,9 @@ const Login = () => {
           {login==="register" && <Register/>}
           {login==="otp" && <OTP/>}
           {login==="sent" && <OTP_Sent/>}
+          {login==="respass" && <Forget_Pass/>}
+          {login==="verify_respass" && <Forget_Verify/>}
+          {login==="verified-respass" && <ResetPassword/>}
       </div>
     </div>
       </div>
