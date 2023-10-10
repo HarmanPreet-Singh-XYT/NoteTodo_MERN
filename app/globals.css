@@ -95,12 +95,11 @@ body{
   border: none;
 }
 .categories{
+  display: block;
   height: 35%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   padding-bottom: 5%;
-  align-items: center;
+  overflow: auto;
 }
 .links{
   height: 4%;
@@ -112,6 +111,7 @@ body{
 .title-category{
   width: 70%;
   height: 15%;
+  margin: 0 auto;
   border-radius: 10px;
   border: none;
   background-color: #8981D8;

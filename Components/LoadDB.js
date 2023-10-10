@@ -81,13 +81,7 @@ const LoadDB = () => {
       })
     }
     function DataRestore_Categories(){
-      function create_categories(category,color){
-        const random = Math.random()*100;
-        const cat = {id:random,cat:category,col:color};
-        setCategories((prevcat)=>[...prevcat,cat]);
-      }
-      const precat = AccountInfo.categories;
-      precat.forEach((cat)=>create_categories(cat,'red'));
+      setCategories(AccountInfo.categories);
     }
     function DataRestore_Graphs(){
       setTotalCreate(AccountInfo.total.create);

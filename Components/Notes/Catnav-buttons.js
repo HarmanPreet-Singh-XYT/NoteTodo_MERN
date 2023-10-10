@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { Categories_Cont } from '@/Helpers/Categories';
 
 const Catnav_buttons = () => {
-    const {categories,selectedCategory, setSelectedCategory} = useContext(Categories_Cont);
+    const {categories,selectedCategory, setSelectedCategory,selectedID, setSelectedID} = useContext(Categories_Cont);
     return (
-        categories.map((category)=><button name={category.cat} onClick={()=>setSelectedCategory(category.id)} key={category.id} className={category.id === selectedCategory ? "projects add-btn selected-btn" : "projects add-btn"}>{category.cat}</button>)
+        categories.map((category)=><button name={category.cat} onClick={(e)=>{setSelectedCategory(e.target.name);setSelectedID(category.id)}} key={category.id} className={category.id === selectedID ? "projects add-btn selected-btn" : "projects add-btn"}>{category.cat}</button>)
     )
 }
 

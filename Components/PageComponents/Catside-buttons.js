@@ -17,7 +17,7 @@ const Catside_buttons = () => {
     }
     return (
         <section className="categories">
-        {categories.map((category)=>{return <button key={category.id} className="title-category"><span style={{backgroundColor:`${category.col}`}} className="circle"></span>{category.cat}<i onClick={()=>{deleteCat(category.id)}} className="fa-solid fa-trash"></i></button>})}
+        {categories.map((category)=>{return <button key={category.id} className="title-category"><span style={{backgroundColor:`${category.col}`}} className="circle"></span>{category.cat}{category.cat!="All" && <i onClick={()=>{deleteCat(category.id)}} className="fa-solid fa-trash"></i>}</button>})}
         <button onClick={()=>addCat('New','red',AccountInfo.User_id)} className="title-category">Add New Category</button>
         </section>
     );
