@@ -1,16 +1,24 @@
 import React, { useContext } from 'react'
 import { Categories_Cont } from '@/Helpers/Categories';
+import { Account_cont } from '@/Helpers/Account-Info';
 
 const Catside_buttons = () => {
     const {categories,setCategories} = useContext(Categories_Cont);
-    function addCat(name){
-        setCategories((prevcat)=>[...prevcat,name]);
-        console.log(categories)
+    const {AccountInfo} = useContext(Account_cont);
+    function addCat(name,color,User_id){
+        const random = Math.random()*100;
+        const cat = {id:random,cat:name,col:color,User_id};
+        setCategories((prevcat)=>[...prevcat,cat]);
+    }
+    function deleteCat(id){
+        setCategories((prevcats)=>
+        prevcats.filter((cat)=>cat.id!=id && cat)
+        )
     }
     return (
         <section className="categories">
-        {categories.map((category)=><button key={category.id} className="title-category"><span className="circle"></span>{category.cat}</button>)}
-        <button className="title-category">Add New Category</button>
+        {categories.map((category)=>{return <button key={category.id} className="title-category"><span style={{backgroundColor:`${category.col}`}} className="circle"></span>{category.cat}<i onClick={()=>{deleteCat(category.id)}} className="fa-solid fa-trash"></i></button>})}
+        <button onClick={()=>addCat('New','red',AccountInfo.User_id)} className="title-category">Add New Category</button>
         </section>
     );
 };
