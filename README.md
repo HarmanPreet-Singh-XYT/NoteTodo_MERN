@@ -1,4 +1,5 @@
 The App is Under-Development,Following Version Is Not the Main Release.
+Production Website is Disabled Currently,Login/Register May not work
 # To-Do Joint App
 
 ![Notes-Todo](/public/favicon.png)
