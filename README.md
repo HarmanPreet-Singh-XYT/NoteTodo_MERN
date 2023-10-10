@@ -1,5 +1,4 @@
 The App is Under-Development,Following Version Is Not the Main Release.
-Production Website is Disabled Currently,Login/Register May not work
 # To-Do Joint App
 
 ![Notes-Todo](/public/favicon.png)
@@ -72,7 +71,8 @@ SMTP_PORT="Port number like 587"
 SMTP_USERNAME="Username of smtp"
 SMTP_PASSWORD="Password of smtp"
 SMTP_EMAIL="email for smtp"
+SUPPORT_OWNER_EMAIL="Support Email When Contact Through App"
 FRONTEND_SERVER_ORIGIN="Frontend Server URL"
 NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"
-=======
+
 
