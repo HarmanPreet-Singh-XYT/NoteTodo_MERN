@@ -1,5 +1,6 @@
 import Categories_Cont from '@/Helpers/Categories'
 import Notes_Cont from '@/Helpers/Notes'
+import './settings.css'
 import './globals.css'
 import './calendar.css'
 import './Todo.css'
