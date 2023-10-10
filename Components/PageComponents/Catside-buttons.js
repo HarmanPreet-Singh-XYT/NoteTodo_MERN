@@ -3,8 +3,9 @@ import { Categories_Cont } from '@/Helpers/Categories';
 
 const Catside_buttons = () => {
     const {categories,setCategories} = useContext(Categories_Cont);
-    function addCat(name,color){
-        setCategories((prevcat))
+    function addCat(name){
+        setCategories((prevcat)=>[...prevcat,name]);
+        console.log(categories)
     }
     return (
         <section className="categories">
