@@ -12,6 +12,7 @@ const Get_data = require('./routes/Get-Data')
 const Support = require('./routes/Support-msg')
 const Total_update = require('./routes/Total-update')
 const userUpdate = require('./routes/Edit-Account')
+const Categories = require('./routes/Categories')
 const cors = require('cors');
 const origin_url = process.env.FRONTEND_SERVER_ORIGIN;
 const corsOptions = {
@@ -37,6 +38,7 @@ app.use('/data',Get_data);
 app.use('/spt',Support);
 app.use('/user',Total_update);
 app.use('/useraccount',userUpdate);
+app.use('/cat',Categories);
 app.listen(PORT,()=>{
     console.log("Backend Working");
 })

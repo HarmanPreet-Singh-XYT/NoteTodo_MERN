@@ -9,7 +9,7 @@ const url = process.env.NEXT_PUBLIC_SERVER_URL;
 const LoadDB = () => {
     const {setNotes,setTodo} = useContext(Notes_Cont);
     const {AccountInfo} = useContext(Account_cont);
-    const {setCategories} = useContext(Categories_Cont);
+    const {categories,setCategories} = useContext(Categories_Cont);
     const {setTotalCreate,TotalCreate,setTotalEdit,TotalEdit,setTotalDelete,TotalDelete} = useContext(Number_cont);
     useEffect(()=>{
       const data = {
@@ -21,6 +21,10 @@ const LoadDB = () => {
       }
       AccountInfo.User_id && axios.patch(`${url}/user/usertotal/update`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
     },[TotalCreate,TotalEdit,TotalDelete])
+    useEffect(()=>{
+      axios.patch(`${url}/cat/category/update`,categories,
+        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,user_id:AccountInfo.User_id}})
+    },[categories])
     useLayoutEffect(()=>{
       DataRestore_Notes();
       DataRestore_Todos();
@@ -80,8 +84,8 @@ const LoadDB = () => {
           });
       })
     }
-    function DataRestore_Categories(){
-      setCategories(AccountInfo.categories);
+    async function DataRestore_Categories(){
+      setCategories(AccountInfo.categories)
     }
     function DataRestore_Graphs(){
       setTotalCreate(AccountInfo.total.create);
