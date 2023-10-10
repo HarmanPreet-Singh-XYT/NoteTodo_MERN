@@ -5,7 +5,7 @@ const Account_Info = ({children}) => {
     const [AccountInfo, setAccountInfo] = useState({});
     const [Error, setError] = useState(false);
     const [Exist, setExist] = useState(false);
-    const [AccountType, setAccountType] = useState('');
+    const [AccountType, setAccountType] = useState('cloud');
   return (
     <Account_cont.Provider value={{AccountType, setAccountType,Exist, setExist,AccountInfo, setAccountInfo,Error, setError}}>
         {children}

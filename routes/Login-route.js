@@ -20,7 +20,7 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                     dob:userdata.dob,
                     email:userdata.email,
                     User_id:userdata.User_id,
-                    categories:userdata.Categories,
+                    categories:userdata.Categories['UserCategories'],
                     total:userdata.Total,
                 }
             })
@@ -71,7 +71,7 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                     dob:userdata.dob,
                     email:userdata.email,
                     User_id:userdata.User_id,
-                    categories:userdata.Categories,
+                    categories:userdata.Categories['UserCategories'],
                     total:userdata.Total,
                 }
             })

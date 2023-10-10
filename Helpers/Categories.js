@@ -5,7 +5,7 @@ const Categories = ({children}) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectedButton, setSelectedButton] = useState("overview");
-    const [selectedID, setSelectedID] = useState(null);
+    const [selectedID, setSelectedID] = useState(0);
   return (
     <Categories_Cont.Provider value={{selectedID, setSelectedID,selectedButton, setSelectedButton,selectedCategory, setSelectedCategory,categories,setCategories}}>
         {children}

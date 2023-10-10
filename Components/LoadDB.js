@@ -1,32 +1,53 @@
 "use client"
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Notes_Cont } from '@/Helpers/Notes'
 import axios from 'axios'
 import { Account_cont } from '@/Helpers/Account-Info';
 import { Categories_Cont } from '@/Helpers/Categories';
 import { Number_cont } from '@/Helpers/Numbers-Status';
+import { name } from 'file-loader';
 const url = process.env.NEXT_PUBLIC_SERVER_URL;
 const LoadDB = () => {
     const {setNotes,setTodo} = useContext(Notes_Cont);
-    const {AccountInfo} = useContext(Account_cont);
-    const {setCategories} = useContext(Categories_Cont);
+    const {AccountInfo,AccountType} = useContext(Account_cont);
+    const {categories,setCategories} = useContext(Categories_Cont);
     const {setTotalCreate,TotalCreate,setTotalEdit,TotalEdit,setTotalDelete,TotalDelete} = useContext(Number_cont);
-    useEffect(()=>{
-      const data = {
-        Total:{
-          create:TotalCreate,
-          delete:TotalDelete,
-          edit:TotalEdit,
+    if(AccountType==='demo'){
+      useEffect(()=>{
+        SetupDemo();
+      },[])
+      
+    }
+    if(AccountType==='cloud'){
+      useEffect(()=>{
+        const data = {
+          Total:{
+            create:TotalCreate,
+            delete:TotalDelete,
+            edit:TotalEdit,
+          }
         }
+        AccountInfo.User_id && axios.patch(`${url}/user/usertotal/update`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
+      },[TotalCreate,TotalEdit,TotalDelete])
+      useEffect(()=>{
+        axios.patch(`${url}/cat/category/update`,categories,
+          {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,user_id:AccountInfo.User_id}})
+      },[categories])
+      useEffect(()=>{
+        DataRestore_Notes();
+        DataRestore_Todos();
+        DataRestore_Categories();
+        DataRestore_Graphs();
+      },[])
+    }
+    function SetupDemo(){
+      function setCat(name){
+        const category = {id:Math.random()*100,cat:name,col:'yellow'}
+        setCategories((prevdata)=>[...prevdata,category])
       }
-      AccountInfo.User_id && axios.patch(`${url}/user/usertotal/update`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
-    },[TotalCreate,TotalEdit,TotalDelete])
-    useLayoutEffect(()=>{
-      DataRestore_Notes();
-      DataRestore_Todos();
-      DataRestore_Categories();
-      DataRestore_Graphs();
-    },[])
+      const data = ['All','Projects','Business','Finance'];
+      data.map((each)=>setCat(each));
+    }
     async function DataRestore_Notes(){
       const data = {
         User_id:AccountInfo.User_id,
@@ -80,8 +101,8 @@ const LoadDB = () => {
           });
       })
     }
-    function DataRestore_Categories(){
-      setCategories(AccountInfo.categories);
+    async function DataRestore_Categories(){
+      setCategories(AccountInfo.categories)
     }
     function DataRestore_Graphs(){
       setTotalCreate(AccountInfo.total.create);

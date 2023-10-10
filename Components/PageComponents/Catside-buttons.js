@@ -5,10 +5,10 @@ import { Account_cont } from '@/Helpers/Account-Info';
 const Catside_buttons = () => {
     const {categories,setCategories} = useContext(Categories_Cont);
     const {AccountInfo} = useContext(Account_cont);
-    function addCat(name,color,User_id){
+    async function addCat(name,color,User_id){
         const random = Math.random()*100;
         const cat = {id:random,cat:name,col:color,User_id};
-        setCategories((prevcat)=>[...prevcat,cat]);
+        await setCategories((prevcat)=>[...prevcat,cat]);
     }
     function deleteCat(id){
         setCategories((prevcats)=>

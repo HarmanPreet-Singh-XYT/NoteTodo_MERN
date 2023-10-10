@@ -8,11 +8,14 @@ const Login_Form = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
-  const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
+  const {AccountInfo,setAccountType, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
   useLayoutEffect(() => {
 	setError(false);
 	setExist(false);
   }, [])
+  function DemoAcc(){
+	setAccountType('demo');
+  }
   async function check(e){
 	e.preventDefault();
 	setShowLoading(true);
@@ -107,7 +110,7 @@ const Login_Form = () => {
 					</div>
 
 					<div className="container-login100-form-btn">
-						<button type='button' onClick={()=>setShowLogin(false)} className="login100-form-btn">
+						<button type='button' onClick={()=>{setShowLogin(false);DemoAcc()}} className="login100-form-btn">
 							Demo
 						</button>
 						<button type='button' onClick={()=>setLogin("register")} className="login100-form-btn">
