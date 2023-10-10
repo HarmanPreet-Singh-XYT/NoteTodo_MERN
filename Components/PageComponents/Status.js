@@ -8,9 +8,9 @@ const Status = () => {
     <>
         <section className="status">
                 <div className="current-date"><h1 className="date-insider">{date.getDate()} {" "} {months[date.getMonth()]} {" "} {date.getFullYear()}</h1></div>
-                <div class="dropdown">
-                <button class="dropbtn"><i class="fa-solid fa-gear"></i></button>
-                <div class="dropdown-content">
+                <div className="dropdown">
+                <button className="dropbtn"><i className="fa-solid fa-gear"></i></button>
+                <div className="dropdown-content">
                   <a onClick={()=>location.reload()} >Logout</a>
                 </div>
               </div>

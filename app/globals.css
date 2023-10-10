@@ -534,3 +534,8 @@ body{
   background-color: #d0f8eb;
   border-radius: 10px;
 }
+.title-category{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
