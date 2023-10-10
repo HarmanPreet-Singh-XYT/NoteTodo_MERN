@@ -8,7 +8,7 @@ const saltRounds = 10;
 const {userData,userCategory} = require('../data/Data.js');
 router.post('/login/register',authenticateToken,async (req,res)=>{
     const DefaultCategories=[{
-        id:Math.random()*100,
+        id:0,
         cat:"All",
         col:"orange",
         User_id:req.body.User_id,
