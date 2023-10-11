@@ -44,16 +44,10 @@ const Login_Form = () => {
 		}
 	})
 	.catch((err)=>{
-		switch (err.response.status) {
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Try Again","error")
-			break;
-			default:
-				break;
-		}
-	})
+		setShowLoading(false);
+		setError(true);
+		Notify("Failed,Try Again","error")
+})
   }
   return (
     <>
@@ -114,7 +108,7 @@ const Login_Form = () => {
 						<button className="login100-form-btn">
 							Login
 						</button>
-						<button type='button' className="login100-form-btn">
+						<button type='button' onClick={()=>{setShowLogin(false);setAccountType("local")}} className="login100-form-btn">
 							Local Storage
 						</button>
 						<button onClick={()=>setLogin("otp")} type='button' className="login100-form-btn">
