@@ -3,21 +3,16 @@ import React, { useContext, useEffect } from 'react'
 import { Notes_Cont } from '@/Helpers/Notes'
 import axios from 'axios'
 import { Account_cont } from '@/Helpers/Account-Info';
-import { Categories_Cont } from '@/Helpers/Categories';
+import Categories, { Categories_Cont } from '@/Helpers/Categories';
 import { Number_cont } from '@/Helpers/Numbers-Status';
-import { name } from 'file-loader';
+import Cookies from 'js-cookie';
 const url = process.env.NEXT_PUBLIC_SERVER_URL;
 const LoadDB = () => {
-    const {setNotes,setTodo} = useContext(Notes_Cont);
-    const {AccountInfo,AccountType} = useContext(Account_cont);
+    const {setNotes,setTodo,notes,Todo} = useContext(Notes_Cont);
+    const {AccountInfo,AccountType,setAccountType,setAccountInfo} = useContext(Account_cont);
     const {categories,setCategories} = useContext(Categories_Cont);
     const {setTotalCreate,TotalCreate,setTotalEdit,TotalEdit,setTotalDelete,TotalDelete} = useContext(Number_cont);
-    if(AccountType==='demo'){
-      useEffect(()=>{
-        SetupDemo();
-      },[])
-      
-    }
+    
     if(AccountType==='cloud'){
       useEffect(()=>{
         const data = {
@@ -39,7 +34,43 @@ const LoadDB = () => {
         DataRestore_Categories();
         DataRestore_Graphs();
       },[])
+    }else if(AccountType==='demo'){
+      useEffect(()=>{
+        SetupDemo();
+      },[]);
+//Local Storage ---------------------------------
+    }else if(AccountType==='localregister'){
+      useEffect(()=>{
+        const data = {
+          name:'user',
+          bio:'',
+          dob:'1/1/2000',
+          User_id:Math.random()*100
+        };
+        SetupDemo();
+        localStorage.setItem('account', JSON.stringify(data));
+        localStorage.removeItem('notes');
+        localStorage.removeItem('todos');
+        localStorage.setItem('categories',JSON.stringify(categories));
+        setNotes([]);
+        setTodo([]);
+        setAccountType('local');
+      },[])
+    }else{
+      useEffect(()=>{
+        setAccountInfo(JSON.parse(localStorage.getItem('account')));
+        setNotes(JSON.parse(localStorage.getItem('notes')));
+        setTodo(JSON.parse(localStorage.getItem('todos')));
+        setCategories(JSON.parse(localStorage.getItem('categories')));
+      },[]);
+      useEffect(()=>{
+        localStorage.setItem('account', JSON.stringify(AccountInfo));
+        localStorage.setItem('notes', JSON.stringify(notes));
+        localStorage.setItem('todos', JSON.stringify(Todo));
+        localStorage.setItem('categories', JSON.stringify(categories));
+      },[AccountInfo,notes,Todo])
     }
+//---------------------------------------------------------------------
     function SetupDemo(){
       function setCat(name){
         const category = {id:Math.random()*100,cat:name,col:'yellow'}
