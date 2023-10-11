@@ -29,34 +29,32 @@ const Register = () => {
 		}
 		await axios.post(`${url}/logindata/register/send_otp`,{SMTP:"yes",name:data.name,email:data.email},{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 		.then((response)=>{
-			switch (response.status) {
-				case 200:
+			switch (response.data.message) {
+				case 'Success':
 					setShowLoading(false);
 					Cookies.set('loginauth',response.data.secure_otp, { expires: 0.03 });
 					setAccountInfo(data);
 					setLogin('register_otp');
 					Notify("OTP Sent on your Mail","success")
 					break;
+				case 'Exist':
+					Notify("Email Already Exist","warn");
+					setShowLoading(false);
+					setExist(true);
+					break;
+				case 'failed':
+					Notify("Server Error","error");
+					setShowLoading(false);
+					setError(true);
+					break;
 				default:
 					break;
 			}
 		})
 		.catch((err)=>{
-			switch (err.response.status) {
-				case 409:
-					Notify("Email Already Exist","warn");
-					setShowLoading(false);
-					setExist(true);
-					break;
-				case 500:
-					setShowLoading(false);
-					setError(true);
-					Notify("Error,Please Try Again","error")
-					break;
-			
-				default:
-					break;
-			}
+			setShowLoading(false);
+			setError(true);
+			Notify("Error,Please Try Again","error")
 		})
 	}
   return (

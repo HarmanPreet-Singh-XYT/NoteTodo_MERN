@@ -31,33 +31,32 @@ const Register_Verify = () => {
 		encrypted_otp:Cookies.get('loginauth'),
 	};
 	await axios.post(`${url}/logindata/login/register`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-	.then(async (res)=>{
-		switch (res.status) {
-			case 200:
+	.then((res)=>{
+		switch (res.data.message) {
+			case 'Success':
 				Notify("Verified","success");
-				await setAccountInfo(res.data.userdata);
+				setAccountInfo(res.data.userdata);
 				setShowLoading(false);
                 setShowLogin(false);
+				break;
+			case 'incorrect':
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+				break;
+			case 'failed':
+				setShowLoading(false);
+				setExist(true);
+				Notify("Server Error","error");
 				break;
 			default:
 				break;
 		}
 	})
 	.catch((err)=>{
-		switch (err.response.status) {
-			case 401:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
-				break;
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Please Try again","error")
-				break;
-			default:
-				break;
-		}
+		setShowLoading(false);
+		setError(true);
+		Notify("Failed,Please Try again","error")
 	})
   }
   return (

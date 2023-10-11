@@ -27,13 +27,18 @@ const Login_Form = () => {
 	};
 	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
-		switch (res.status) {
-			case 200:
+		switch (res.data.message) {
+			case 'Success':
 				Notify("Login Successful","success");
 				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
 				setShowLogin(false);
 				break;
+			case 'incorrect':
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
+			break;
 			default:
 				break;
 		}
@@ -44,16 +49,6 @@ const Login_Form = () => {
 				setShowLoading(false);
 				setError(true);
 				Notify("Failed,Try Again","error")
-			break;
-			case 404:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
-			break;
-			case 401:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
 			break;
 			default:
 				break;
