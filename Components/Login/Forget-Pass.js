@@ -29,13 +29,18 @@ const Forget_Pass = () => {
 		}
 	  })
 	.then((res)=>{
-		switch (res.status) {
-			case 200:
+		switch (res.data.message) {
+			case "sent":
 				Notify("OTP Sent on your Mail","success");
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
 				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
 				setLogin("verify_respass");
+				break;
+			case "incorrect":
+				setShowLoading(false);
+				setError(true);
+				Notify("User Does not Exist","warn");
 				break;
 			default:
 				break;
@@ -46,7 +51,7 @@ const Forget_Pass = () => {
 			case 500:
 				setShowLoading(false);
 				setError(true);
-				Notify("User Does Not Exist","warn");
+				Notify("Server Error","error");
 				break;
 			default:
 				break;

@@ -25,9 +25,9 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                 }
             })
             :
-            res.status(401).json({message:'incorrect'});
+            res.status(201).json({message:'incorrect'});
         }else{
-            res.status(409).json({message:'Exist',error:err});
+            res.status(204).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{
@@ -51,7 +51,7 @@ router.post('/login/send_otp',authenticateToken,async (req,res)=>{
                 res.status(200).json({message:'sent',secure_otp:encrypted_otp});
             })
         }else{
-            res.status(404).json({message:'incorrect',error:err});
+            res.status(200).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{
@@ -76,9 +76,9 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                 }
             })
             :
-            res.status(401).json({message:'incorrect'});
+            res.status(201).json({message:'incorrect'});
         }else{
-            res.status(404).json({message:'incorrect',error:err});
+            res.status(204).json({message:'incorrect',error:err});
         }
     })
     .catch((err)=>{

@@ -28,12 +28,17 @@ const OTP_Sent = () => {
 	data.encrypted_otp==AccountInfo.cookie_otp && 
 	await axios.post(`${url}/login/verifyotp`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
-		switch (res.status) {
-			case 200:
-				Notify("Login Successful","success");
+		switch (res.data.message) {
+			case 'Success':
+				Notify("Verified","success");
 				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
-				setShowLogin(false);
+                setLogin("verified-respass")
+				break;
+			case 'incorrect':
+				setShowLoading(false);
+				setExist(true);
+				Notify("Incorrect Credentials","warn");
 				break;
 			default:
 				break;
@@ -42,16 +47,12 @@ const OTP_Sent = () => {
 	.catch((err)=>{
 		console.log(err)
 		switch (err.response.status) {
-			case 401:
-				setShowLoading(false);
-				setExist(true);
-				Notify("Incorrect Credentials","warn");
-				break;
 			case 500:
 				setShowLoading(false);
 				setError(true);
 				Notify("Failed,Please Try again","error")
 				break;
+		
 			default:
 				break;
 		}

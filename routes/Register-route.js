@@ -5,7 +5,7 @@ const router = express.Router();
 const SMTP = require('../data/SMTP.js')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const {userData,userCategory} = require('../data/Data.js');
+const {userData} = require('../data/Data.js');
 router.post('/login/register',authenticateToken,async (req,res)=>{
     const DefaultCategories=[{
         id:0,
@@ -41,9 +41,9 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
     })
     await userData.exists({email:req.body.email})
     ? 
-    res.status(409).json({message:'Exist'})
+    res.status(200).json({message:'Exist'})
     : 
-    bcrypt.compareSync(req.body.user_otp, req.body.encrypted_otp) ? data.save()
+    req.body.encrypted_otp.length > 0 ? bcrypt.compareSync(req.body.user_otp, req.body.encrypted_otp) ? data.save()
     .then(()=>{
         res.status(200).json({message:'Success',userdata:{
             name:req.body.name,
@@ -59,7 +59,9 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
         res.status(500).json({message:'failed',error:err});
     })
     :
-    res.status(401 ).json({message:'incorrect'});
+    res.status(201).json({message:'incorrect'})
+    :
+    res.status(500).json({message:'failed'})
 });
 const date = new Date();
 const today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
@@ -78,7 +80,7 @@ router.post('/register/send_otp',authenticateToken,async (req,res)=>{
             res.status(200).json({message:'Success',secure_otp:encrypted_otp});
         })
         :
-        res.status(409).json({message:'Exist'});
+        res.status(200).json({message:'Exist'});
     })
     .catch(err=>{
         res.status(500).json({message:'failed'});
