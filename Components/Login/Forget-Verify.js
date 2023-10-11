@@ -45,16 +45,9 @@ const Forget_Verify = () => {
 		}
 	})
 	.catch((err)=>{
-		switch (err.response.status) {
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Please Try again","error")
-				break;
-		
-			default:
-				break;
-		}
+		setShowLoading(false);
+		setError(true);
+		Notify("Failed,Please Try again","error")
 	})
   }
   return (

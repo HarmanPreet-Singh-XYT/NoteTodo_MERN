@@ -44,16 +44,10 @@ const Login_Form = () => {
 		}
 	})
 	.catch((err)=>{
-		switch (err.response.status) {
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Failed,Try Again","error")
-			break;
-			default:
-				break;
-		}
-	})
+		setShowLoading(false);
+		setError(true);
+		Notify("Failed,Try Again","error")
+})
   }
   return (
     <>

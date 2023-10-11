@@ -47,15 +47,9 @@ const OTP = () => {
 		}
 	})
 	.catch((err)=>{
-		switch (err.response.status) {
-			case 500:
-				setShowLoading(false);
-				setError(true);
-				Notify("Server Error","error");
-				break;
-			default:
-				break;
-		}
+		setShowLoading(false);
+		setError(true);
+		Notify("Server Error","error");
 	})
   }
   return (
