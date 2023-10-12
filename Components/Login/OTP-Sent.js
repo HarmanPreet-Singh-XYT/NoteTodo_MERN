@@ -1,4 +1,4 @@
-import React,{useContext, useLayoutEffect} from 'react'
+import React,{useContext, useLayoutEffect, useState} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
@@ -10,6 +10,7 @@ const OTP_Sent = () => {
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
   const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
+  const [remember, setremember] = useState(false);
   useLayoutEffect(() => {
 	setError(false);
 	setExist(false);
@@ -32,6 +33,7 @@ const OTP_Sent = () => {
 			case 'Success':
 				Notify("Verified","success");
 				await setAccountInfo(res.data.user_info);
+				remember && Cookies.set('loginD',res.data.encrypted_token);
 				setShowLoading(false);
                 setShowLogin(false);
 				break;
@@ -88,7 +90,7 @@ const OTP_Sent = () => {
 					</div>
 
 					<div className="contact100-form-checkbox">
-						<input className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
+						<input onClick={()=>setremember(!remember)} className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
 						<label className="la-cbk">
 							Remember me
 						</label>

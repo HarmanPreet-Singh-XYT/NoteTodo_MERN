@@ -64,6 +64,7 @@ router.post('/login/send_otp',authenticateToken,async (req,res)=>{
 router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
+        const token = jwt.sign({email:userdata.email,User_id:userdata.User_id}, key);
         if(userdata!=null){
             bcrypt.compareSync(req.body.user_otp, req.body.encrypted_otp) ?
             res.status(200).json({
@@ -76,7 +77,8 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                     User_id:userdata.User_id,
                     categories:userdata.Categories,
                     total:userdata.Total,
-                }
+                },
+                encrypted_token:token,
             })
             :
             res.status(201).json({message:'incorrect'});
