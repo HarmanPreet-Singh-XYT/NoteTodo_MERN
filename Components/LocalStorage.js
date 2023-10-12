@@ -14,7 +14,7 @@ const LocalStorage = () => {
             const data = {
               name:'user',
               bio:'',
-              dob:'1/1/2000',
+              dob:'2000/01/01',
               User_id:Math.random()*100
             };
             const DefaultCategories=[{
@@ -62,27 +62,31 @@ const LocalStorage = () => {
             localStorage.setItem('Total',JSON.stringify(Total));
           },[AccountInfo,notes,Todo,categories,TotalEdit,TotalDelete,TotalCreate])
         }else{
-          useEffect(()=>{
-            setAccountInfo(JSON.parse(localStorage.getItem('account')));
-            setNotes(JSON.parse(localStorage.getItem('notes')));
-            setTodo(JSON.parse(localStorage.getItem('todos')));
-            setCategories(JSON.parse(localStorage.getItem('categories')));
-            setTotalCreate(JSON.parse(localStorage.getItem('Total')).create);
-            setTotalEdit(JSON.parse(localStorage.getItem('Total')).edit);
-            setTotalDelete(JSON.parse(localStorage.getItem('Total')).delete);
-          },[]);
-          useEffect(()=>{
-            const Total={
-              create:TotalCreate,
-              edit:TotalEdit,
-              delete:TotalDelete,
-            }
-            localStorage.setItem('account', JSON.stringify(AccountInfo));
-            localStorage.setItem('notes', JSON.stringify(notes));
-            localStorage.setItem('todos', JSON.stringify(Todo));
-            localStorage.setItem('categories', JSON.stringify(categories));
-            localStorage.setItem('Total',JSON.stringify(Total));
-          },[AccountInfo,notes,Todo,categories,TotalEdit,TotalDelete,TotalCreate])
+          if(localStorage.getItem('account')){
+            useEffect(()=>{
+              setAccountInfo(JSON.parse(localStorage.getItem('account')));
+              setNotes(JSON.parse(localStorage.getItem('notes')));
+              setTodo(JSON.parse(localStorage.getItem('todos')));
+              setCategories(JSON.parse(localStorage.getItem('categories')));
+              setTotalCreate(JSON.parse(localStorage.getItem('Total')).create);
+              setTotalEdit(JSON.parse(localStorage.getItem('Total')).edit);
+              setTotalDelete(JSON.parse(localStorage.getItem('Total')).delete);
+            },[]);
+            useEffect(()=>{
+              const Total={
+                create:TotalCreate,
+                edit:TotalEdit,
+                delete:TotalDelete,
+              }
+              localStorage.setItem('account', JSON.stringify(AccountInfo));
+              localStorage.setItem('notes', JSON.stringify(notes));
+              localStorage.setItem('todos', JSON.stringify(Todo));
+              localStorage.setItem('categories', JSON.stringify(categories));
+              localStorage.setItem('Total',JSON.stringify(Total));
+            },[AccountInfo,notes,Todo,categories,TotalEdit,TotalDelete,TotalCreate])
+          }else{
+            setAccountType('localregister')
+          }
         }
   return (
     null

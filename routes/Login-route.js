@@ -7,10 +7,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {userData} = require('../data/Data.js');
 const { authenticateToken } = require('../data/Auth.js');
+const key = process.env.ENCRYPT_BACKEND;
 router.post('/login/logon',authenticateToken,async (req,res)=>{
     await userData.findOne({email:req.body.email})
     .then((userdata)=>{
         if(userdata!=null){
+            const token = jwt.sign({email:userdata.email,User_id:userdata.User_id}, key);
             bcrypt.compareSync(req.body.password, userdata.password) ?
             res.status(200).json({
                 message:'Success',
@@ -20,9 +22,10 @@ router.post('/login/logon',authenticateToken,async (req,res)=>{
                     dob:userdata.dob,
                     email:userdata.email,
                     User_id:userdata.User_id,
-                    categories:userdata.Categories['UserCategories'],
+                    categories:userdata.Categories,
                     total:userdata.Total,
-                }
+                },
+                encrypted_token:token,
             })
             :
             res.status(201).json({message:'incorrect'});
@@ -71,7 +74,7 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
                     dob:userdata.dob,
                     email:userdata.email,
                     User_id:userdata.User_id,
-                    categories:userdata.Categories['UserCategories'],
+                    categories:userdata.Categories,
                     total:userdata.Total,
                 }
             })
@@ -84,7 +87,27 @@ router.post('/login/verifyotp',authenticateToken,async (req,res)=>{
     .catch((err)=>{
         res.status(500).json({message:'failed',error:err});
     })
+});
+router.post('/cookie',authenticateToken,async (req,res)=>{
+    const decoded = jwt.verify(req.body.token, key);
+    await userData.findOne({email:decoded.email,User_id:decoded.User_id})
+    .then((response)=>{
+        const data = {
+            name:response.name,
+            bio:response.bio,
+            dob:response.email,
+            User_id:response.User_id,
+            total:response.Total,
+            categories:response.Categories,
+        }
+        response ?
+        res.status(200).json({message:'Success',userdata:data})
+        :
+        res.status(201).json({message:'error'})
+    })
+    .catch((err)=>{
+        res.status(250).json({message:'failed',error:err})
+    })
 })
-
 module.exports=router;
 

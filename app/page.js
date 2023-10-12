@@ -19,6 +19,7 @@ import LoadDB from '@/Components/LoadDB';
 import Notifcation from '@/Components/Notifcation';
 import { Account_cont } from '@/Helpers/Account-Info';
 import LocalStorage from '@/Components/LocalStorage';
+import LoadCookie from '@/Components/LoadCookie';
 
 const Page = () => {
     const {selectedButton} = useContext(Categories_Cont);
@@ -28,6 +29,7 @@ const Page = () => {
     const condition = (AccountType==='local'||AccountType==='localregister')
   return (
     <>
+    <LoadCookie/>
     <Notifcation/>
     {showLogin && <Login/>}
     {!showLogin && 
