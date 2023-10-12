@@ -133,8 +133,9 @@ const LoadDB = () => {
           });
       })
     }
-    async function DataRestore_Categories(){
-      setCategories(AccountInfo.categories)
+    function DataRestore_Categories(){
+      setCategories(AccountInfo.categories);
+      console.log(AccountInfo.categories)
     }
     function DataRestore_Graphs(){
       setTotalCreate(AccountInfo.total.create);

@@ -87,7 +87,7 @@ const Forget_Verify = () => {
 						<span className="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 					<div className="container-login100-form-btn">
-						<button type='button' onClick={()=>setLogin("otp")} className="login100-form-btn">
+						<button type='button' onClick={()=>setLogin("login")} className="login100-form-btn">
 							Back
 						</button>
 						<button className="login100-form-btn">

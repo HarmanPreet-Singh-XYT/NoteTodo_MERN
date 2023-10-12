@@ -13,7 +13,7 @@ const schemaDB = new mongoose.Schema({
     password: String,
     User_id: Number,
     Total:Object,
-    Categories:Object,
+    Categories:Array,
     AccountCreation:String,
     CreationIP:String,
 });

@@ -35,7 +35,7 @@ const OTP = () => {
 				setAccountInfo({email:e.target[0].value,cookie_otp:res.data.secure_otp});
 				Cookies.set('loginauth',res.data.secure_otp, { expires: 0.03 });
 				setShowLoading(false);
-				setLogin("verify_respass");
+				setLogin("sent");
 				break;
 			case "incorrect":
 				setShowLoading(false);

@@ -35,7 +35,7 @@ router.post('/login/register',authenticateToken,async (req,res)=>{
         password:hash,
         User_id:req.body.User_id,
         Total:{create:0,delete:0,edit:0},
-        Categories:{UserCategories:DefaultCategories},
+        Categories:DefaultCategories,
         AccountCreation:`${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}:${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`,
         CreationIP:clientIP,
     })

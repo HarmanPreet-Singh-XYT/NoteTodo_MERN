@@ -1,14 +1,16 @@
-import React,{useContext, useLayoutEffect} from 'react'
+import React,{useContext, useLayoutEffect, useState} from 'react'
 import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Login_cont } from '@/Helpers/Login-Cont'
 import { Account_cont } from '@/Helpers/Account-Info';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
+import Cookies from 'js-cookie';
 const Login_Form = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
   const {AccountInfo,setAccountType, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
+  const [remember, setRemember] = useState(false);
   useLayoutEffect(() => {
 	setError(false);
 	setExist(false);
@@ -31,6 +33,7 @@ const Login_Form = () => {
 			case 'Success':
 				Notify("Login Successful","success");
 				await setAccountInfo(res.data.user_info);
+				remember && Cookies.set('loginD',res.data.encrypted_token);
 				setShowLoading(false);
 				setShowLogin(false);
 				break;
@@ -92,7 +95,7 @@ const Login_Form = () => {
 					</div>
 
 					<div className="contact100-form-checkbox">
-						<input className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
+						<input onClick={()=>setRemember(!remember)} className="in-cbk" id="ckb1" type="checkbox" name="remember-me"/>
 						<label className="la-cbk">
 							Remember me
 						</label>
