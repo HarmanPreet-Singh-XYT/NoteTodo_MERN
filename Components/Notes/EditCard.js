@@ -8,8 +8,10 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React, { useContext, useEffect } from 'react'
 import { CirclePicker } from 'react-color'
 import axios from 'axios';
+import { Account_cont } from '@/Helpers/Account-Info';
 const EditCard = () => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
+    const {AccountType} = useContext(Account_cont);
     const {categories} = useContext(Categories_Cont);
     const {TotalCreate, setTotalCreate,TotalEdit, setTotalEdit,TotalDelete, setTotalDelete} = useContext(Number_cont);
     const {notes,setNotes} = useContext(Notes_Cont);
@@ -22,7 +24,7 @@ const EditCard = () => {
         await setNotes((prevnotes)=>
         prevnotes.map((note)=>note.cls.includes("card-selected") ? {...note,tag:e.target[4].value,col:color,tit:e.target[0].value,cont:e.target[2].value,category:`All ${e.target[5].value}`,cls:`block`,timeopt:Timetick.current} : note)
         )
-        axios.patch(`${url}/notes/note/edit`,{
+        AccountType==='cloud' && axios.patch(`${url}/notes/note/edit`,{
             id:Idref.current,
             tag:e.target[4].value,
             User_id:Userid_ref.current,

@@ -5,7 +5,7 @@ const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/notes`
 export const NoteCreator = createContext();
 const CreateCard = ({children}) => {
   const [createTime, setCreateTime] = useState(false);
-    function create_note(color,tag,title,content,category,setNotes,months,userid){
+    function create_note(color,tag,title,content,category,setNotes,months,userid,type){
         const date = new Date;
         const fulldate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
         const time = `${date.getHours()}:${date.getMinutes()}`;
@@ -28,7 +28,7 @@ const CreateCard = ({children}) => {
             completed:false,
             timeopt:timeopt,
         }
-        userid && axios.post(`${url}/note/create`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+        type==='cloud' && axios.post(`${url}/note/create`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         setNotes((prevnotes)=>[...prevnotes,note]);
         setCreateTime(false);
     }

@@ -6,6 +6,7 @@ import { Number_cont } from '@/Helpers/Numbers-Status';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const Notes_Graph = () => {
+    
     const [label, setlabel] = useState([]);
     const [percentCompleted, setPercentCompleted] = useState([]);
     const [percentPending, setPercentPending] = useState([]);

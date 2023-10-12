@@ -4,44 +4,79 @@ import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Notify } from '../Notifcation';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const Account = () => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
-    const {AccountInfo,setAccountInfo} = useContext(Account_cont);
+    const {AccountInfo,setAccountInfo,AccountType} = useContext(Account_cont);
     const {showLoading, setShowLoading} = useContext(ShowCard_Cont);
     const [showPassword, setshowPassword] = useState(false);
+    const {setTotalCreate,TotalCreate,setTotalEdit,TotalEdit,setTotalDelete,TotalDelete} = useContext(Number_cont);
     function ProfileEdit(e){
         e.preventDefault();
-        setShowLoading(true);
-        const data={
-            name:e.target[0].value,
-            bio:e.target[1].value,
-            dob:e.target[2].value,
+        if(AccountType==='cloud'){
+            setShowLoading(true);
+            const data={
+                name:e.target[0].value,
+                bio:e.target[1].value,
+                dob:e.target[2].value,
+            }
+            AccountType==='cloud' && axios.patch(`${url}/useraccount/account/edit`,data,
+            {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
+            .then((res)=>{
+                setShowLoading(false);
+                if(res.data.message==='Success'){
+                    Notify('Successful','success')
+                    setAccountInfo({
+                        User_id:AccountInfo.User_id,
+                        bio:e.target[1].value,
+                        categories:AccountInfo.categories,
+                        dob:e.target[2].value,
+                        email:AccountInfo.email,
+                        name:e.target[0].value,
+                        total:AccountInfo.total,
+                    });
+                }
+                else{
+                    Notify('Error,Please Try again','error');
+                }
+            })
         }
-        AccountInfo.User_id && axios.patch(`${url}/useraccount/account/edit`,data,
-        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
-        .then((res)=>{
-            setShowLoading(false);
-            res.data.message==='Success' ? 
-            Notify('Successful','success')
-            :
-            Notify('Error,Please Try again','error');
-        })
+        else{
+            setAccountInfo({
+                User_id:AccountInfo.User_id,
+                bio:e.target[1].value,
+                categories:AccountInfo.categories,
+                dob:e.target[2].value,
+                email:AccountInfo.email,
+                name:e.target[0].value,
+            });
+        }
     }
     function ResetData(){
-        setShowLoading(true);
-        AccountInfo.User_id && axios.patch(`${url}/useraccount/account/reset`,{},
-        {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
-        .then((res)=>{setShowLoading(false);
-            res.data.message==='Success' ? 
-            Notify('Successful,Reload Page for Changes to Reflect','success')
-            :
-            Notify('Error,Please Try again','error');
-            });
+        if(AccountType==='cloud'){
+            setShowLoading(true);
+            setTotalCreate(0);
+            setTotalDelete(0);
+            setTotalEdit(0);
+            AccountType==='cloud' && axios.patch(`${url}/useraccount/account/reset`,{},
+            {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
+            .then((res)=>{setShowLoading(false);
+                res.data.message==='Success' ? 
+                Notify('Successful,Reload Page for Changes to Reflect','success')
+                :
+                Notify('Error,Please Try again','error');
+                });
+        }else{
+            setTotalCreate(0);
+            setTotalDelete(0);
+            setTotalEdit(0);
+        }
+        
     }
     function PasswordChange(e){
         e.preventDefault();
         setShowLoading(true);
-        AccountInfo.User_id && axios.patch(`${url}/useraccount/account/password`,{
+        AccountType==='cloud' && axios.patch(`${url}/useraccount/account/password`,{
             password:e.target[0].value,
         },
         {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
@@ -88,7 +123,7 @@ const Account = () => {
                         <input defaultValue={AccountInfo.dob} name='dob' placeholder="DOB" type="date" className="ov-spt-in-title" required/>
                         <button className="ov-sbt-btn" type="submit">Edit</button>
                         <div style={{gap:'10px'}}>
-                        <button onClick={()=>setshowPassword(true)} style={{width:'200px'}} className="ov-sbt-btn" type="button">Change Password</button>
+                        {AccountType==='cloud' && <button onClick={()=>setshowPassword(true)} style={{width:'200px'}} className="ov-sbt-btn" type="button">Change Password</button>}
                         <button style={{marginLeft:'15px',width:'150px'}} onClick={ResetData} className="ov-sbt-btn" type="button">Reset Data</button>
                         </div>
                     </form>}

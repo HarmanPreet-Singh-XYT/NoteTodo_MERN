@@ -6,11 +6,9 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import React,{useContext} from 'react'
 
 const Localstorage = () => {
-    const {setNotes,setTodo,notes,Todo} = useContext(Notes_Cont);
-    const {AccountInfo,AccountType,setAccountType,setAccountInfo} = useContext(Account_cont);
-    const {categories,setCategories} = useContext(Categories_Cont);
-	const {login,setLogin} = useContext(Login_cont);
-	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
+    const {setAccountType} = useContext(Account_cont);
+	const {setLogin} = useContext(Login_cont);
+	const {setShowLogin} = useContext(ShowCard_Cont);
   return (
     <form method='post' action='/login/log' className="login100-form validate-form">
 					<span className="login100-form-logo logo-login">

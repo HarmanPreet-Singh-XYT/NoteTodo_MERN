@@ -8,7 +8,7 @@ import {Categories_Cont} from '@/Helpers/Categories';
 import { Number_cont } from '@/Helpers/Numbers-Status';
 import { Account_cont } from '@/Helpers/Account-Info';
 const Create_card = () => {
-    const {AccountInfo} = useContext(Account_cont);
+    const {AccountInfo,AccountType} = useContext(Account_cont);
     const {categories, setCategories} = useContext(Categories_Cont);
     const {TotalCreate, setTotalCreate} = useContext(Number_cont);
     const {notes,setNotes} = useContext(Notes_Cont);
@@ -27,7 +27,7 @@ const Create_card = () => {
         e.target.checked ? setCreateTime(true) : setCreateTime(false);
     }
     async function creation(){
-        create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.User_id);
+        create_note(color,tag,title,content,categ,setNotes,months,AccountInfo.User_id,AccountType);
         setTotalCreate(TotalCreate+1);
     }
     return (

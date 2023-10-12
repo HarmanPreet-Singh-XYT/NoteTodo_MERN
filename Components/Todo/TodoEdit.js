@@ -5,11 +5,13 @@ import { Useref_Update_cont } from '@/Helpers/Useref_Update';
 import React, { useContext } from 'react'
 import { CirclePicker } from 'react-color'
 import axios from 'axios';
+import { Account_cont } from '@/Helpers/Account-Info';
 const TodoEdit = () => {
     const {Todo,setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
     const {TotalEdit, setTotalEdit} = useContext(Number_cont);
+    const {AccountType} = useContext(Account_cont);
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
     function Edit(e,setTodos){
         e.preventDefault();
@@ -18,7 +20,7 @@ const TodoEdit = () => {
         )
         setTotalEdit(TotalEdit+1);
         Todo.map((td)=>td.cls.includes("card-selected") &&
-        axios.patch(`${url}/todos/todo/edit`,{
+        AccountType==='cloud' && axios.patch(`${url}/todos/todo/edit`,{
             id:td.id,
             tag:e.target[3].value,
             User_id:td.User_id,
