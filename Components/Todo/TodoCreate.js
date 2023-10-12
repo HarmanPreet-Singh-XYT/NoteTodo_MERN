@@ -8,7 +8,7 @@ import axios from 'axios';
 import { Account_cont } from '@/Helpers/Account-Info';
 const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/todos`
 const TodoCreate = () => {
-    const {AccountInfo} = useContext(Account_cont);
+    const {AccountInfo,AccountType} = useContext(Account_cont);
     const {Todo, setTodo} = useContext(Notes_Cont);
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {show_TodoCreateCard,setShow_TodoCreateCard} = useContext(ShowCard_Cont);
@@ -39,7 +39,7 @@ const TodoCreate = () => {
         }
         setTodos((prevnotes)=>[...prevnotes,note]);
         setTotalCreate(TotalCreate+1);
-        AccountInfo.email && axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+        AccountType==='cloud' && axios.post(`${url}/todo/create`,DBData,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
         
     }
     function clearOutValues(){

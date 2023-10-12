@@ -7,6 +7,7 @@ import React, { useContext } from 'react'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { Account_cont } from '@/Helpers/Account-Info';
 const ToDoButtonFunctionality = () => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
     const {Todo, setTodo} = useContext(Notes_Cont);
@@ -14,13 +15,14 @@ const ToDoButtonFunctionality = () => {
     const {selectionMode, setSelectionMode} = useContext(Selection_Cont);
     const {setShow_TodoEditCard} = useContext(ShowCard_Cont);
     const {TotalDelete, setTotalDelete} = useContext(Number_cont);
+    const {AccountType} = useContext(Account_cont);
     function completetodo(){
         setTodo((prevNotes)=>
         prevNotes.map((note)=>
         note.cls.includes("card-selected") ? {...note,priority:false,completed:!note.completed} : note
         ));
         Todo.map((td)=>td.cls.includes("card-selected") &&
-        axios.patch(`${url}/todos/todo/edit`,{
+        AccountType==='cloud' && axios.patch(`${url}/todos/todo/edit`,{
             id:td.id,
             User_id:td.User_id,
             completed:!td.completed,
@@ -33,7 +35,7 @@ const ToDoButtonFunctionality = () => {
         note.cls.includes("card-selected") ? {...note,priority:!note.priority} : note
         ));
         Todo.map((td)=>td.cls.includes("card-selected") &&
-        axios.patch(`${url}/todos/todo/edit`,{
+        AccountType==='cloud' && axios.patch(`${url}/todos/todo/edit`,{
             id:td.id,
             User_id:td.User_id,
             priority:!td.priority,
@@ -45,7 +47,7 @@ const ToDoButtonFunctionality = () => {
         setTodo((prevNotes)=>
         prevNotes.filter((note)=>!note.cls.includes("card-selected") && note)
         )
-        Todo.map((todo)=>{todo.cls.includes("card-selected") && axios.delete(`${url}/todos/todo/delete/${todo.User_id}/${todo.id}`,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})})
+        AccountType==='cloud' && Todo.map((todo)=>{todo.cls.includes("card-selected") && axios.delete(`${url}/todos/todo/delete/${todo.User_id}/${todo.id}`,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})})
     }
     function notify(notification){
         toast.info(notification, {
