@@ -33,7 +33,7 @@ const OTP_Sent = () => {
 				Notify("Verified","success");
 				await setAccountInfo(res.data.user_info);
 				setShowLoading(false);
-                setLogin("verified-respass")
+                setShowLogin(false);
 				break;
 			case 'incorrect':
 				setShowLoading(false);
