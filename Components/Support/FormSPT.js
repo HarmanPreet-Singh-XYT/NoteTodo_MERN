@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react'
 import axios from 'axios';
 const Content = () => {
   const {setShow_SupportCardSuccess} = useContext(ShowCard_Cont);
-  const {AccountInfo,Error, setError} = useContext(Account_cont);
+  const {AccountInfo,AccountType,Error, setError} = useContext(Account_cont);
   const {setShowLoading,showLoading} = useContext(ShowCard_Cont);
   const url = process.env.NEXT_PUBLIC_SERVER_URL;
   async function support(e){
@@ -15,7 +15,7 @@ const Content = () => {
       message:e.target[1].value,
       User_id:AccountInfo.User_id,
     }
-    await axios.post(`${url}/spt/support/send`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+    AccountType==="cloud" ? await axios.post(`${url}/spt/support/send`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
     .then((response)=>{
       switch (response.data.message) {
         case 'sent':
@@ -34,7 +34,7 @@ const Content = () => {
         default:
           break;
       }
-    })
+    }): setError('incorrect');
   }
   return (
     <>
