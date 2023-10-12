@@ -60,7 +60,7 @@ const LocalStorage = () => {
             localStorage.setItem('todos', JSON.stringify(Todo));
             localStorage.setItem('categories', JSON.stringify(categories));
             localStorage.setItem('Total',JSON.stringify(Total));
-          },[AccountInfo,notes,Todo,categories])
+          },[AccountInfo,notes,Todo,categories,TotalEdit,TotalDelete,TotalCreate])
         }else{
           useEffect(()=>{
             setAccountInfo(JSON.parse(localStorage.getItem('account')));
@@ -82,7 +82,7 @@ const LocalStorage = () => {
             localStorage.setItem('todos', JSON.stringify(Todo));
             localStorage.setItem('categories', JSON.stringify(categories));
             localStorage.setItem('Total',JSON.stringify(Total));
-          },[AccountInfo,notes,Todo,categories])
+          },[AccountInfo,notes,Todo,categories,TotalEdit,TotalDelete,TotalCreate])
         }
   return (
     null
