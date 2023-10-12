@@ -1,9 +1,12 @@
 import { FormData_cont } from '@/Helpers/CardCreationData';
-import React, { useContext, useState } from 'react'
+import Cookies from 'js-cookie';
+import React, { useContext } from 'react'
 const Status = () => {
     const {months} = useContext(FormData_cont);
-    const [dropdown, setdropdown] = useState(false);
     const date = new Date;
+    function Logout(){
+      
+    }
   return (
     <>
         <section className="status">
@@ -11,7 +14,7 @@ const Status = () => {
                 <div className="dropdown">
                 <button className="dropbtn"><i className="fa-solid fa-gear"></i></button>
                 <div className="dropdown-content">
-                  <a onClick={()=>location.reload()} >Logout</a>
+                  <a onClick={()=>{location.reload();Cookies.remove('loginD');}} >Logout</a>
                 </div>
               </div>
         </section>
