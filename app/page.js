@@ -17,17 +17,22 @@ import Login from '@/Components/Login';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import LoadDB from '@/Components/LoadDB';
 import Notifcation from '@/Components/Notifcation';
+import { Account_cont } from '@/Helpers/Account-Info';
+import LocalStorage from '@/Components/LocalStorage';
 
 const Page = () => {
     const {selectedButton} = useContext(Categories_Cont);
     const {showCalendar} = useContext(Calendar_cont);
     const {showLogin} = useContext(ShowCard_Cont);
+    const {AccountType} = useContext(Account_cont);
+    const condition = (AccountType==='local'||AccountType==='localregister')
   return (
     <>
     <Notifcation/>
     {showLogin && <Login/>}
     {!showLogin && 
     <>
+    {condition && <LocalStorage/>}
     <LoadDB/>
     <Cards/>
     <LoadData/>

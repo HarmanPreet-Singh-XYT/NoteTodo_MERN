@@ -19,7 +19,7 @@ import Forget_Pass from './Login/Forget-Pass'
 import Forget_Verify from './Login/Forget-Verify'
 import ResetPassword from './Login/ResetPassword'
 import Register_Verify from './Login/Register-OTP'
-
+import Locallogin from './Login/Locallogin'
 const Login = () => {
   const {login} = useContext(Login_cont)
   const {showLoading} = useContext(ShowCard_Cont);
@@ -38,6 +38,7 @@ const Login = () => {
           {login==="respass" && <Forget_Pass/>}
           {login==="verify_respass" && <Forget_Verify/>}
           {login==="verified-respass" && <ResetPassword/>}
+          {login==="localform" && <Locallogin/>}
       </div>
     </div>
       </div>
