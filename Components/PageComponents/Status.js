@@ -5,8 +5,7 @@ const Status = () => {
     const {months} = useContext(FormData_cont);
     const date = new Date;
     function Logout(){
-      location.reload();
-      Cookies.remove('loginD');
+      
     }
   return (
     <>
@@ -15,7 +14,7 @@ const Status = () => {
                 <div className="dropdown">
                 <button className="dropbtn"><i className="fa-solid fa-gear"></i></button>
                 <div className="dropdown-content">
-                  <a onClick={()=>Logout} >Logout</a>
+                  <a onClick={()=>{location.reload();Cookies.remove('loginD');}} >Logout</a>
                 </div>
               </div>
         </section>
