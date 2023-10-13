@@ -51,7 +51,7 @@ const Page = () => {
             {selectedButton==="support" && <Support/>}
             {selectedButton==="output" && <Output/>}
         </div>
-        <div style={{display:"block",transform: `translateX(${showCalendar ? "0" : "100"}%)`}} className='calendar-div'>
+        <div className={showCalendar ? 'calendar-div' : 'calendar-div showcalendar'}>
         <Calendar/>
         </div>
     </main>

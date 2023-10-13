@@ -530,11 +530,12 @@ body{
   text-align: center;
 }
 .calendar-div{
-  position: absolute;
+  position: fixed;
   right: 0%;
   transform: translateX(110%);
-  display:none;
-  width: 0%;
+  display:block;
+  width: 400px;
+  height: 60%;
   transition: all 0.8s;
 }
 .sidebtn{
@@ -562,10 +563,10 @@ body{
     position: fixed;
     top: 0;
     right: 0;
-    width: 100%;
+    width: 85%;
     height: 60%;
     transition: all 0.3s linear;
-    transform: translate(-100%);
+    transform: translate(110%);
   }
 }
 .log-screen{
@@ -599,4 +600,7 @@ body{
   .container{
     justify-content: center;
   }
+}
+.showcalendar{
+  transform: translate(-10%);
 }
