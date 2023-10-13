@@ -6,6 +6,7 @@
     flex-direction: row;
     height: 75%;
 }
+
 .wid{
     background-color: #f5f5f7;
     width: 400px;
@@ -17,14 +18,34 @@
 .todo{
     height: 82%;
     background-color: #E1FAC9;
+    transition:all 0.5s;
 }
 .in-progress{
     height: 65%;
     background-color: #FCF1DC;
+    transition:all 0.5s;
 }
 .done{
     height: 100%;
     background-color: #d0f8eb;
+    transition: all 0.5s;
+}
+@media only screen and (max-width: 1000px)  {
+    .todo-content{
+        flex-direction: column;
+    }
+    .todo{
+        height: 35%;
+    }
+    .in-progress{
+        height: 25%;
+    }
+    .done{
+        height: 40%;
+    }
+}
+.show-sidebar{
+    transform: translate(0);
 }
 .todo-nav{
     background-color: #eae8fa;
