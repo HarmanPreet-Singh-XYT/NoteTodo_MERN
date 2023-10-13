@@ -2,7 +2,7 @@
 import { Categories_Cont } from '@/Helpers/Categories';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import React, { useContext, useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import Calendar from '@/Components/Calender';
 import { Calendar_cont } from '@/Helpers/Calendar-Cont';
 import ToDoApp from '@/Components/ToDoApp';
@@ -26,6 +26,7 @@ const Page = () => {
     const {showCalendar} = useContext(Calendar_cont);
     const {showLogin} = useContext(ShowCard_Cont);
     const {AccountType} = useContext(Account_cont);
+    const [sidebarDisplay, setsidebarDisplay] = useState(false)
     const condition = (AccountType==='local'||AccountType==='localregister')
   return (
     <>
@@ -38,11 +39,11 @@ const Page = () => {
     <LoadDB/>
     <Cards/>
     <LoadData/>
+    <button onClick={()=>setsidebarDisplay(!sidebarDisplay)} className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
     <main className="container">
-        <div className="sidebar">
+        <div className={sidebarDisplay ? 'sidebar' : 'sidebar show-sidebar'}>
             <SideBar/>
         </div>
-        <button className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
         <div className="main">
             {selectedButton==="overview" && <Overview/>}
             {selectedButton==="task" && <ToDoApp/>}
@@ -50,7 +51,7 @@ const Page = () => {
             {selectedButton==="support" && <Support/>}
             {selectedButton==="output" && <Output/>}
         </div>
-        <div style={{width:"24%",display:"block",transform: `translateX(${showCalendar ? "0" : "110"}%)`}} className='calendar-div'>
+        <div className={showCalendar ? 'calendar-div' : 'calendar-div showcalendar'}>
         <Calendar/>
         </div>
     </main>

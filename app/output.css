@@ -4,6 +4,11 @@
     width: 100%;
     height: 100%;
 }
+@media only screen and (max-width: 1000px)  {
+    .op-container{
+        flex-direction: column;
+    }
+}
 .op-todo{
     height: 100%;
     width: 50%;
@@ -41,6 +46,17 @@
     justify-content: space-between;
     border-radius: 20px;
     box-shadow: 0 1px 10px gray;
+}
+@media only screen and (max-width: 1000px)  {
+    .top-stat{
+        width: 100%;
+    }
+    .op-todo{
+        width: 100%;
+    }
+    .op-notes{
+        width: 100%;
+    }
 }
 h1,hr{
     margin: 0;
