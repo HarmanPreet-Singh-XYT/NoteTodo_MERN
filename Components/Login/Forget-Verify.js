@@ -5,10 +5,14 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const Forget_Verify = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
-	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
-  const {login,setLogin} = useContext(Login_cont);
+	const {showLoading,setShowLoading} = useContext(ShowCard_Cont);
+  const {setLogin} = useContext(Login_cont);
+  const {setCategories} = useContext(Categories_Cont);
+  const {setTotalCreate,setTotalEdit,setTotalDelete} = useContext(Number_cont);
   const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
   useLayoutEffect(() => {
 	setError(false);
@@ -27,11 +31,15 @@ const Forget_Verify = () => {
 	};
 	data.encrypted_otp==AccountInfo.cookie_otp && 
 	await axios.post(`${url}/login/verifyotp`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-	.then(async (res)=>{
+	.then((res)=>{
 		switch (res.data.message) {
 			case 'Success':
 				Notify("Verified","success");
-				await setAccountInfo(res.data.user_info);
+				setAccountInfo(res.data.user_info);
+				setCategories(res.data.user_info.categories);
+				setTotalCreate(res.data.user_info.create);
+				setTotalEdit(res.data.user_info.edit);
+				setTotalDelete(res.data.user_info.delete);
 				setShowLoading(false);
                 setLogin("verified-respass")
 				break;
