@@ -40,10 +40,10 @@ const Register_Verify = () => {
 			case 'Success':
 				Notify("Verified","success");
 				setAccountInfo(res.data.userdata);
-				setCategories(res.data.user_info.categories);
-				setTotalCreate(res.data.user_info.create);
-				setTotalEdit(res.data.user_info.edit);
-				setTotalDelete(res.data.user_info.delete);
+				setCategories(res.data.userdata.categories);
+				setTotalCreate(res.data.userdata.create);
+				setTotalEdit(res.data.userdata.edit);
+				setTotalDelete(res.data.userdata.delete);
 				setShowLoading(false);
                 setShowLogin(false);
 				break;
