@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { authenticateToken } = require('../data/Auth.js');
 const {userTodo} = require('../data/Data.js');
-router.post('/todo/create',(req,res)=>{
+router.post('/todo/create',authenticateToken,(req,res)=>{
     const data = new userTodo({
         email: req.body.email,
         id: req.body.id,
