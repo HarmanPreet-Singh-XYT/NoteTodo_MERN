@@ -2,7 +2,7 @@
 import { Categories_Cont } from '@/Helpers/Categories';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import React, { useContext, useLayoutEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Calendar from '@/Components/Calender';
 import { Calendar_cont } from '@/Helpers/Calendar-Cont';
 import ToDoApp from '@/Components/ToDoApp';
@@ -23,7 +23,7 @@ import LoadCookie from '@/Components/LoadCookie';
 
 const Page = () => {
     const {selectedButton} = useContext(Categories_Cont);
-    const {showCalendar} = useContext(Calendar_cont);
+    const {showCalendar,setshowCalendar} = useContext(Calendar_cont);
     const {showLogin} = useContext(ShowCard_Cont);
     const {AccountType} = useContext(Account_cont);
     const [sidebarDisplay, setsidebarDisplay] = useState(false)
@@ -41,7 +41,7 @@ const Page = () => {
     <LoadData/>
     <button onClick={()=>setsidebarDisplay(!sidebarDisplay)} className='sidebtn'><i className="fa-solid fa-caret-up"></i></button>
     <main className="container">
-        <div className={sidebarDisplay ? 'sidebar' : 'sidebar show-sidebar'}>
+        <div className={sidebarDisplay ? 'sidebar show-sidebar' : 'sidebar'}>
             <SideBar/>
         </div>
         <div className="main">
@@ -51,7 +51,7 @@ const Page = () => {
             {selectedButton==="support" && <Support/>}
             {selectedButton==="output" && <Output/>}
         </div>
-        <div className={showCalendar ? 'calendar-div' : 'calendar-div showcalendar'}>
+        <div className={showCalendar ? 'calendar-div showcalendar' : 'calendar-div'}>
         <Calendar/>
         </div>
     </main>

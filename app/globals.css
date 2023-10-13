@@ -604,3 +604,6 @@ body{
 .showcalendar{
   transform: translate(-10%);
 }
+.show-sidebar{
+  transform: translate(0);
+}

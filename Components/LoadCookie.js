@@ -18,7 +18,6 @@ const LoadCookie = () => {
                 switch (res.data.message) {
                     case "Success":
                         setAccountInfo(res.data.userdata);
-                        console.log(res.data.userdata)
                         setAccountType('cloud');
                         setShowLoading(false);
                         Notify("Login Successful","success");
