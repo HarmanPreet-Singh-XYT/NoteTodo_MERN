@@ -5,10 +5,14 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const Register_Verify = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
+  const {setCategories} = useContext(Categories_Cont);
+  const {setTotalCreate,setTotalEdit,setTotalDelete} = useContext(Number_cont);
   const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
   useLayoutEffect(() => {
 	setError(false);
@@ -36,6 +40,10 @@ const Register_Verify = () => {
 			case 'Success':
 				Notify("Verified","success");
 				setAccountInfo(res.data.userdata);
+				setCategories(res.data.user_info.categories);
+				setTotalCreate(res.data.user_info.create);
+				setTotalEdit(res.data.user_info.edit);
+				setTotalDelete(res.data.user_info.delete);
 				setShowLoading(false);
                 setShowLogin(false);
 				break;

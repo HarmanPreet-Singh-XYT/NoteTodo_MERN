@@ -5,10 +5,14 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
 import Cookies from 'js-cookie';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const Login_Form = () => {
 	const url=process.env.NEXT_PUBLIC_SERVER_URL;
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
+  const {setCategories} = useContext(Categories_Cont);
+  const {setTotalCreate,setTotalEdit,setTotalDelete} = useContext(Number_cont);
   const {AccountInfo,setAccountType, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
   const [remember, setRemember] = useState(false);
   useLayoutEffect(() => {
@@ -28,11 +32,15 @@ const Login_Form = () => {
 		password: e.target[1].value,
 	};
 	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
-	.then(async (res)=>{
+	.then((res)=>{
 		switch (res.data.message) {
 			case 'Success':
 				Notify("Login Successful","success");
-				await setAccountInfo(res.data.user_info);
+				setAccountInfo(res.data.user_info);
+				setCategories(res.data.user_info.categories);
+				setTotalCreate(res.data.user_info.create);
+				setTotalEdit(res.data.user_info.edit);
+				setTotalDelete(res.data.user_info.delete);
 				remember && Cookies.set('loginD',res.data.encrypted_token);
 				setShowLoading(false);
 				setShowLogin(false);
@@ -48,8 +56,8 @@ const Login_Form = () => {
 	})
 	.catch((err)=>{
 		setShowLoading(false);
-		setError(true);
-		Notify("Failed,Try Again","error")
+		setExist(true);
+		Notify("Incorrect Credentials","error")
 })
   }
   return (

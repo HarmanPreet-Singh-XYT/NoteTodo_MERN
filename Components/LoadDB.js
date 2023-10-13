@@ -15,6 +15,15 @@ const LoadDB = () => {
     
     if(AccountType==='cloud'){
       useEffect(()=>{
+        DataRestore_Notes();
+        DataRestore_Todos();
+      },[])
+      useEffect(()=>{
+        const condition = categories[0].id==0 && categories.length > 0
+        condition && axios.patch(`${url}/cat/category/update`,categories,
+          {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,user_id:AccountInfo.User_id}})
+      },[categories])
+      useEffect(()=>{
         const data = {
           Total:{
             create:TotalCreate,
@@ -24,54 +33,11 @@ const LoadDB = () => {
         }
         AccountInfo.User_id && axios.patch(`${url}/user/usertotal/update`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,User_id:AccountInfo.User_id}})
       },[TotalCreate,TotalEdit,TotalDelete])
-      useEffect(()=>{
-        axios.patch(`${url}/cat/category/update`,categories,
-          {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,user_id:AccountInfo.User_id}})
-      },[categories])
-      useEffect(()=>{
-        DataRestore_Notes();
-        DataRestore_Todos();
-        DataRestore_Categories();
-        DataRestore_Graphs();
-      },[])
     }else if(AccountType==='demo'){
       useEffect(()=>{
         SetupDemo();
       },[]);
-//Local Storage ---------------------------------
     }
-    // else if(AccountType==='localregister'){
-    //   useEffect(()=>{
-    //     const data = {
-    //       name:'user',
-    //       bio:'',
-    //       dob:'1/1/2000',
-    //       User_id:Math.random()*100
-    //     };
-    //     SetupDemo();
-    //     localStorage.setItem('account', JSON.stringify(data));
-    //     localStorage.removeItem('notes');
-    //     localStorage.removeItem('todos');
-    //     localStorage.setItem('categories',JSON.stringify(categories));
-    //     setNotes([]);
-    //     setTodo([]);
-    //     setAccountType('local');
-    //   },[])
-    // }else{
-    //   useEffect(()=>{
-    //     setAccountInfo(JSON.parse(localStorage.getItem('account')));
-    //     setNotes(JSON.parse(localStorage.getItem('notes')));
-    //     setTodo(JSON.parse(localStorage.getItem('todos')));
-    //     setCategories(JSON.parse(localStorage.getItem('categories')));
-    //   },[]);
-    //   useEffect(()=>{
-    //     localStorage.setItem('account', JSON.stringify(AccountInfo));
-    //     localStorage.setItem('notes', JSON.stringify(notes));
-    //     localStorage.setItem('todos', JSON.stringify(Todo));
-    //     localStorage.setItem('categories', JSON.stringify(categories));
-    //   },[AccountInfo,notes,Todo])
-    // }
-//---------------------------------------------------------------------
     function SetupDemo(){
       function setCat(name){
         const category = {id:Math.random()*100,cat:name,col:'yellow'}
@@ -132,14 +98,6 @@ const LoadDB = () => {
             setTodo((prevnotes)=>[...prevnotes,data])
           });
       })
-    }
-    function DataRestore_Categories(){
-      setCategories(AccountInfo.categories);
-    }
-    function DataRestore_Graphs(){
-      setTotalCreate(AccountInfo.total.create);
-      setTotalEdit(AccountInfo.total.edit);
-      setTotalDelete(AccountInfo.total.delete);
     }
   return (
     null

@@ -5,10 +5,14 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Notify } from '../Notifcation';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const OTP_Sent = () => {
 	const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/logindata`
 	const {showLoading,setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
   const {login,setLogin} = useContext(Login_cont);
+  const {setTotalCreate,setTotalEdit,setTotalDelete} = useContext(Number_cont);
+  const {setCategories} = useContext(Categories_Cont);
   const {AccountInfo, setAccountInfo, Error, setError,Exist, setExist} = useContext(Account_cont);
   const [remember, setremember] = useState(false);
   useLayoutEffect(() => {
@@ -33,6 +37,10 @@ const OTP_Sent = () => {
 			case 'Success':
 				Notify("Verified","success");
 				await setAccountInfo(res.data.user_info);
+				setCategories(res.data.user_info.categories);
+				setTotalCreate(res.data.user_info.create);
+				setTotalEdit(res.data.user_info.edit);
+				setTotalDelete(res.data.user_info.delete);
 				remember && Cookies.set('loginD',res.data.encrypted_token);
 				setShowLoading(false);
                 setShowLogin(false);
