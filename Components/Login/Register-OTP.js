@@ -41,9 +41,9 @@ const Register_Verify = () => {
 				Notify("Verified","success");
 				setAccountInfo(res.data.userdata);
 				setCategories(res.data.userdata.categories);
-				setTotalCreate(res.data.userdata.create);
-				setTotalEdit(res.data.userdata.edit);
-				setTotalDelete(res.data.userdata.delete);
+				setTotalCreate(res.data.userdata.total.create);
+				setTotalEdit(res.data.userdata.total.edit);
+				setTotalDelete(res.data.userdata.total.delete);
 				setShowLoading(false);
                 setShowLogin(false);
 				break;
