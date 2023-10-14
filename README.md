@@ -4,7 +4,7 @@
 
 ## Description
 
-The To-Do and Notes Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks, notes, and documents efficiently while offering a collaborative messaging feature.
+The To-Do and Notes Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks, notes efficiently while offering a collaborative messaging feature.
 
 ## Demo
 
@@ -21,7 +21,6 @@ Check out the live demo [here](https://note-todo-app.vercel.app/).
 4.View, edit, and delete tasks and notes.
 5.Visualize your data with graphs.
 6.Communicate with the creator or support team via messaging.
-7.Upload and store documents in the document section.
 
 
 ## Features
@@ -31,14 +30,22 @@ User Authentication
 Local Storage for Data
 Note Categorization
 Task and Note Management
-Data Visualization with Graphs
+*Data Visualization with Graphs
 User-to-Creator Messaging
-Document Upload Section
+*Encrypted Backend with OTP LOGIN
+*Authentication Required Backend
+Search bar for searching Lost Notes
+Build In Calendar
 
 ## Technologies Used
 HTML
 CSS
 React
+NextJS
+SASS
+Node
+Express
+MongoDB - Mongoose
 
 
 ## Contributing
