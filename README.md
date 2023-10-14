@@ -34,6 +34,7 @@ Task and Note Management
 User-to-Creator Messaging
 *Encrypted Backend with OTP LOGIN
 *Authentication Required Backend
+*OTP required For Registration To Prevent Database Flooding
 Search bar for searching Lost Notes
 Build In Calendar
 
