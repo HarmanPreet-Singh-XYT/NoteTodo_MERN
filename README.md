@@ -20,7 +20,7 @@ Check out the live demo [here](https://note-todo-app.vercel.app/).
 3.Organize your notes into categories for better management.\
 4.View, edit, and delete tasks and notes.\
 5.Visualize your data with graphs.\
-6.Communicate with the creator or support team via messaging.\
+6.Communicate with the creator or support team via messaging.
 
 
 ## Features
@@ -46,7 +46,7 @@ NextJS\
 SASS\
 Node\
 Express\
-MongoDB - Mongoose\
+MongoDB - Mongoose
 
 
 ## Contributing
@@ -82,6 +82,6 @@ SMTP_PASSWORD="Password of smtp"\
 SMTP_EMAIL="email for smtp"\
 SUPPORT_OWNER_EMAIL="Support Email When Contact Through App"\
 FRONTEND_SERVER_ORIGIN="Frontend Server URL"\
-NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"\
+NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"
 
 
