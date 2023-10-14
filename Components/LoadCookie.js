@@ -5,10 +5,14 @@ import { Account_cont } from '@/Helpers/Account-Info';
 import { Login_cont } from '@/Helpers/Login-Cont';
 import { ShowCard_Cont } from '@/Helpers/ShowCard';
 import { Notify } from './Notifcation';
+import { Categories_Cont } from '@/Helpers/Categories';
+import { Number_cont } from '@/Helpers/Numbers-Status';
 const LoadCookie = () => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL;
     const {setShowLoading,setShowLogin} = useContext(ShowCard_Cont);
     const {setAccountType, setAccountInfo} = useContext(Account_cont);
+    const {setCategories} = useContext(Categories_Cont);
+    const {setTotalCreate,setTotalEdit,setTotalDelete} = useContext(Number_cont);
     if(Cookies.get('loginD')){
         const token = Cookies.get('loginD');
         useEffect(()=>{
@@ -19,6 +23,10 @@ const LoadCookie = () => {
                     case "Success":
                         setAccountInfo(res.data.userdata);
                         setAccountType('cloud');
+                        setCategories(res.data.userdata.categories);
+                        setTotalCreate(res.data.userdata.create);
+                        setTotalEdit(res.data.userdata.edit);
+                        setTotalDelete(res.data.userdata.delete);
                         setShowLoading(false);
                         Notify("Login Successful","success");
                         setShowLogin(false);

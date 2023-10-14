@@ -607,3 +607,45 @@ body{
 .show-sidebar{
   transform: translate(0);
 }
+.fa-pen{
+  margin-right: 10px;
+}
+.fa-pen:hover{
+  color: lightgray;
+}
+.fa-trash:hover{
+  color: lightgray;
+}
+.cat-edit{
+  background-color: #6A61C0;
+  height: 0;
+  width: 80%;
+  border-radius: 10px;
+  transition: height 0.5s;
+}
+.cat-submit{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.cat-btn{
+  width: 75px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+  color: white;
+  background-color: #24A0ED;
+  cursor: pointer;
+  font-size: larger;
+
+}
+.cat-btn:hover{
+  background-color: #006eb3;
+}
+.cat-edit-input{
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  height: 25px;
+}
