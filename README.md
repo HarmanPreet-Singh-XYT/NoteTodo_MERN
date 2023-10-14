@@ -1,11 +1,10 @@
-The App is Under-Development,Following Version Is Not the Main Release.
 # To-Do Joint App
 
 ![Notes-Todo](/public/favicon.png)
 
 ## Description
 
-The To-Do Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks, notes, and documents efficiently while offering a collaborative messaging feature.
+The To-Do and Notes Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks, notes, and documents efficiently while offering a collaborative messaging feature.
 
 ## Demo
 
@@ -58,6 +57,8 @@ Submit a pull request.
 ![Notes](/ShowCase/4.png)
 ![Output](/ShowCase/5.png)
 ![Support](/ShowCase/6.png)
+![Categories](/ShowCase/7.png)
+![EditWindow](/ShowCase/8.png)
 
 
 ## EnvironmentVariables *Necessary
