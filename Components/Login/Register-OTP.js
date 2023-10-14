@@ -17,7 +17,7 @@ const Register_Verify = () => {
   useLayoutEffect(() => {
 	setError(false);
 	setExist(false);
-  }, [])
+  }, []);
   async function check(e){
 	e.preventDefault();
 	setShowLoading(true);
