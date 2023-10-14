@@ -644,8 +644,12 @@ body{
   background-color: #006eb3;
 }
 .cat-edit-input{
+  margin-top: 5px;
   border-radius: 5px;
   border: none;
   outline: none;
   height: 25px;
+}
+.col-picker{
+  margin-top: 10px;
 }
