@@ -37,9 +37,9 @@ const Forget_Verify = () => {
 				Notify("Verified","success");
 				setAccountInfo(res.data.user_info);
 				setCategories(res.data.user_info.categories);
-				setTotalCreate(res.data.user_info.create);
-				setTotalEdit(res.data.user_info.edit);
-				setTotalDelete(res.data.user_info.delete);
+				setTotalCreate(res.data.user_info.total.create);
+				setTotalEdit(res.data.user_info.total.edit);
+				setTotalDelete(res.data.user_info.total.delete);
 				setShowLoading(false);
                 setLogin("verified-respass")
 				break;

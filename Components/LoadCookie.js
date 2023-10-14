@@ -24,9 +24,9 @@ const LoadCookie = () => {
                         setAccountInfo(res.data.userdata);
                         setAccountType('cloud');
                         setCategories(res.data.userdata.categories);
-                        setTotalCreate(res.data.userdata.create);
-                        setTotalEdit(res.data.userdata.edit);
-                        setTotalDelete(res.data.userdata.delete);
+                        setTotalCreate(res.data.userdata.total.create);
+                        setTotalEdit(res.data.userdata.total.edit);
+                        setTotalDelete(res.data.userdata.total.delete);
                         setShowLoading(false);
                         Notify("Login Successful","success");
                         setShowLogin(false);

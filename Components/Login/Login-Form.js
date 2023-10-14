@@ -38,9 +38,9 @@ const Login_Form = () => {
 				Notify("Login Successful","success");
 				setAccountInfo(res.data.user_info);
 				setCategories(res.data.user_info.categories);
-				setTotalCreate(res.data.user_info.create);
-				setTotalEdit(res.data.user_info.edit);
-				setTotalDelete(res.data.user_info.delete);
+				setTotalCreate(res.data.user_info.total.create);
+				setTotalEdit(res.data.user_info.total.edit);
+				setTotalDelete(res.data.user_info.total.delete);
 				remember && Cookies.set('loginD',res.data.encrypted_token);
 				setShowLoading(false);
 				setShowLogin(false);
