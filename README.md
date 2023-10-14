@@ -1,4 +1,4 @@
-# To-Do Joint App
+# To-Do & Notes Joint App
 
 ![Notes-Todo](/public/favicon.png)
 
