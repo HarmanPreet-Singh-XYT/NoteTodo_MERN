@@ -4,9 +4,6 @@ import React, { useContext } from 'react'
 const Status = () => {
     const {months} = useContext(FormData_cont);
     const date = new Date;
-    function Logout(){
-      
-    }
   return (
     <>
         <section className="status">
@@ -14,7 +11,7 @@ const Status = () => {
                 <div className="dropdown">
                 <button className="dropbtn"><i className="fa-solid fa-gear"></i></button>
                 <div className="dropdown-content">
-                  <a onClick={()=>{location.reload();Cookies.remove('loginD');}} >Logout</a>
+                  <a onClick={()=>{Cookies.remove('loginD');location.reload();}} >Logout</a>
                 </div>
               </div>
         </section>
