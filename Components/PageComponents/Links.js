@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Links = () => {
-  const Linkedin = NEXT_PUBLIC_LINKEDIN;
-  const Discord = NEXT_PUBLIC_DISCORD;
-  const Github = NEXT_PUBLIC_GITHUB;
-  const Email = NEXT_PUBLIC_EMAIL;
+  const Linkedin = process.env.NEXT_PUBLIC_LINKEDIN;
+  const Discord = process.env.NEXT_PUBLIC_DISCORD;
+  const Github = process.env.NEXT_PUBLIC_GITHUB;
+  const Email = process.env.NEXT_PUBLIC_EMAIL;
   return (
     <>
         <hr className="hrline"/>
