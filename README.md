@@ -82,6 +82,11 @@ SMTP_PASSWORD="Password of smtp"\
 SMTP_EMAIL="email for smtp"\
 SUPPORT_OWNER_EMAIL="Support Email When Contact Through App"\
 FRONTEND_SERVER_ORIGIN="Frontend Server URL"\
-NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"
+NEXT_PUBLIC_ENCRYPT_API="API Authentication Key/Backend"\
+NEXT_PUBLIC_GITHUB='Add your github'\
+NEXT_PUBLIC_DISCORD='Add your Discord Channel or any other link'\
+NEXT_PUBLIC_LINKEDIN='Add your Linkedin Link'\
+NEXT_PUBLIC_EMAIL='Add your Email here for contact'\
+Either Define Link Variables Or have them empty string.*Important as app may crash without these variables
 
 
