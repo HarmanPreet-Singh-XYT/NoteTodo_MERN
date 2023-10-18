@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { Notes_Cont } from '@/Helpers/Notes'
 import axios from 'axios'
 import { Account_cont } from '@/Helpers/Account-Info';
@@ -18,12 +18,12 @@ const LoadDB = () => {
         DataRestore_Notes();
         DataRestore_Todos();
       },[])
-      useEffect(()=>{
+      useMemo(()=>{
         const condition = categories[0].id==0 && categories.length > 0
         condition && axios.patch(`${url}/cat/category/update`,categories,
           {headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API,user_id:AccountInfo.User_id}})
       },[categories])
-      useEffect(()=>{
+      useMemo(()=>{
         const data = {
           Total:{
             create:TotalCreate,

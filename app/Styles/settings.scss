@@ -1,5 +1,6 @@
+@import 'globals';
 .dropbtn {
-  color: white;
+  color: $fontcolor;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -37,7 +38,7 @@
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #bb86fc;
-  color: white;
+  color: $fontcolor;
   border-radius: 10px;
 }
 
