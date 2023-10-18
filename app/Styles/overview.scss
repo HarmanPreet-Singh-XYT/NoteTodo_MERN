@@ -1,3 +1,4 @@
+@import 'globals';
 .ov-container{
     width: 100%;
     display: flex;
@@ -86,26 +87,26 @@
     gap: 25px;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: $fontcolor;
     font-weight: bold;
-}
-.ov-spt-form > label{
-    font-size: 26px;
-}
-.ov-spt-form > input{
-    height: 30px;
-    width: 80%;
-    border-radius: 15px;
-    border: none;
-    font-size: larger;
-    outline: none;
-}
-.ov-spt-form > textarea{
-    border-radius: 10px;
-    width: 100%;
-    font-size: larger;
-    border:none;
-    outline: none;
+    > label{
+        font-size: 26px;
+    }
+    > input{
+        height: 30px;
+        width: 80%;
+        border-radius: 15px;
+        border: none;
+        font-size: larger;
+        outline: none;
+    }
+    > textarea{
+        border-radius: 10px;
+        width: 100%;
+        font-size: larger;
+        border:none;
+        outline: none;
+    }
 }
 .ov-sbt-btn{
     width: 80px;
@@ -115,7 +116,7 @@
     margin: 5px;
     padding: 5px;
     background-color: #008CBA;
-    color: white;
+    color: $fontcolor;
 }
 .ov-spt-container{
     width: 89%;

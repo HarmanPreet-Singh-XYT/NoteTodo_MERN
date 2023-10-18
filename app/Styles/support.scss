@@ -1,3 +1,4 @@
+@import 'globals';
 .spt-body{
     width: 100%;
     margin: 0;
@@ -24,23 +25,23 @@
     gap: 25px;
     justify-content: center;
     align-items: center;
-}
-.spt-form > label{
-    font-size: 26px;
-}
-.spt-form > input{
-    height: 30px;
-    width: 400px;
-    border-radius: 15px;
-    border: none;
-    font-size: larger;
-    outline: none;
-}
-.spt-form > textarea{
-    border-radius: 10px;
-    font-size: larger;
-    border:none;
-    outline: none;
+    > label{
+        font-size: 26px;
+    }
+    > input{
+        height: 30px;
+        width: 400px;
+        border-radius: 15px;
+        border: none;
+        font-size: larger;
+        outline: none;
+    }
+    > textarea{
+        border-radius: 10px;
+        font-size: larger;
+        border:none;
+        outline: none;
+    }
 }
 .sbt-btn{
     width: 80px;

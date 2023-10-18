@@ -1,3 +1,4 @@
+@import 'globals';
 .op-container{
     display: flex;
     align-items: center;
@@ -25,7 +26,7 @@
     display: flex;
 }
 .op-diff{
-    background-color: #8981D8;
+    background-color: $mainTheme;
     border: none;
     width: 2px;
     height: 90%;
@@ -35,8 +36,8 @@
     width: 50%;
 }
 .top-stat{
-    background-color: #8981D8;
-    color: white;
+    background-color: $mainTheme;
+    color: $fontcolor;
     width: 250px;
     height: 80px;
     margin: 5px;
@@ -65,7 +66,7 @@ h1,hr{
     width: 2px;
     height: 100%;
     border: none;
-    background-color: white;
+    background-color: $fontcolor;
 }
 .graphs{
     width: 100%;
@@ -78,5 +79,5 @@ h1,hr{
     width: 90%;
     height: 2px;
     border: none;
-    background-color: #6A61C0;
+    background-color: $mainTheme2;
 }

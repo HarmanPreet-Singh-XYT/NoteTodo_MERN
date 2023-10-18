@@ -1,3 +1,4 @@
+@import 'globals';
 .todo-content{
     width: 100%;
     display: flex;
@@ -60,9 +61,9 @@
     color: #3A3B3C;
     height: 90px;
     padding: 0 3px;
-}
-.date-day > h1{
-    margin: 0;
+    > h1{
+        margin: 0;
+    }
 }
 .todo,.todocard{
     display: flex;
@@ -98,15 +99,16 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    > i{
+        font-size: 24px;
+        margin-right: 5px;
+    }
 }
 .card-content{
     display: flex;
     flex-direction: column;
     overflow: auto;
     border: 1px solid #dadada;
-}
-.inside-card > *{
-    margin: 10px;
 }
 .inside-card{
     padding: 0 10px;
@@ -117,6 +119,9 @@
     border: 1px solid lightgray;
     width: 90%;
     height: 150px;
+    > *{
+        margin: 10px;
+    }
 }
 .bottom-content{
     display: flex;
@@ -141,13 +146,9 @@
     color: gray;
     margin: 0;
     font-size: large;
-}
-.bottom-content > p > i{
-    margin-right: 10px;
-}
-.add-card > i{
-    font-size: 24px;
-    margin-right: 5px;
+    > p > i{
+        margin-right: 10px;
+    }
 }
 .todo-options{
     font-size: 20px;

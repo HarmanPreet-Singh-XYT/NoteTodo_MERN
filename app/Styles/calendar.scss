@@ -1,3 +1,4 @@
+@import "globals";
 .container-cal{
   background-color: rgba(238, 238, 238, 0.5);
   box-shadow: 0 5px 10px gray;
@@ -10,7 +11,7 @@
 }
 .month{
   background-color: #00ADB5;
-  color: white;
+  color: $fontcolor;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -33,14 +34,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: white;
+  color: $fontcolor;
   font-size: 25px;
-}
-.days > p:last-child{
-  margin-right: 10px;
-}
-.days > p:first-child{
-  margin-left: 10px;
+  > p:last-child{
+    margin-right: 10px;
+  }
+  > p:first-child{
+    margin-left: 10px;
+  }
 }
 .dates{
   background-color: #222831;
@@ -54,28 +55,28 @@
   justify-content: flex-start;
   align-items: center;
   padding:0 5px;
-}
-.dates > div{
-  display: flex;
-  padding: 10px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: large;
+  > div{
+    display: flex;
+    padding: 10px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: $fontcolor;
+    font-size: large;
+  }
+  > .select:hover{
+    border: 2px solid #393E46;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  > .selected{
+    background-color: #00ADB5;
+    border-radius: 5px;
+  }
+  > .select:active{
+    background-color: aqua;
+  }
 }
 .empty:hover{
   border: none;
-}
-.dates > .select:hover{
-  border: 2px solid #393E46;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.dates > .selected{
-  background-color: #00ADB5;
-  border-radius: 5px;
-}
-.dates > .select:active{
-  background-color: aqua;
 }
