@@ -108,16 +108,18 @@ const Login_Form = () => {
 							Remember me
 						</label>
 					</div>
-
-					<div className="container-login100-form-btn">
-						<button type='button' onClick={()=>{setShowLogin(false);DemoAcc()}} className="login100-form-btn">
-							Demo
-						</button>
+					<div className="container-login100-form-btn main-btns">
 						<button type='button' onClick={()=>setLogin("register")} className="login100-form-btn">
 							Sign Up
 						</button>
 						<button className="login100-form-btn">
 							Login
+						</button>
+					</div>
+					<hr className='sep-hr'/>
+					<div className="container-login100-form-btn">
+						<button type='button' onClick={()=>{setShowLogin(false);DemoAcc()}} className="login100-form-btn">
+							Demo
 						</button>
 						<button type='button' onClick={()=>{setLogin("localform")}} className="login100-form-btn">
 							Local Storage
