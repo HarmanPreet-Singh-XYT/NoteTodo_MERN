@@ -31,7 +31,7 @@ const Login_Form = () => {
 		email: e.target[0].value,
 		password: e.target[1].value,
 	};
-	await axios.post(`${url}/logindata/login/logon`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+	await axios.post(`${url}/logindata/login/logon/${remember}`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then((res)=>{
 		switch (res.data.message) {
 			case 'Success':

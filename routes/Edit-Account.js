@@ -3,7 +3,7 @@ const { authenticateToken } = require('../data/Auth.js');
 const {userData} = require('../data/Data.js');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const saltRounds = 1;
+const saltRounds = 10;
 router.patch('/account/edit',authenticateToken,(req,res)=>{
     const data = {
         name:req.body.name,

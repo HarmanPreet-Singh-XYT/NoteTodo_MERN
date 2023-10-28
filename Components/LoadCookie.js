@@ -34,6 +34,7 @@ const LoadCookie = () => {
                     case "error":
                         setShowLoading(false);
                         Notify("Auto-Login Failed,Please Login Manually","inform");
+                        Cookies.remove('loginD');
                         break;
                     default:
                         setShowLoading(false);
