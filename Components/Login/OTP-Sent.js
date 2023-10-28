@@ -31,7 +31,7 @@ const OTP_Sent = () => {
 		encrypted_otp:Cookies.get('loginauth'),
 	};
 	data.encrypted_otp==AccountInfo.cookie_otp && 
-	await axios.post(`${url}/login/verifyotp`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
+	await axios.post(`${url}/login/verifyotp/${remember}`,data,{headers:{Authorization:process.env.NEXT_PUBLIC_ENCRYPT_API}})
 	.then(async (res)=>{
 		switch (res.data.message) {
 			case 'Success':
