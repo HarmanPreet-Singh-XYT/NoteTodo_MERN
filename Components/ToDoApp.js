@@ -8,7 +8,7 @@ import { ShowCard_Cont } from '@/Helpers/ShowCard'
 import { Useref_Update_cont } from '@/Helpers/Useref_Update'
 const ToDoApp = () => {
     const {rawDateData}=useContext(DateDay_Calculation_cont)
-    const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
+    const {title,content,colorr,tag,status,datevalue,timevalue} = useContext(Useref_Update_cont);
     const {selectionMode} = useContext(Selection_Cont);
     const {Todo, setTodo} = useContext(Notes_Cont);
     const {setShow_TodoShowCard,show_TodoEditCard,show_TodoCreateCard,setShow_TodoCreateCard} = useContext(ShowCard_Cont);
@@ -41,6 +41,8 @@ const ToDoApp = () => {
                 colorr.current = todo.colorr;
                 tag.current = todo.tag;
                 status.current = todo.priority;
+                datevalue.current = todo.date;
+                timevalue.current = todo.time
             }
         });
     }
