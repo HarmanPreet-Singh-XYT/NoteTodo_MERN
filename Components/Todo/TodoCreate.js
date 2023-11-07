@@ -13,15 +13,13 @@ const TodoCreate = () => {
     const {title,content,colorr,tag,status} = useContext(Useref_Update_cont);
     const {show_TodoCreateCard,setShow_TodoCreateCard} = useContext(ShowCard_Cont);
     const {TotalCreate, setTotalCreate} = useContext(Number_cont);
-    function create_todo(color,tag,title,content,category,setTodos,progress){
-        const date = new Date;
-        let createTime = true;
-        const fulldate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-        const time = createTime && `${date.getHours()}:${date.getMinutes()}`;
-        const timeopt = createTime ? true : false;
+    function create_todo(color,tag,title,content,category,setTodos,progress,eve){
+        const fulldate = eve.target[1].value;
+        const time = eve.target[2].value;
+        const timeopt = true;
         const random_id = Math.random()*100;
         const categoryCheck = category ? `All ${category}` : "All";
-        const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time:time,cont:content,category:categoryCheck,cls:`inside-card`,priority:progress,completed:false,timeopt:timeopt}
+        const note = {id:random_id,date:fulldate,tag,col:color,tit:title,time,cont:content,category:categoryCheck,cls:`inside-card`,priority:progress,completed:false,timeopt:timeopt}
         const DBData = {
             id: random_id,
             date: fulldate,
@@ -53,15 +51,23 @@ const TodoCreate = () => {
       clearOutValues();
     }, [show_TodoCreateCard]);
     const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth()+1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const time = `${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
    return (
     <>
     <div className="blur-background">
             <div className="create-window">
-                    <form id='createform' onSubmit={()=>{create_todo(colorr.current,tag.current,title.current,content.current,"",setTodo,false);setShow_TodoCreateCard(false)}} action="/note/create" className="create-note">
+                    <form id='createform' onSubmit={(event)=>{create_todo(colorr.current,tag.current,title.current,content.current,"",setTodo,false,event);setShow_TodoCreateCard(false)}} action="/note/create" className="create-note">
                         <label className="cre-title fir">Title</label>
                         <label className="cre-date fir">Date</label>
+                        <label for="appt">Select a time:</label>
                         <input onChange={(e)=>title.current=e.target.value} placeholder="Title" name="title" type="text" className="round-border title-in sec" required/>
-                        <input style={{fontSize:"20px"}} name='date' value={`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`} readOnly type="text" className="round-border date-in sec"/>
+                        <input style={{fontSize:"20px"}} name='date' defaultValue={`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`} type="date" className="round-border date-in sec"/>
+                        <input defaultValue={time} type="time" id="appt" name="appt"/>
                         <label className="cre-content third">Content</label>
                         <label className="cre-tag third">Tag</label>
                         <textarea onChange={(e)=>content.current=e.target.value} name="cre-content" placeholder="Content" className="textarea-span four" id="content" cols="20" rows="7"></textarea>

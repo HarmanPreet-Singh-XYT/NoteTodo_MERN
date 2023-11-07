@@ -7,8 +7,10 @@ const Useref_Update = ({children}) => {
     const colorr = useRef("");
     const tag = useRef("");
     const status = useRef("");
+    const datevalue = useRef("");
+    const timevalue = useRef("");
   return (
-    <Useref_Update_cont.Provider value={{title,content,colorr,tag,status}}>
+    <Useref_Update_cont.Provider value={{title,content,colorr,tag,status,datevalue,timevalue}}>
         {children}
     </Useref_Update_cont.Provider>
   );
