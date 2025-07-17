@@ -1,7 +1,7 @@
 # ===============================
 # Build stage
 # ===============================
-FROM node:18 AS builder
+FROM node:22 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY . .
 # ===============================
 # Production runtime stage
 # ===============================
-FROM node:18-alpine AS production
+FROM node:22-alpine AS production
 
 # Set working directory
 WORKDIR /app
