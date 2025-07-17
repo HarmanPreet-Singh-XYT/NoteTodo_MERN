@@ -34,7 +34,7 @@ COPY --from=builder /app .
 
 # Environment variables
 ENV ENCRYPT_BACKEND=""
-ENV FRONTEND_SERVER_ORIGIN=""
+ENV FRONTEND_SERVER_ORIGIN="https://note-todo-app.vercel.app/"
 ENV MONGOOSE_URL=""
 ENV NEXT_PUBLIC_ENCRYPT_API=""
 ENV PORT=4000
